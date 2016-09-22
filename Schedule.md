@@ -16,7 +16,8 @@
 	<li>Menu Button</li>
 	<li>Menu interface with resume and exit buttons</li>
 	<li>Resizable UI with multiple aspect ratio compatibility</li>
-	<li><b>Soundtrack: first track to accompany character introduction scene</li>
+	<li><b>Soundtrack: </b></li>
+	<li>first track to accompany character introduction scene</li>
 	<li>Track will be 1-3 minutes, looping, neutral/slightly positive background music to computer lab scenes</li>
 </ul>
 <p>Scene 1: Main character meets heroine through a series of<br>
