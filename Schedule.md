@@ -2,7 +2,7 @@
 <br>
 <h2><b>TENTATIVE DEADLINE: JANUARY 2017</b></h2>
 <br>
-<h2><b>Month 1</b></h2>
+<h2><b>September</b></h2>
 <ul><li><b>Engine:</b></li>
 	<li>Drawing backgrounds and characters to screen</li>
 	<li>fade to black effect</li>
