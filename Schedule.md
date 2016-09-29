@@ -1,4 +1,4 @@
-<h1>Tentative Development Schedule</h1>
+<h1>Development Schedule</h1>
 <br>
 <h2><b>TENTATIVE DEADLINE: JANUARY 2017</b></h2>
 <br>
