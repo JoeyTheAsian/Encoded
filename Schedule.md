@@ -19,6 +19,10 @@
 	<li><b>Soundtrack: </b></li>
 	<li>first track to accompany character introduction scene</li>
 	<li>Track will be 1-3 minutes, looping, neutral/slightly positive background music to computer lab scenes</li>
+	<li><b>Art:</b></li>
+	<li>Concept art of 2 main characters</li>
+	<li>UI textures for all implemented UI elements</li>
+	<li>environment concept art for 3-4 backdrops including computer lab in scene 1</li>
 </ul>
 <p>Scene 1: Main character meets heroine through a series of<br>
  code comments inserted into his programming assignments anonymously.<br>
