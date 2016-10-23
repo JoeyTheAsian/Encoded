@@ -47,10 +47,13 @@
   <ItemGroup>
      <Compile Include="Assets\Script\AudioManager.cs" />
      <Compile Include="Assets\Script\AutoResize.cs" />
+     <Compile Include="Assets\Script\Character.cs" />
+     <Compile Include="Assets\Script\DialogueAndNarration.cs" />
      <Compile Include="Assets\Script\PlaneResControl.cs" />
      <Compile Include="Assets\Script\SceneControl.cs" />
+     <Compile Include="Assets\Script\Scripting.cs" />
      <Compile Include="Assets\Script\TacheAutoResize.cs" />
-     <Compile Include="Assets\Script\TachieManage.cs" />
+     <None Include="Assets\Script\Script.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

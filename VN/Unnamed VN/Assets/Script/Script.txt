@@ -1,0 +1,17 @@
+#Some fuzz tests
+"1" "2" "3 quoted strings" #3 ignored
+"1 open #Ignored
+"2.1 open "2.2" #2.2 ignored
+"2.1" "2.2 open #2.2 ignored
+"Multiple \\\\"escapes\\\""
+
+#Start canonical-form input
+"I'll ask her..."
+
+"Me" "Um... will you..."
+"Me" "Will you be my artist for a visual novel?"
+
+"Silence."
+"She is shocked, and then..."
+
+"Sylvie" "Sure, but what is a \"visual novel?\""
