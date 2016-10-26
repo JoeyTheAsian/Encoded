@@ -6,11 +6,13 @@ using UnityEngine.UI;
 
 public class Scripting : MonoBehaviour {
 	void Awake() {
-		//Syntax is Ren'Py.
+		//Syntax is Ren'Py-like.
 
 		/*Planned program flow:
 		Parse line-delimited commands into objects in memory.
-		Sequentially execute.*/
+		Sequentially execute.
+
+		However, once events and interfacing with player is implemented (clicking to advance text), parsing in run-time is preferable.*/
 		Debug.Log(System.IO.Directory.GetCurrentDirectory());
 		List<object> commands = new List<object>(); //String can be changed to different types to represent different commands
 		Dictionary<String, Character> identifiers = new Dictionary<String, Character>();
@@ -22,171 +24,171 @@ public class Scripting : MonoBehaviour {
 					if (String.IsNullOrEmpty(line)) {
 						continue;
 					}
-					//Dialogue and narration: https://www.renpy.org/doc/html/dialogue.html
-					if (line[0] == '"') {
-						//Dialogue accepts 2 quoted strings
-						string[] dialogueAndNarrationTemporary = new string[2];
-						bool escape = false;
-						//Regular expressions can be used instead.
-						for (int startIndex = 1, index = 1; index < line.Length; index++) {
-							if ((line[index] == '\\' ) && (line[index + 1] == '"')) { //Escaped quote
-								escape = true;
-								index += 2;
+					int index = IndexOfWhiteSpace(line);
+					string first = line.Substring(0, index);
+					int startIndex = index = IndexOfNonWhiteSpace(line, index + 1);
+					switch (first) {
+						//Keywords:
+						case "define":
+							if (index >= line.Length) {
+								goto InsufficientTokens;
 							}
-							if (line[index] == '"') {
-								dialogueAndNarrationTemporary[(dialogueAndNarrationTemporary[0] == null) ? 0 : 1] = escape ? line.Substring(startIndex, index - startIndex).Replace("\\\"", "\"") : line.Substring(startIndex, index - startIndex);
-								if (dialogueAndNarrationTemporary[1] != null) {
-									break;
-								}
-								int nextIndex = line.IndexOf('"', index + 1);
-								if (nextIndex == -1) {
-									break;
-								}
-								startIndex = index = nextIndex + 1;
+							index = IndexOfWhiteSpace(line, index);
+							string identifier = line.Substring(startIndex, index - startIndex);
+							if (identifier[0] == '"') {
+								Debug.LogWarning(String.Format("Ignoring line `{0}` containing identifier `{1}` beginning with quote", line, identifier));
+								continue;
 							}
-						}
-						DialogueAndNarration dialogueAndNarrationCommand = new DialogueAndNarration {Text = dialogueAndNarrationTemporary[1]};
-						if (dialogueAndNarrationTemporary[0] != null) {
-							dialogueAndNarrationCommand.Character = new Character {Name = dialogueAndNarrationTemporary[0]};
-						}
-						commands.Add(dialogueAndNarrationCommand);
+
+							startIndex = index = IndexOfNonWhiteSpace(line, index + 1);
+							if (index >= line.Length) {
+								goto InsufficientTokens;
+							}
+							index = IndexOfWhiteSpace(line, index);
+							string equalsSign = line.Substring(startIndex, index - startIndex);
+							if ((equalsSign.Length > 1) || !(equalsSign.Equals("="))) {
+								Debug.LogWarning(String.Format("Ignoring line `{0}` not containing equals sign", line));
+								continue;
+							}
+
+							index = IndexOfNonWhiteSpace(line, index + 1);
+							if (index >= line.Length) {
+								goto InsufficientTokens;
+							}
+							if (!line.Substring(index, Math.Min(9, line.Length - index)).Equals("Character")) {
+								Debug.LogWarning(string.Format("Ignoring line `{0}` not containing `Character`", line));
+								continue;
+							}
+
+							index = index + 9; //9 is length of "Character"
+							if (index >= line.Length) {
+								goto InsufficientTokens;
+							}
+							index = IndexOfNonWhiteSpace(line, index);
+							if (line[index] != '(') {
+								Debug.LogWarning(string.Format("Ignoring line `{0}` not containing left parenthesis after Character", line));
+								continue;
+							}
+
+							index++;
+							if (index >= line.Length) {
+								goto InsufficientTokens;
+							}
+							index = IndexOfNonWhiteSpace(line, index);
+							if (line[index] != '"') {
+								Debug.LogWarning(string.Format("Ignoring line `{0}` not containing quote after left parenthesis", line));
+								continue;
+							}
+
+							startIndex = ++index;
+							if (index >= line.Length) {
+								goto InsufficientTokens;
+							}
+							//ESCAPED QUOTES MISSING
+							index = line.IndexOf('"', index);
+							if (index == -1) {
+								Debug.LogWarning(string.Format("Ignoring line `{0}` not containing closing quote", line));
+								continue;
+							}
+							string characterName = line.Substring(startIndex, index - startIndex);
+
+							index++;
+							if (index >= line.Length) {
+								goto InsufficientTokens;
+							}
+							index = IndexOfNonWhiteSpace(line, index);
+							if (line[index] != ')') {
+								Debug.LogWarning(string.Format("Ignoring line `{0}` not containing right parenthesis after closing quote", line));
+								continue;
+							}
+
+							identifiers.Add(identifier, new Character {Name = characterName});
+							break;
+						case "if":
+							Debug.Log("Keyword: " + first);
+							break;
+						case "image":
+							Debug.Log("Keyword: " + first);
+							break;
+						case "jump":
+							Debug.Log("Keyword: " + first);
+							break;
+						case "label":
+							Debug.Log("Keyword: " + first);
+							break;
+						case "play":
+							Debug.Log("Keyword: " + first);
+							break;
+						case "return": //1
+							Debug.Log("Keyword: " + first);
+							break;
+						case "scene":
+							Debug.Log("Keyword: " + first);
+							break;
+						case "show":
+							Debug.Log("Keyword: " + first);
+							break;
+						case "stop": //1
+							Debug.Log("Keyword: " + first);
+							break;
+						default:
+							//Dialogue and narration: https://www.renpy.org/doc/html/dialogue.html
+							if (!identifiers.ContainsKey(first) && (line[0] != '"')) {
+								Debug.LogWarning(String.Format("Ignoring line `{0}` containing unknown identifier `{1}`", line, first));
+								continue;
+							}
+							Stack<string> dialogueAndNarration = new Stack<string>(2);
+							startIndex = index = ((line[0] == '"') ? 0 : index) + 1;
+							//Regular expressions can be used instead.
+							for (bool escape = false; index < line.Length; index++) {
+								if ((line[index] == '\\' ) && (line[index + 1] == '"')) { //Escaped quote
+									escape = true;
+									index += 2;
+								}
+								if (line[index] == '"') {
+									dialogueAndNarration.Push(escape ? line.Substring(startIndex, index - startIndex).Replace("\\\"", "\"") : line.Substring(startIndex, index - startIndex));
+									index = line.IndexOf('"', index + 1); //Characters between quoted strings permitted!
+									if (index == -1) {
+										break;
+									}
+									startIndex = index = index + 1;
+								}
+							}
+							if (dialogueAndNarration.Count < 1) {
+								goto InsufficientTokens;
+							}
+							DialogueAndNarration dialogueAndNarrationCommand = new DialogueAndNarration {Text = dialogueAndNarration.Pop()};
+							if (identifiers.ContainsKey(first)) {
+								dialogueAndNarrationCommand.Character = identifiers[first];
+							}
+							else if (dialogueAndNarration.Count >= 1) {
+								dialogueAndNarrationCommand.Character = new Character {Name = dialogueAndNarration.Pop()};
+							}
+							commands.Add(dialogueAndNarrationCommand);
+							break;
 					}
-					else {
-						int index = IndexOfWhiteSpace(line);
-						string first = line.Substring(0, index);
-						int startIndex = index = IndexOfNonWhiteSpace(line, index + 1);
-						switch (first) {
-							//Keywords:
-							case "define":
-								if (index >= line.Length) {
-									goto InsufficientTokens;
-								}
-								index = IndexOfWhiteSpace(line, index);
-								string identifier = line.Substring(startIndex, index - startIndex);
-								if (identifier[0] == '"') {
-									Debug.LogWarning(String.Format("Ignoring line `{0}` containing identifier `{1}` beginning with quote", line, identifier));
-									return;
-								}
-								Debug.Log(identifier);
-
-								startIndex = index = IndexOfNonWhiteSpace(line, index + 1);
-								if (index >= line.Length) {
-									goto InsufficientTokens;
-								}
-								index = IndexOfWhiteSpace(line, index);
-								string equalsSign = line.Substring(startIndex, index - startIndex);
-								if ((equalsSign.Length > 1) || !(equalsSign.Equals("="))) {
-									Debug.LogWarning(String.Format("Ignoring line `{0}` not containing equals sign", line));
-									return;
-								}
-								Debug.Log(equalsSign);
-
-								index = IndexOfNonWhiteSpace(line, index + 1);
-								if (index >= line.Length) {
-									goto InsufficientTokens;
-								}
-								if (!line.Substring(index, Math.Min(9, line.Length - index)).Equals("Character")) {
-									Debug.LogWarning(string.Format("Ignoring line `{0}` not containing `Character`", line));
-									return;
-								}
-								Debug.Log("Character");
-
-								index = index + 9; //9 is length of "Character"
-								if (index >= line.Length) {
-									goto InsufficientTokens;
-								}
-								index = IndexOfNonWhiteSpace(line, index);
-								if (line[index] != '(') {
-									Debug.LogWarning(string.Format("Ignoring line `{0}` not containing left parenthesis after Character", line));
-									return;
-								}
-								Debug.Log(line[index]);
-
-								index++;
-								if (index >= line.Length) {
-									goto InsufficientTokens;
-								}
-								index = IndexOfNonWhiteSpace(line, index);
-								if (line[index] != '"') {
-									Debug.LogWarning(string.Format("Ignoring line `{0}` not containing quote after left parenthesis", line));
-									return;
-								}
-								Debug.Log(line[index]);
-
-								startIndex = ++index;
-								if (index >= line.Length) {
-									goto InsufficientTokens;
-								}
-								index = line.IndexOf('"', index);
-								if (index == -1) {
-									Debug.LogWarning(string.Format("Ignoring line `{0}` not containing closing quote", line));
-									return;
-								}
-								string characterName = line.Substring(startIndex, index - startIndex);
-								Debug.Log(characterName);
-								Debug.Log(line[index]);
-
-								index++;
-								if (index >= line.Length) {
-									goto InsufficientTokens;
-								}
-								index = IndexOfNonWhiteSpace(line, index);
-								if (line[index] != ')') {
-									Debug.LogWarning(string.Format("Ignoring line `{0}` not containing right parenthesis after closing quote", line));
-									return;
-								}
-								Debug.Log(line[index]);
-
-								return;
-								InsufficientTokens:
-									Debug.LogWarning(string.Format("Ignoring line `{0}` containing insufficient tokens", line, first));
-									return;
-							case "if":
-								Debug.Log("Keyword: " + first);
-								break;
-							case "image":
-								Debug.Log("Keyword: " + first);
-								break;
-							case "jump":
-								Debug.Log("Keyword: " + first);
-								break;
-							case "label":
-								Debug.Log("Keyword: " + first);
-								break;
-							case "play":
-								Debug.Log("Keyword: " + first);
-								break;
-							case "return": //1
-								Debug.Log("Keyword: " + first);
-								break;
-							case "scene":
-								Debug.Log("Keyword: " + first);
-								break;
-							case "show":
-								Debug.Log("Keyword: " + first);
-								break;
-							case "stop": //1
-								Debug.Log("Keyword: " + first);
-								break;
-							default:
-								Debug.Log("Identifier: " + first);
-								//What to do for identifier: go to dialogue and narration.
-								break;
-						}
-					}
+					continue;
+					InsufficientTokens:
+						Debug.LogWarning(string.Format("Ignoring line `{0}` containing insufficient tokens", line, first));
+						continue;
 				}
 			}
 		}
 		catch (Exception exception) {
 			Debug.Log(exception);
 		}
+
 		//Following section for testing, which requires a GameObject named "Dialogue and narration" with a Text component.
 		//Since the following does not wait for user input to advance text, only last line of text is shown.
-		Text dialogueAndNarration = GameObject.Find("Dialogue and narration").GetComponent<Text>();
+		Text dialogueAndNarrationComponent = GameObject.Find("Dialogue and narration").GetComponent<Text>();
 		for (int programCounter = 0; programCounter < commands.Count; programCounter++) {
-			//For now and this test, commands only contain DialogueAndNarration
-			DialogueAndNarration dialogueAndNarrationCommand = (DialogueAndNarration) commands[programCounter];
-			dialogueAndNarration.text = ((dialogueAndNarrationCommand.Character != null) ? dialogueAndNarrationCommand.Character.Name + "\n\n" : "") + dialogueAndNarrationCommand.Text;
+			if (commands[programCounter].GetType() == typeof(DialogueAndNarration)) {
+				DialogueAndNarration dialogueAndNarrationCommand = (DialogueAndNarration)commands[programCounter];
+				dialogueAndNarrationComponent.text = ((dialogueAndNarrationCommand.Character != null) ? dialogueAndNarrationCommand.Character.Name + "\n\n" : "") + dialogueAndNarrationCommand.Text;
+			}
+			else {
+				Debug.LogWarning("Unknown command");
+			}
 		}
 	}
 
