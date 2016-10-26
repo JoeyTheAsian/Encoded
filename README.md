@@ -16,12 +16,17 @@
   <li>Classes: Character and DialogueAndNarration</li>
   <li>Tests: Script is parsed into a `List&ltobject&gt`. Although commands in List are executed sequentially, variable name `programCounter` is chosen to hint at branches and jumps.</li>
 </ul>
+<b>Joey Tong - 10/20/16 - 4:43pm - 'Functional Specification'</b>
+<ul><li>Added functional specification document</li></ul>
+<b> Joey Tong- 10/22/16 - 7:12pm - 'Added screen resolution change for backgrounds'</b><br>
+<br>
 <b>Sean Yip - 2016-10-25 21:08 - Scripting: Add character definitions</b>
 <ul>
   <li>Example: `define S  = Character("Sylvie")`</li>
   <li>2016-10-19 20:51 - Preliminary code tested on https://repl.it/EA6v/10</li>
   <li>Date listed above - Working version with light testing
 </ul>
-<b>Joey Tong - 10/20/16 - 4:43pm - 'Functional Specification'</b>
-<ul><li>Added functional specification document</li></ul>
-<b> Joey Tong- 10/22/16 - 7:12pm - 'Added screen resolution change for backgrounds'</b>
+<b>Sean Yip - 2016-10-26 08:20 - Scripting: Stop on invalid line<b>
+<ul>
+  <li>Previous behavior was continue</li>
+<ul>
