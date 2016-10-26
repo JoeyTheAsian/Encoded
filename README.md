@@ -35,3 +35,9 @@
   <li>Add support for jump, label, and return</li>
   <li>Add ToString to classes</li>
 <ul>
+<b>Joey Tong - 2016/10/26 12:38pm - Background integration</b>
+<ul><li>Added backgrounds to scripting scene</li>
+<li>Fixed camera rendering</li>
+<li>Changed camera display mode from Perspective to orthographic</li>
+<li>Added placeholder background and script</li>
+</ul>
