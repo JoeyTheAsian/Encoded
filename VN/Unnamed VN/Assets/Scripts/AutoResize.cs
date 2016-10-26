@@ -30,5 +30,7 @@ public class AutoResize : MonoBehaviour {
             worldScreenHeight = worldScreenWidth * (imagey / imagex);
         }
         gameObject.transform.localScale = new Vector3(worldScreenWidth / width, worldScreenHeight / height);
+        gameObject.transform.position = MainCamera.transform.position;
+        gameObject.transform.Translate(new Vector3(0, 0, 1f));
     }
 }
