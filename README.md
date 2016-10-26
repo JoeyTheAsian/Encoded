@@ -26,7 +26,12 @@
   <li>2016-10-19 20:51 - Preliminary code tested on https://repl.it/EA6v/10</li>
   <li>Date listed above - Working version with light testing
 </ul>
-<b>Sean Yip - 2016-10-26 08:20 - Scripting: Stop on invalid line<b>
+<b>Sean Yip - 2016-10-26 08:20 - Scripting: Stop on invalid line</b>
 <ul>
   <li>Previous behavior was continue</li>
+</ul>
+<b>Sean Yip - 2016-10-26 11:30 - Scripting: jump, label, return, and ToString</b>
+<ul>
+  <li>Add support for jump, label, and return</li>
+  <li>Add ToString to classes</li>
 <ul>
