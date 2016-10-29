@@ -46,5 +46,4 @@
 <li>Added Fade in effect FadeIn(float duration) for backgrounds</li>
 <li>Added ChangeBackground(String) functionality that switches the active background</li>
 <li>Added MakeTransparent() that makes backgrounds transparent</li>
-<li>
 </ul  
