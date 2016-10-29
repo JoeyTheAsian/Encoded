@@ -48,4 +48,3 @@
 <li>Added MakeTransparent() that makes backgrounds transparent</li>
 <li>Added GameManager object and subobjects for clearer engine architecture</li>
 </ul>
-changes
