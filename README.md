@@ -41,3 +41,10 @@
 <li>Changed camera display mode from Perspective to orthographic</li>
 <li>Added placeholder background and script</li>
 </ul>
+<b>Joey Tong - 2016/10/28 8:45pm - Engine Architecture and Implementation</b>
+<ul>
+<li>Added Fade in effect FadeIn(float duration) for backgrounds</li>
+<li>Added ChangeBackground(String) functionality that switches the active background</li>
+<li>Added MakeTransparent() that makes backgrounds transparent</li>
+<li>
+</ul  
