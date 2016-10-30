@@ -48,4 +48,8 @@
 <li>Added MakeTransparent() that makes backgrounds transparent</li>
 <li>Added GameManager object and subobjects for clearer engine architecture</li>
 </ul>
+<b>Qizhi Zhao - 2016-10-30 13:14 - type one by one text </b>
+<ul>
+<li>Changed the update and start function </li>
+</ul>
 

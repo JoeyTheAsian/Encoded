@@ -6,10 +6,19 @@ public class DialogueManager : MonoBehaviour {
     public Text dialogueBox;
     string bufferText;
     float timer;
-	// Use this for initialization
-	void Start () {
-	
-	}
+    public float letterPause = 0.2f;
+    // Use this for initialization
+    void Start () {
+        
+        bufferText = dialogueBox.text;
+        StartCoroutine(SlowIn());
+    }
+    IEnumerator SlowIn()
+    { foreach (char letter in bufferText.ToCharArray()) {
+            dialogueBox.text = dialogueBox.text + letter ;
+            yield return new WaitForSeconds(letterPause);
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -18,7 +27,7 @@ public class DialogueManager : MonoBehaviour {
 	}
     void SetText(string s)
     {
-        dialogueBox.text = s;
+        
     }
     void DisplayText()
     {
