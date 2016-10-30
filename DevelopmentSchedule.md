@@ -26,9 +26,12 @@ doesn't change. This means a change in background means a change in the scene</l
 <li>Computer Lab Background concept art</li>
 </ul>
 <h1><b>November</b></h1>
+<h2><b>WEEK 1</b></h2>
 <h2>Programming</h2>
 <ul>
 <li>click to advance dialogue</li>
+<li>dialogue integration with scripting</li>
+<li>Letter by letter rendering of dialogue</li>
 <li>GameManager object containing persistent engine scripts</li>
 <li>SceneManager object in GameManager dealing with all scene related data and functions</li>
 <li>in-game time, date, and current location display at top left of screen</li>
@@ -55,3 +58,22 @@ pointers will be compiled into a file to form a save file. </li>
 <li>Computer Lab Polished Lineart</li>
 <li>College Hallway/staircase concept art</li>
 </ul>
+<h2><b>WEEK 2</b></h2>
+<h2>Programming</h2>
+<ul>
+<li>UI boxes, location & time display, main menu buttons, options menu buttons</li>
+<li>Full Dialogue integration, begin scripting dialogue</li>
+<li>Particle effects integration in main menu</li>
+<li>Character mesh rendering integration</li>
+<li>Timer to keep track of playtime data (Current session, total playtime, time in each save file)</li>
+<li>Audio System that plays specified audio file (string s)</li>
+<li>Fade in, fade out smooth audio transitions</li>
+<li>Audio system must support overlapping simultaneous audio (sound effects)</li>
+<li>Character rendering system that supports multiple layers (for hair, eyes, mouth animations)</li>
+</ul>
+<h2>Art</h2>
+<ul>
+<li>School building, outside courtyard background concept art</li>
+<li>Polished Initial heroine character art, default pose, default expression</li>
+</ul>
+<h2>Music</h2>
