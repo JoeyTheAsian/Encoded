@@ -1,7 +1,7 @@
 <h1><b>Visual Novel Project - Untitled<br></h1>
 <h2>Tentative Deadline: January 2017<br>
 First Functional Build & First Scene by: December 1st, 2016<br>
-Functional Specification<br>
+Spec Sheet<br>
 </h2>
 <br>
 Look, feel, & aura of the game:<br></b>
