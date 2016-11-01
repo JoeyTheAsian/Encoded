@@ -23,6 +23,7 @@ public class DialogueManager : MonoBehaviour {
     void Start () {
         SetText(currentText);
         letterTimer = letterPause;
+        dialogueBox.color = new Color(dialogueBox.color.r, dialogueBox.color.g, dialogueBox.color.b, 200f);
     }
 
 	// Update is called once per frame
