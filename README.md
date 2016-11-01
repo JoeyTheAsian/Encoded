@@ -55,5 +55,6 @@
 <b>Joey Tong - 2016/10/28 13:58 - UI Implementation</b>
 <ul>
 <li>Fixed QiZhi's implementation of animated text to be compatible with less than 10ms char buffers and use memory more efficiently</li>
+<li>Current implementation of scrolling text will also not freeze the thread, previous implementation used the wait method</li>
 <li>Added Dialogue box autosize, adjustable margins, opacity</li>
 </ul>
