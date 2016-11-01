@@ -24,9 +24,9 @@ public class DialogueBox : MonoBehaviour {
         //right & top margin
         //gameObject.transform.localScale = new Vector3(.95f, 1f);
         RectTransform rectTransform = gameObject.GetComponent<RectTransform>();
-        int width = Camera.main.pixelWidth;
-        int height = Camera.main.pixelHeight;
-        rectTransform.offsetMax = new Vector2(width * - PercentageMargin, height * .65f);
+        float width = GameObject.Find("DialogueContainer").GetComponent<RectTransform>().rect.width;
+        float height = GameObject.Find("DialogueContainer").GetComponent<RectTransform>().rect.height;
+        rectTransform.offsetMax = new Vector2(width * - PercentageMargin, height * .30f);
         rectTransform.offsetMin = new Vector2(width * PercentageMargin, width * PercentageMargin);
 
     }

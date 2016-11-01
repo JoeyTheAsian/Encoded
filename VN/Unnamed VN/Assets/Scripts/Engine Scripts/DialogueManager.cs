@@ -10,7 +10,7 @@ public class DialogueManager : MonoBehaviour {
 
     //A buffered queue that stores the chars to be displayed
     Queue<char> bufferText;
-    public float PercentageMargin = .05f;
+    public float PercentageMargin = .02f;
 
     //The current active text that *should* be displayed on the screen
     //(not accounting for animation buffer)
@@ -27,8 +27,9 @@ public class DialogueManager : MonoBehaviour {
         dialogueBox.color = new Color(dialogueBox.color.r, dialogueBox.color.g, dialogueBox.color.b, 1f);
         RectTransform rectTransform = dialogueBox.GetComponent<RectTransform>();
 
-        int width = Camera.main.pixelWidth;
-        int height = Camera.main.pixelHeight;
+        float width = GameObject.Find("DialogueBox").GetComponent<RectTransform>().rect.width;
+        float height = GameObject.Find("DialogueBox").GetComponent<RectTransform>().rect.height;
+        //rectTransform.sizeDelta = new Vector2(width * .96f, height * .30f);
         rectTransform.offsetMax = new Vector2(width * -PercentageMargin, width * -PercentageMargin);
         rectTransform.offsetMin = new Vector2(width * PercentageMargin, width * PercentageMargin);
         
