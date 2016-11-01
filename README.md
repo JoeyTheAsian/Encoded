@@ -52,9 +52,12 @@
 <ul>
 <li>Changed the update and start function </li>
 </ul>
-<b>Joey Tong - 2016/10/28 13:58 - UI Implementation</b>
+<b>Joey Tong - 2016/11/1 23:30 - UI, Rendering, Architecture, Audio</b>
 <ul>
 <li>Fixed QiZhi's implementation of animated text to be compatible with less than 10ms char buffers and use memory more efficiently</li>
 <li>Current implementation of scrolling text will also not freeze the thread, previous implementation used the wait method</li>
 <li>Added Dialogue box autosize, adjustable margins, opacity</li>
+<li>Added basic audio and draft BGM for computer room</li>
+<li>Fixed implementation of Text to inherit size from parent container, with a margin</li>
+<li>Sorted scripts into separate folders for UI and Engine</li>
 </ul>
