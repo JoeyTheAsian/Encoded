@@ -20,6 +20,7 @@ public class BackgroundManager : MonoBehaviour {
         if ((newBackground) == null)
         {
             newBackground = Resources.Load<Sprite>("Backgrounds/NoTexture");
+            Debug.Log("Fuck");
         }
         /*try
         {
