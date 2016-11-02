@@ -19,16 +19,24 @@ public class Scripting : MonoBehaviour {
 		Dictionary<string, int> labels = new Dictionary<string, int>();
 		Debug.Log("Read:");
 		try {
-			using (StreamReader streamReader = new StreamReader(@"Assets\Script\Script.txt")) {
+			using (StreamReader streamReader = new StreamReader(@"Assets\Scripts\Script.txt")) {
 				for (string line; (line = streamReader.ReadLine()) != null; ) { //Multi-line logical lines are unsupported; logical lines must begin and end on same line. See: https://www.renpy.org/doc/html/language_basics.html#logical-lines
 					line = line.Trim();
 					Debug.Log("\"" + line + "\"");
+					int startIndex, index;
 					if (String.IsNullOrEmpty(line)) {
 						continue;
 					}
-					int index = IndexOfWhiteSpace(line);
+					switch (line[0]) {
+						case '#':
+							continue;
+						case '"':
+							startIndex = index = 1;
+							goto quotedString;
+					}
+					index = IndexOfWhiteSpace(line);
 					string first = line.Substring(0, index);
-					int startIndex = index = IndexOfNonWhiteSpace(line, index + 1);
+					startIndex = index = IndexOfNonWhiteSpace(line, index + 1);
 					switch (first) {
 						case "define":
 							if (index >= line.Length) {
@@ -37,7 +45,7 @@ public class Scripting : MonoBehaviour {
 							index = IndexOfWhiteSpace(line, index);
 							string identifier = line.Substring(startIndex, index - startIndex);
 							if (identifier[0] == '"') {
-								Debug.LogError(string.Format("Ignoring line `{0}` containing identifier `{1}` beginning with quote", line, identifier));
+								Debug.LogError(string.Format("Line `{0}` contains identifier `{1}` beginning with quote", line, identifier));
 								return;
 							}
 
@@ -48,7 +56,7 @@ public class Scripting : MonoBehaviour {
 							index = IndexOfWhiteSpace(line, index);
 							string equalsSign = line.Substring(startIndex, index - startIndex);
 							if ((equalsSign.Length > 1) || !(equalsSign.Equals("="))) {
-								Debug.LogError(string.Format("Ignoring line `{0}` not containing equals sign", line));
+								Debug.LogError(string.Format("Line `{0}` does not contain equals sign", line));
 								return;
 							}
 
@@ -57,49 +65,46 @@ public class Scripting : MonoBehaviour {
 								goto InsufficientTokens;
 							}
 							if (!line.Substring(index, Math.Min(9, line.Length - index)).Equals("Character")) {
-								Debug.LogError(string.Format("Ignoring line `{0}` not containing `Character`", line));
+								Debug.LogError(string.Format("Line `{0}` does not contain `Character`", line));
 								return;
 							}
 
-							index = index + 9; //9 is length of "Character"
+							index = IndexOfNonWhiteSpace(line, index + 9);
 							if (index >= line.Length) {
 								goto InsufficientTokens;
 							}
-							index = IndexOfNonWhiteSpace(line, index);
 							if (line[index] != '(') {
-								Debug.LogError(string.Format("Ignoring line `{0}` not containing left parenthesis after Character", line));
+								Debug.LogError(string.Format("Line `{0}` does not contain left parenthesis after Character", line));
 								return;
 							}
 
-							index++;
+							index = IndexOfNonWhiteSpace(line, index + 1);
 							if (index >= line.Length) {
 								goto InsufficientTokens;
 							}
-							index = IndexOfNonWhiteSpace(line, index);
 							if (line[index] != '"') {
-								Debug.LogError(string.Format("Ignoring line `{0}` not containing quote after left parenthesis", line));
+								Debug.LogError(string.Format("Line `{0}` does not contain quote after left parenthesis", line));
 								return;
 							}
 
 							startIndex = ++index;
+							index = line.IndexOf('"', index);
 							if (index >= line.Length) {
 								goto InsufficientTokens;
 							}
 							//ESCAPED QUOTES MISSING
-							index = line.IndexOf('"', index);
 							if (index == -1) {
-								Debug.LogError(string.Format("Ignoring line `{0}` not containing closing quote", line));
+								Debug.LogError(string.Format("Line `{0}` does not contain closing quote", line));
 								return;
 							}
 							string characterName = line.Substring(startIndex, index - startIndex);
 
-							index++;
+							index = IndexOfNonWhiteSpace(line, index + 1);
 							if (index >= line.Length) {
 								goto InsufficientTokens;
 							}
-							index = IndexOfNonWhiteSpace(line, index);
 							if (line[index] != ')') {
-								Debug.LogError(string.Format("Ignoring line `{0}` not containing right parenthesis after closing quote", line));
+								Debug.LogError(string.Format("Line `{0}` does not contain right parenthesis after closing quote", line));
 								return;
 							}
 
@@ -120,15 +125,18 @@ public class Scripting : MonoBehaviour {
 						case "label":
 							index = line.IndexOf(':');
 							if (index == -1) {
-								Debug.LogError(string.Format("Ignoring line `{0}` not containing colon for label", line));
+								Debug.LogError(string.Format("Line `{0}` does not contain colon for label", line));
 								return;
 							}
 							else if (index == startIndex) {
-								Debug.LogError(string.Format("Ignoring line `{0}` containing empty label name", line));
+								Debug.LogError(string.Format("Line `{0}` contains empty label name", line));
 								return;
 							}
-
-							labels.Add(line.Substring(startIndex, index - startIndex), commands.Count - 1);
+							else if (index < line.Length - 1) {
+								Debug.LogError(string.Format("Line `{0}` contains characters after colon", line));
+								return;
+							}
+							labels.Add(line.Substring(startIndex, index - startIndex), commands.Count);
 							break;
 						case "play":
 							Debug.Log("Keyword: " + first);
@@ -147,13 +155,14 @@ public class Scripting : MonoBehaviour {
 							break;
 						default:
 							//Dialogue and narration: https://www.renpy.org/doc/html/dialogue.html
-							if (!identifiers.ContainsKey(first) && (line[0] != '"')) {
-								Debug.LogError(string.Format("Ignoring line `{0}` containing unknown identifier `{1}`", line, first));
+							if (!identifiers.ContainsKey(first)) {
+								Debug.LogError(string.Format("Line `{0}` contains unknown identifier `{1}`", line, first));
 								return;
 							}
 							Stack<string> dialogueAndNarration = new Stack<string>(2);
 							startIndex = index = ((line[0] == '"') ? 0 : index) + 1;
 							//Regular expressions can be used instead.
+							quotedString:
 							for (bool escape = false; index < line.Length; index++) {
 								if ((line[index] == '\\' ) && (line[index + 1] == '"')) { //Escaped quote
 									escape = true;
@@ -183,7 +192,7 @@ public class Scripting : MonoBehaviour {
 					}
 					continue;
 					InsufficientTokens:
-						Debug.LogError(string.Format("Ignoring line `{0}` containing insufficient tokens", line, first));
+						Debug.LogError(string.Format("Line `{0}` contains insufficient tokens", line, first));
 						return;
 				}
 			}
@@ -209,7 +218,7 @@ public class Scripting : MonoBehaviour {
 				switch (arrayCommand[0]) {
 					case "jump":
 						if (labels.ContainsKey(arrayCommand[1])) {
-							programCounter = labels[arrayCommand[1]];
+							programCounter = labels[arrayCommand[1]] - 1; //Compensate for programCounter++
 						}
 						else {
 							Debug.LogWarning(string.Format("Unknown label `{0}`", arrayCommand[1]));
@@ -252,5 +261,9 @@ public class Scripting : MonoBehaviour {
 			}
 		}
 		return index;
+	}
+
+	static int NextIndex(string s, bool whitespace) {
+		return 0;
 	}
 }
