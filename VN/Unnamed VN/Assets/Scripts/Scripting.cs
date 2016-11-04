@@ -30,9 +30,9 @@ public class Scripting : MonoBehaviour {
 					switch (line[0]) {
 						case '#':
 							continue;
-						case '"':
+						/**case '"':
 							startIndex = index = 1;
-							goto quotedString;
+							goto quotedString;**/
 					}
 					index = IndexOfWhiteSpace(line);
 					string first = line.Substring(0, index);
