@@ -61,3 +61,10 @@
 <li>Fixed implementation of Text to inherit size from parent container, with a margin</li>
 <li>Sorted scripts into separate folders for UI and Engine</li>
 </ul>
+<b>Hong Lam To - 2016/11/4 23:00 - UI</b>
+<ul>
+<li>Added Menu button at top-left corner</li>
+<li>Added MenuManager.cs, Menu.cs for trigger UI animation</li>
+<li>Added Main Menu (side menu) slide in from right</li>
+<li>Added Return, Save, Load, Option, Exit buttons in Main Menu (no function, except Return button)</li>
+</ul>
