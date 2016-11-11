@@ -3,19 +3,27 @@ using System.Collections;
 
 public class MenuManager : MonoBehaviour
 {
-    public Menu CurrentMenu;
+    public Menu CurrentMenu; //InGame Menu
 
     public void Start()
     {
-        ShowMenu(CurrentMenu);
+        ShowMenu(CurrentMenu); //set InGame Menu start at begin
     }
 
-    public void ShowMenu(Menu menu)
+    public void ShowMenu(Menu menu) //menu depend on On Click() send
     {
-        if (CurrentMenu != null)
-            CurrentMenu.IsOpen = false;
+        if (CurrentMenu != null) 
+            CurrentMenu.IsOpen = false; //(menu.cs) return value to IsOpen
 
-        CurrentMenu = menu;
+        CurrentMenu = menu; // menu.cs that trigger animation
         CurrentMenu.IsOpen = true;
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown("escape"))
+        {
+            Debug.Log("You have enter the ESC key!");
+        }
     }
 }

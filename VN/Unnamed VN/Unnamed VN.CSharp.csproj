@@ -69,6 +69,8 @@
     <Compile Include="Assets\Scripts\Engine Scripts\AudioManager.cs" />
     <Compile Include="Assets\Scripts\Engine Scripts\BackgroundManager.cs" />
     <Compile Include="Assets\Scripts\Engine Scripts\DialogueManager.cs" />
+    <Compile Include="Assets\Scripts\ExitBtn.cs" />
+    <Compile Include="Assets\Scripts\MainMenuManager.cs" />
     <Compile Include="Assets\Scripts\Menu.cs" />
     <Compile Include="Assets\Scripts\MenuManager.cs" />
     <Compile Include="Assets\Scripts\PlaneResControl.cs" />
