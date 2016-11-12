@@ -3,13 +3,16 @@ using System.Collections;
 
 public class UIManager : MonoBehaviour {
     public Menu CurrentMenu; //InGame Menu
-    public Menu previousMenu; //menu triggered by ESC
+    public Menu triggerMenu; //menu triggered by ESC
     Stack st = new Stack();
+    Menu rootMenu;
+
 
     public void Start()
     {
         ShowMenu(CurrentMenu); //set InGame Menu start at begin
         st.Push(CurrentMenu); //Add menu to Stack
+        rootMenu = CurrentMenu;
     }
 
     public void ShowMenu(Menu menu) //menu depend on On Click() send
@@ -31,7 +34,7 @@ public class UIManager : MonoBehaviour {
              */
             //st.Push(CurrentMenu);
             st.Push(menu);
-        //else st.
+        else st.Pop();// remove one stack if going to previous menu
     }
 
     void Update()
@@ -39,9 +42,24 @@ public class UIManager : MonoBehaviour {
         if (Input.GetButtonDown("Cancel"))
         //if (Input.GetKeyDown("escape"))
         {
-            if (previousMenu != null)
-                previousMenu.IsOpen = true;
-            CurrentMenu.IsOpen = false;
+            /*if (previousMenu != null)
+                previousMenu.IsOpen = true;*/
+            if (CurrentMenu == rootMenu)
+            {
+                CurrentMenu.IsOpen = false; //close rootMenu
+                CurrentMenu = triggerMenu;  //open triggerMenu
+                CurrentMenu.IsOpen = true;
+                st.Push(CurrentMenu);
+            }
+            else
+            {
+                //if currentmenu is not rootmenu, go to previous menu and remove one stack
+                CurrentMenu.IsOpen = false;
+                CurrentMenu = (Menu)st.Peek();
+                CurrentMenu.IsOpen = true;
+                st.Pop();
+            }
+            
             Debug.Log("You have enter the ESC key!");
         }
     }
