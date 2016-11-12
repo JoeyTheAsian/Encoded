@@ -70,9 +70,6 @@
     <Compile Include="Assets\Scripts\Engine Scripts\CharacterManager.cs" />
     <Compile Include="Assets\Scripts\Engine Scripts\DialogueManager.cs" />
     <Compile Include="Assets\Scripts\ExitBtn.cs" />
-    <Compile Include="Assets\Scripts\MainMenuManager.cs" />
-    <Compile Include="Assets\Scripts\Menu.cs" />
-    <Compile Include="Assets\Scripts\MenuManager.cs" />
     <Compile Include="Assets\Scripts\PlaneResControl.cs" />
     <Compile Include="Assets\Scripts\Scripting.cs" />
     <Compile Include="Assets\Scripts\TacheAutoResize.cs" />
@@ -82,6 +79,9 @@
     <Compile Include="Assets\Scripts\UI Scripts\InGame Menu.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\InGameMenuManger.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\InfoBar.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\MainMenuManager.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\Menu.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\MenuManager.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UIManager.cs" />
   </ItemGroup>
   <ItemGroup>
