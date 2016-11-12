@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class CharacterManager : MonoBehaviour {
-
+    
 	// Use this for initialization
 	void Start () {
 	
@@ -12,4 +12,13 @@ public class CharacterManager : MonoBehaviour {
 	void Update () {
 	
 	}
+    public void AutoPosition() {
+
+    }
+    public void JumpAnimation() {
+
+    }
+    public void AutoSize() {
+
+    }
 }
