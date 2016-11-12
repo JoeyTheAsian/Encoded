@@ -5,20 +5,19 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Scripting : MonoBehaviour {
-    void Awake() {
-        //Syntax is Ren'Py-like.
+	List<object> commands = new List<object>();
+	int programCounter = 0;
+	Dictionary<string, Character> identifiers = new Dictionary<string, Character>();
+	Dictionary<string, int> labels = new Dictionary<string, int>();
 
-        /*Planned program flow:
-		Parse line-delimited commands into objects in memory.
-		Sequentially execute.
-		However, once events and interfacing with player is implemented (clicking to advance text), parsing in run-time is preferable.*/
+	DialogueManager dialogueManager;
+
+    void Start() {
+		dialogueManager = GameObject.Find("DialogueManager").GetComponent<DialogueManager>();
         Debug.Log(System.IO.Directory.GetCurrentDirectory());
-        List<object> commands = new List<object>(); //String can be changed to different types to represent different commands
-        Dictionary<string, Character> identifiers = new Dictionary<string, Character>();
-        Dictionary<string, int> labels = new Dictionary<string, int>();
-        Debug.Log("Read:");
+		Debug.Log("----------Read----------");
         try {
-            using (StreamReader streamReader = new StreamReader(@"Assets\Script\Script.txt")) {
+            using (StreamReader streamReader = new StreamReader(@"Assets\Scripts\Script.txt")) {
                 for (string line; (line = streamReader.ReadLine()) != null;) { //Multi-line logical lines are unsupported; logical lines must begin and end on same line. See: https://www.renpy.org/doc/html/language_basics.html#logical-lines
                     line = line.Trim();
                     Debug.Log("\"" + line + "\"");
@@ -126,7 +125,7 @@ public class Scripting : MonoBehaviour {
                                 return;
                             }
 
-                            labels.Add(line.Substring(startIndex, index - startIndex), commands.Count - 1);
+                            labels.Add(line.Substring(startIndex, index - startIndex), commands.Count);
                             break;
                         case "play":
                             Debug.Log("Keyword: " + first);
@@ -187,39 +186,57 @@ public class Scripting : MonoBehaviour {
         } catch (Exception exception) {
             Debug.Log(exception);
         }
-
-        //Following section is for testing, which requires a GameObject named "Dialogue and narration" with a Text component.
-        //Since the following does not wait for user input to advance text, only last line of text is shown.
-        Text dialogueAndNarrationComponent = GameObject.Find("Dialogue and narration").GetComponent<Text>();
-        Debug.Log("");
-        Debug.Log("Execute:");
-        for (int programCounter = 0; programCounter < commands.Count; programCounter++) {
-            if (commands[programCounter].GetType() == typeof(DialogueAndNarration)) {
-                DialogueAndNarration dialogueAndNarrationCommand = (DialogueAndNarration)commands[programCounter];
-                Debug.Log(dialogueAndNarrationCommand);
-                dialogueAndNarrationComponent.text = ((dialogueAndNarrationCommand.Character != null) ? dialogueAndNarrationCommand.Character.Name + "\n\n" : "") + dialogueAndNarrationCommand.Text;
-            } else if (commands[programCounter].GetType() == typeof(string[])) {
-                string[] arrayCommand = (string[])commands[programCounter];
-                Debug.Log(string.Join(",", arrayCommand));
-                switch (arrayCommand[0]) {
-                    case "jump":
-                        if (labels.ContainsKey(arrayCommand[1])) {
-                            programCounter = labels[arrayCommand[1]];
-                        } else {
-                            Debug.LogWarning(string.Format("Unknown label `{0}`", arrayCommand[1]));
-                        }
-                        break;
-                    case "return":
-                        return;
-                    default:
-                        Debug.LogWarning(string.Format("Unknown command `{0}`", arrayCommand[0]));
-                        break;
-                }
-            } else {
-                Debug.LogWarning(string.Format("Unknown command `{0}`", commands[programCounter]));
-            }
-        }
+		Debug.Log("----------Commands----------");
+		for (int i = 0; i < commands.Count; i++) {
+			if (commands[i].GetType() == typeof(string[])) {
+				string[] arrayCommand = (string[])commands[i];
+				Debug.Log(string.Join(",", arrayCommand));
+			}
+			else {
+				Debug.Log(commands[i]);
+			}
+		}
+		Debug.Log("----------Labels----------");
+		foreach (string key in labels.Keys) {
+			Debug.Log(key + " = " + labels[key] + ": " + commands[labels[key]]);
+		}
+		Debug.Log("----------Start returned----------");
     }
+
+	//Next command
+	public void Next() {
+		if (programCounter >= commands.Count) {
+			return;
+		}
+		if (commands[programCounter].GetType() == typeof(DialogueAndNarration)) {
+			DialogueAndNarration dialogueAndNarrationCommand = (DialogueAndNarration)commands[programCounter];
+			Debug.Log(dialogueAndNarrationCommand);
+			dialogueManager.SetText(((dialogueAndNarrationCommand.Character != null) ? dialogueAndNarrationCommand.Character.Name + "\n\n" : "") + dialogueAndNarrationCommand.Text);
+		}
+		else if (commands[programCounter].GetType() == typeof(string[])) {
+			string[] arrayCommand = (string[])commands[programCounter];
+			Debug.Log(string.Join(",", arrayCommand));
+			switch (arrayCommand[0]) {
+				case "jump":
+					if (labels.ContainsKey(arrayCommand[1])) {
+						programCounter = labels[arrayCommand[1]];
+						Next();
+					} else {
+						Debug.LogWarning(string.Format("Unknown label `{0}`", arrayCommand[1]));
+					}
+					break;
+				case "return":
+					return;
+				default:
+					Debug.LogWarning(string.Format("Unknown command `{0}`", arrayCommand[0]));
+					break;
+			}
+		}
+		else {
+			Debug.LogWarning(string.Format("Unknown command `{0}`", commands[programCounter]));
+		}
+		programCounter++;
+	}
 
     static int IndexOfNonWhiteSpace(string s) {
         return IndexOfNonWhiteSpace(s, 0);

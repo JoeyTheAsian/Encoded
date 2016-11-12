@@ -3,11 +3,14 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
+using System.Text;
 
 public class DialogueManager : MonoBehaviour {
     //reference to the dialogue box UI element
     public Text dialogueBox;
     public GameObject AudioManager;
+
+	Scripting scripting;
 
     //A buffered queue that stores the chars to be displayed
     Queue<char> bufferText;
@@ -25,7 +28,9 @@ public class DialogueManager : MonoBehaviour {
     float textScrollTimer;
     // Use this for initialization
     void Start () {
-        SetText(currentText);
+		scripting = GameObject.Find("Scripting").GetComponent<Scripting>();
+		scripting.Next();
+        //SetText(currentText);
         letterTimer = letterPause;
         textScrollTimer = textScrollPause;
         dialogueBox.color = new Color(dialogueBox.color.r, dialogueBox.color.g, dialogueBox.color.b, 1f);
@@ -43,9 +48,23 @@ public class DialogueManager : MonoBehaviour {
 	void Update () {
         //Subtract the passed time from the timer
         letterTimer -= Time.deltaTime;
-
-        //Check if enqueued text is null, if it has any characters, 
-        //and if the timer on the character delay is up
+		
+        //Display all text on left click
+		if (Input.GetMouseButtonDown(0)) {
+			if (bufferText.Count > 0) {
+				StringBuilder stringBuilder = new StringBuilder("", bufferText.Count);
+				while (bufferText.Count > 0) {
+					stringBuilder.Append(bufferText.Dequeue());
+				}
+				DisplayText(stringBuilder.ToString());
+			}
+			else {
+				ClearText();
+				scripting.Next();
+			}
+		}
+		//Check if enqueued text is null, if it has any characters, 
+		//and if the timer on the character delay is up
         if(bufferText != null && bufferText.Count > 0 && letterTimer <= 0.0f)
         {
             for(int i = 0; i < (int)(letterTimer * -1000f); i += (int)(letterPause * 1000f)) { 
@@ -63,13 +82,17 @@ public class DialogueManager : MonoBehaviour {
         }
     }
 
+	void ClearText() {
+		dialogueBox.text = "";
+	}
+
     //displays text to the screen
     void DisplayText(string s)
     {
         dialogueBox.text += s;
     }
     //Turn string s into a queue of chars and add to the bufferText queue
-    void SetText(string s)
+    public void SetText(string s)
     {
         bufferText = new Queue<char>(s.ToCharArray());
     }
