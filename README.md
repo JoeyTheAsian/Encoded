@@ -68,3 +68,10 @@
 <li>Added Main Menu (side menu) slide in from right</li>
 <li>Added Return, Save, Load, Option, Exit buttons in Main Menu (no function, except Return button)</li>
 </ul>
+<b>Joey Tong - 2016/11/12 23:33 - Background Transition system, sound effects system</b>
+<ul>
+<li>Streamlined animation system, can change background with several transitions with a single method call</li>
+<li>Changed background rendering to dual background system, active/inactive background</li>
+<li>Added text blip sounds</li>
+<li>Other minor animation and sound related fixes/implementation</li>
+</ul>
