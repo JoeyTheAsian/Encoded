@@ -75,3 +75,8 @@
 <li>Added text blip sounds</li>
 <li>Other minor animation and sound related fixes/implementation</li>
 </ul>
+<b>Sean Yip - 2016/11/12 15:34 - Click to advance dialogue and narration</b>
+<ul>
+	<li>Text scrolling variables not properly reset to display next text</li>
+	<li>"return" triggers nothing</li>
+</li>

@@ -46,17 +46,24 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Character.cs" />
-     <Compile Include="Assets\Scripts\CharacterManager.cs" />
      <Compile Include="Assets\Scripts\DialogueAndNarration.cs" />
      <Compile Include="Assets\Scripts\Engine Scripts\AudioManager.cs" />
      <Compile Include="Assets\Scripts\Engine Scripts\BackgroundManager.cs" />
+     <Compile Include="Assets\Scripts\Engine Scripts\CharacterManager.cs" />
      <Compile Include="Assets\Scripts\Engine Scripts\DialogueManager.cs" />
+     <Compile Include="Assets\Scripts\ExitBtn.cs" />
+     <Compile Include="Assets\Scripts\MainMenuManager.cs" />
+     <Compile Include="Assets\Scripts\Menu.cs" />
+     <Compile Include="Assets\Scripts\MenuManager.cs" />
      <Compile Include="Assets\Scripts\PlaneResControl.cs" />
      <Compile Include="Assets\Scripts\Scripting.cs" />
      <Compile Include="Assets\Scripts\TacheAutoResize.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\Background.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\DialogueBox.cs" />
+     <Compile Include="Assets\Scripts\UI Scripts\InGame Menu.cs" />
+     <Compile Include="Assets\Scripts\UI Scripts\InGameMenuManger.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\InfoBar.cs" />
+     <Compile Include="Assets\Scripts\UI Scripts\UIManager.cs" />
      <None Include="Assets\Scripts\Script.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
