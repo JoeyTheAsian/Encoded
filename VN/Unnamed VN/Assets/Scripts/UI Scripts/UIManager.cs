@@ -25,16 +25,11 @@ public class UIManager : MonoBehaviour {
         CurrentMenu.IsOpen = true;
 
         if (menu != (Menu)st.Peek()) //For initial, if new menu is not the previous menu
-            //then 
-
-            /*
-             * 1
-             * 2
-             * 3
-             */
-            //st.Push(CurrentMenu);
             st.Push(menu);
-        else st.Pop();// remove one stack if going to previous menu
+        else if (menu != rootMenu)
+            st.Pop();// remove one stack if going to previous menu
+
+        
     }
 
     void Update()
