@@ -12,7 +12,7 @@ public class DialogueBox : MonoBehaviour {
         boxColor = new Color(boxColor.r, boxColor.g, boxColor.b, Opacity);
         gameObject.GetComponent<Image>().color = boxColor;
     }
-	
+
 	// Update is called once per frame
 	void Update () {
 	
