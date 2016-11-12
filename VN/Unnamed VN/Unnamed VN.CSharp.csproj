@@ -69,16 +69,17 @@
     <Compile Include="Assets\Scripts\Engine Scripts\AudioManager.cs" />
     <Compile Include="Assets\Scripts\Engine Scripts\BackgroundManager.cs" />
     <Compile Include="Assets\Scripts\Engine Scripts\DialogueManager.cs" />
-    <Compile Include="Assets\Scripts\ExitBtn.cs" />
-    <Compile Include="Assets\Scripts\MainMenuManager.cs" />
-    <Compile Include="Assets\Scripts\Menu.cs" />
-    <Compile Include="Assets\Scripts\MenuManager.cs" />
     <Compile Include="Assets\Scripts\PlaneResControl.cs" />
     <Compile Include="Assets\Scripts\Scripting.cs" />
     <Compile Include="Assets\Scripts\TacheAutoResize.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\AspectRatiioScale.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\Background.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\DialogueBox.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\ExitBtn.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\InfoBar.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\MainMenuManager.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\Menu.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\MenuManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\Script.txt" />
