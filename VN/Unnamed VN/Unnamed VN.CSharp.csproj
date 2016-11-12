@@ -77,6 +77,7 @@
     <Compile Include="Assets\Scripts\Scripting.cs" />
     <Compile Include="Assets\Scripts\TacheAutoResize.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\Background.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\CharacterModel.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\DialogueBox.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\InGame Menu.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\InGameMenuManger.cs" />
