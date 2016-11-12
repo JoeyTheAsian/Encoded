@@ -27,7 +27,7 @@ public class InGameMenuManger : MonoBehaviour {
         {
             MainMenu.IsOpen = true;
             CurrentMenu.IsOpen = false;
-            Debug.Log("You have enter the ESC key!");
+            //Debug.Log("You have enter the ESC key!");
         }
     }
 }
