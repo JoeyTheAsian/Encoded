@@ -2,7 +2,7 @@ define M = Character("Me")
 define S = Character("Sylvie")
 
 label start:
-	"I'll ask her..."
+	M "I'll ask her..."
 
 	M "Um... will you..."
 	M "Will you be my artist for a visual novel?"

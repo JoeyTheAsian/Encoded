@@ -52,6 +52,7 @@ public class DialogueManager : MonoBehaviour {
             letterTimer = letterPause;
         }
     }
+
     //displays text to the screen
     void DisplayText(string s)
     {
