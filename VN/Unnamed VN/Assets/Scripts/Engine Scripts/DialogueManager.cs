@@ -7,6 +7,7 @@ using System.Collections.Generic;
 public class DialogueManager : MonoBehaviour {
     //reference to the dialogue box UI element
     public Text dialogueBox;
+    public GameObject AudioManager;
 
     //A buffered queue that stores the chars to be displayed
     Queue<char> bufferText;
@@ -20,10 +21,13 @@ public class DialogueManager : MonoBehaviour {
     public float letterPause = 0.2f;
     float letterTimer;
 
+    public float textScrollPause = .07f;
+    float textScrollTimer;
     // Use this for initialization
     void Start () {
         SetText(currentText);
         letterTimer = letterPause;
+        textScrollTimer = textScrollPause;
         dialogueBox.color = new Color(dialogueBox.color.r, dialogueBox.color.g, dialogueBox.color.b, 1f);
         RectTransform rectTransform = dialogueBox.GetComponent<RectTransform>();
 
@@ -50,6 +54,12 @@ public class DialogueManager : MonoBehaviour {
                 }
             }
             letterTimer = letterPause;
+        }
+
+        textScrollTimer -= Time.deltaTime;
+        if(bufferText.Count > 0 && textScrollTimer <= 0) {
+            AudioManager.GetComponent<AudioManager>().PlayTextScroll();
+            textScrollTimer = textScrollPause;
         }
     }
 
