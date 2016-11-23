@@ -79,4 +79,9 @@
 <ul>
 	<li>Text scrolling variables not properly reset to display next text</li>
 	<li>"return" triggers nothing</li>
-</li>
+</ul>
+<b>Joey Tong - 2016/11/22 23:56 - Character Rendeirng</b>
+<ul>
+<li>Added Character rendering and animation framework</li>
+<li>Cleaned up asset directories</li>
+</ul>
