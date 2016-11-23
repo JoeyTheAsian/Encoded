@@ -23,10 +23,10 @@ public class BackgroundManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         if (Input.GetKeyDown(KeyCode.A)) {
-            ChangeBackground("test2", transitions.Fade);
+            ChangeBackground("Lab_Evening", transitions.Fade);
         }
         if (Input.GetKeyDown(KeyCode.B)) {
-            ChangeBackground("test2", transitions.FadeToBlack);
+            ChangeBackground("Lab_Evening", transitions.FadeToBlack);
         }
     }
     //changes the current background only a file name is required
