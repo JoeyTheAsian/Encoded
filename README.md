@@ -85,3 +85,10 @@
 <li>Added Character rendering and animation framework</li>
 <li>Cleaned up asset directories</li>
 </ul>
+<b>Joey Tong - 2016/11/24 23:56 - UI Integration</b>
+<ul>
+<li>Fixed dialogue engine integration</li>
+<li>Added UI textures, fixed resizing issues</li>
+<li>Added new cursor texture</li>
+<li>Other minor changes to  UI, and character rendering</li>
+</ul>
