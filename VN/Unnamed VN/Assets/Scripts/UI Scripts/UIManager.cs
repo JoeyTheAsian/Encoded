@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿//dialogue cousing UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class UIManager : MonoBehaviour {
