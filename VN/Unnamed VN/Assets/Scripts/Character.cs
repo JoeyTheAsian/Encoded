@@ -27,13 +27,13 @@ public class Character : MonoBehaviour{
     }
     public void Update()
     {
-        switch (animationState){
+        /*switch (animationState){
             case animations.Idle:
                 animationObj.Play("Idle");
                 break;
             case animations.None:
                 break;
-        }
+        }*/
     }
 	public override string ToString() {
 		return string.Format("Character {{Name = {0}}}", Name);

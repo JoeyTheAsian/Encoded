@@ -75,6 +75,7 @@
     <Compile Include="Assets\Scripts\TacheAutoResize.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\Background.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\CharacterModel.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\CursorTexture.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\DialogueBox.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\InGame Menu.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\InGameMenuManger.cs" />
@@ -82,6 +83,7 @@
     <Compile Include="Assets\Scripts\UI Scripts\MainMenuManager.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\Menu.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\MenuManager.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\NameBox.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UIManager.cs" />
   </ItemGroup>
   <ItemGroup>

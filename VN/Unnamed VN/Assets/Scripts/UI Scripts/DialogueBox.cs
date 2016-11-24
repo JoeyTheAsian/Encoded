@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
+
 using System.Collections;
 
 public class DialogueBox : MonoBehaviour {
-    public float PercentageMargin = .02f;
+    public float PercentageMargin = .07f;
+    public float PercentageMargin1 = .07f;
     public float Opacity = .75f;
 	// Use this for initialization
 	void Start () {
@@ -15,7 +18,7 @@ public class DialogueBox : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-	
+       AutoSize();
 	}
     //automatically scales the UI texture
     void AutoSize()
@@ -26,8 +29,11 @@ public class DialogueBox : MonoBehaviour {
         RectTransform rectTransform = gameObject.GetComponent<RectTransform>();
         float width = GameObject.Find("DialogueContainer").GetComponent<RectTransform>().rect.width;
         float height = GameObject.Find("DialogueContainer").GetComponent<RectTransform>().rect.height;
-        rectTransform.offsetMax = new Vector2(width * - PercentageMargin, height * .30f);
-        rectTransform.offsetMin = new Vector2(width * PercentageMargin, width * PercentageMargin);
-
+        rectTransform.offsetMax = new Vector2(height * - PercentageMargin1, height * .38f);
+        rectTransform.offsetMin = new Vector2(height * PercentageMargin1, height * PercentageMargin);
+    }
+    public bool isClicked()
+    {
+        return EventSystem.current.IsPointerOverGameObject();
     }
 }

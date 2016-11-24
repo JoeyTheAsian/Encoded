@@ -48,28 +48,32 @@ public class DialogueManager : MonoBehaviour {
 	void Update () {
         //Subtract the passed time from the timer
         letterTimer -= Time.deltaTime;
-		
+
+        if (bufferText.Count <= 0 && Input.GetKeyDown(KeyCode.Mouse0) && dialogueBox.transform.parent.GetComponent<DialogueBox>().isClicked())
+        {
+            ClearText();
+            scripting.Next();
+            letterTimer = letterPause;
+        }
         //Display all text on left click
-		if (Input.GetMouseButtonDown(0)) {
-			if (bufferText.Count > 0) {
-				StringBuilder stringBuilder = new StringBuilder("", bufferText.Count);
-				while (bufferText.Count > 0) {
-					stringBuilder.Append(bufferText.Dequeue());
-				}
-				DisplayText(stringBuilder.ToString());
+        else if (Input.GetKeyDown(KeyCode.Mouse0) && dialogueBox.transform.parent.GetComponent<DialogueBox>().isClicked()) {
+			StringBuilder stringBuilder = new StringBuilder("", bufferText.Count);
+			while (bufferText.Count > 0) {
+				stringBuilder.Append(bufferText.Dequeue());
 			}
-			else {
-				ClearText();
-				scripting.Next();
-			}
+			DisplayText(stringBuilder.ToString());
 		}
 		//Check if enqueued text is null, if it has any characters, 
 		//and if the timer on the character delay is up
         if(bufferText != null && bufferText.Count > 0 && letterTimer <= 0.0f)
         {
-            for(int i = 0; i < (int)(letterTimer * -1000f); i += (int)(letterPause * 1000f)) { 
-                if (bufferText.Count > 0) { 
+            for(int i = 0; i < (int)(letterTimer * -10000f); i += (int)(letterPause * 10000f)) {
+                if (bufferText.Count > 0) {
                     DisplayText(bufferText.Dequeue() + "");
+                }
+                else
+                {
+                    break;
                 }
             }
             letterTimer = letterPause;
@@ -84,6 +88,7 @@ public class DialogueManager : MonoBehaviour {
 
 	void ClearText() {
 		dialogueBox.text = "";
+        bufferText.Clear();
 	}
 
     //displays text to the screen

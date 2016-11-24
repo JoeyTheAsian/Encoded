@@ -7,7 +7,6 @@ public class UIManager : MonoBehaviour {
     Menu rootMenu;
     Stack st = new Stack();
     
-    
 
     public void Start()
     {
