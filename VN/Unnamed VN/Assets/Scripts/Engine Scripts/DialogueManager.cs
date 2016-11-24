@@ -29,6 +29,7 @@ public class DialogueManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
 		scripting = GameObject.Find("Scripting").GetComponent<Scripting>();
+		scripting.New();
 		scripting.Next();
         //SetText(currentText);
         letterTimer = letterPause;
@@ -41,7 +42,6 @@ public class DialogueManager : MonoBehaviour {
         //rectTransform.sizeDelta = new Vector2(width * .96f, height * .30f);
         rectTransform.offsetMax = new Vector2(width * -PercentageMargin, width * -PercentageMargin);
         rectTransform.offsetMin = new Vector2(width * PercentageMargin, width * PercentageMargin);
-        
     }
 
 	// Update is called once per frame

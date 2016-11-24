@@ -3,40 +3,57 @@ using System;
 using System.Collections;
 
 public class CharacterModel : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
+	public Animation animationObj;
+    //the percentage offset of each degree of freedom in a vector3
+    //maximum value of +/-.5f since all objects are centered
+    public Vector3 offsetPercentage;
+    public enum animations
+    {
+        None,
+        Idle
+    }
+    public animations animationState;
+    public void Start()
+    {
+        animationObj = gameObject.GetComponent<Animation>();
+        animationState = animations.Idle;
+        offsetPercentage = new Vector3(-.15f,0f,.1f);
         AutoSize();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-    public void AutoSize() {
-        if (gameObject.GetComponent<MeshRenderer>() != null) {
-             gameObject.transform.localScale = new Vector3(1, 1, 1);
-             float imagex = gameObject.GetComponent<MeshRenderer>().bounds.min.x;
-             float imagey = gameObject.GetComponent<MeshRenderer>().bounds.min.y;
-             float width = gameObject.GetComponent<MeshRenderer>().bounds.max.x - imagex;
-             float height = gameObject.GetComponent<MeshRenderer>().bounds.max.y - imagey;
+    }
+    public void Update()
+    {
+        /*switch (animationState){
+            case animations.Idle:
+                animationObj.Play("Idle");
+                break;
+            case animations.None:
+                break;
+        }*/
+    }
+	public void AutoSize()
+    {
+        try
+        {
+            if (gameObject.GetComponent<MeshRenderer>() != null)
+            {
+                gameObject.transform.localScale = new Vector3(1, 1, 1);
+                float posX = gameObject.transform.position.x;
+                float posY = gameObject.transform.position.y;
+                float width = gameObject.GetComponent<MeshRenderer>().bounds.size.x;
+                float height = gameObject.GetComponent<MeshRenderer>().bounds.size.y;
 
-             float cameraRatio = (float)Camera.main.pixelWidth / (float)Camera.main.pixelHeight;
-             float imageRatio = imagex / imagey;
+                float imageRatio = width / height;
 
-             float worldScreenHeight;
-             float worldScreenWidth;
-             if (cameraRatio < imageRatio) {
-                 worldScreenHeight = Camera.main.orthographicSize * 2f;
-                 worldScreenWidth = worldScreenHeight * (imagex / imagey);
-             } else {
-                 worldScreenWidth = Camera.main.orthographicSize * 2f * Camera.main.aspect;
-                 worldScreenHeight = worldScreenWidth * (imagey / imagex);
-             }
-             gameObject.transform.localScale = new Vector3(worldScreenWidth/5 / width * 2, worldScreenHeight/7 / height);
-            Debug.Log(worldScreenWidth + ": " + height + ":" + gameObject.transform.localScale);
-            gameObject.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth/4,Camera.main.pixelHeight/2, 10f));
-         }
-        //gameObject.transform.rotation = Quaternion.Euler(0f, 180f, 90f);
+                float finalHeight;
+                float finalWidth;
+
+                finalHeight = Camera.main.orthographicSize * 4f/3f;
+                finalWidth = finalHeight * imageRatio;
+
+                gameObject.transform.localScale = new Vector3(finalWidth/width,1f, finalHeight/height);
+                gameObject.transform.position = Camera.main.transform.position + (Camera.main.orthographicSize * 2f * Camera.main.aspect * offsetPercentage);
+            }
+        }
+        catch (NullReferenceException) { }
     }
 }

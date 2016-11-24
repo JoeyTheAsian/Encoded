@@ -12,7 +12,9 @@ public class Scripting : MonoBehaviour {
 
 	DialogueManager dialogueManager;
 
-    void Start() {
+	//Start is called multiple times: one during initializing the scripts, and one in DialogueManager.
+	//Call New before using this script.
+    public void New() {
 		dialogueManager = GameObject.Find("DialogueManager").GetComponent<DialogueManager>();
         Debug.Log(System.IO.Directory.GetCurrentDirectory());
 		Debug.Log("----------Read----------");
@@ -143,6 +145,11 @@ public class Scripting : MonoBehaviour {
                             Debug.Log("Keyword: " + first);
                             break;
                         default:
+							//Comment
+							if (line[0] == '#') {
+								Debug.Log("Comment");
+								break;
+							}
                             //Dialogue and narration: https://www.renpy.org/doc/html/dialogue.html
                             if (!identifiers.ContainsKey(first) && (line[0] != '"')) {
                                 Debug.LogError(string.Format("Ignoring line `{0}` containing unknown identifier `{1}`", line, first));
@@ -188,12 +195,13 @@ public class Scripting : MonoBehaviour {
         }
 		Debug.Log("----------Commands----------");
 		for (int i = 0; i < commands.Count; i++) {
+			string commandString = "" + i + ": ";
 			if (commands[i].GetType() == typeof(string[])) {
 				string[] arrayCommand = (string[])commands[i];
-				Debug.Log(string.Join(",", arrayCommand));
+				Debug.Log(commandString + string.Join(",", arrayCommand));
 			}
 			else {
-				Debug.Log(commands[i]);
+				Debug.Log(commandString + commands[i]);
 			}
 		}
 		Debug.Log("----------Labels----------");
@@ -208,10 +216,12 @@ public class Scripting : MonoBehaviour {
 		if (programCounter >= commands.Count) {
 			return;
 		}
+		Debug.Log(programCounter);
 		if (commands[programCounter].GetType() == typeof(DialogueAndNarration)) {
 			DialogueAndNarration dialogueAndNarrationCommand = (DialogueAndNarration)commands[programCounter];
 			Debug.Log(dialogueAndNarrationCommand);
 			dialogueManager.SetText(((dialogueAndNarrationCommand.Character != null) ? dialogueAndNarrationCommand.Character.Name + "\n\n" : "") + dialogueAndNarrationCommand.Text);
+			programCounter++;
 		}
 		else if (commands[programCounter].GetType() == typeof(string[])) {
 			string[] arrayCommand = (string[])commands[programCounter];
@@ -220,9 +230,10 @@ public class Scripting : MonoBehaviour {
 				case "jump":
 					if (labels.ContainsKey(arrayCommand[1])) {
 						programCounter = labels[arrayCommand[1]];
-						Next();
+						Next(); //Script with only jumps can create stack overflow
 					} else {
 						Debug.LogWarning(string.Format("Unknown label `{0}`", arrayCommand[1]));
+						programCounter++;
 					}
 					break;
 				case "return":
@@ -235,7 +246,7 @@ public class Scripting : MonoBehaviour {
 		else {
 			Debug.LogWarning(string.Format("Unknown command `{0}`", commands[programCounter]));
 		}
-		programCounter++;
+
 	}
 
     static int IndexOfNonWhiteSpace(string s) {

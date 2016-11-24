@@ -1,0 +1,27 @@
+define M = Character("Me")
+define S = Character("Sylvie")
+
+label start:
+	M "I'll ask her..."
+
+	M "Um... will you..."
+	M "Will you be my artist for a visual novel?"
+
+	"Silence."
+	"She is shocked, and then..."
+
+	S "Sure, but what is a \"visual novel?\""
+	jump vn
+
+label vn:
+	M "It's a story with pictures and music."
+	jump marry
+
+label hentai:
+	M "Why it's a game with lots of sex."
+	jump marry
+
+label marry:
+	"--- years later---"
+	jump bogus
+	return
