@@ -52,7 +52,7 @@ public class DialogueManager : MonoBehaviour {
         if (bufferText.Count <= 0 && Input.GetKeyDown(KeyCode.Mouse0) && dialogueBox.transform.parent.GetComponent<DialogueBox>().isClicked())
         {
             ClearText();
-            scripting.Next();
+			while (scripting.Next() == true) {}
             letterTimer = letterPause;
         }
         //Display all text on left click

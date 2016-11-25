@@ -100,3 +100,7 @@
 	<li>Scripting: Add comments</li>
 	<li>Scripting: Fix Scripting.Next multiple increment of programCounter</li>
 </ul>
+<b>Sean Yip - 2016/11/25 17:47 - Scripting: add play</b>
+<ul>
+	<li>Play audio</li>
+</ul>
