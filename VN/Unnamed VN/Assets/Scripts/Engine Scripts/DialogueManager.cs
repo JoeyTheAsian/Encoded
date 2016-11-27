@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System;
 using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
@@ -29,7 +30,9 @@ public class DialogueManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
 		scripting = GameObject.Find("Scripting").GetComponent<Scripting>();
-		scripting.New();
+		if (!scripting.New()) {
+			throw new Exception("Script parsing failed");
+		}
 		Debug.Log("----------Execute----------");
 		scripting.Next();
         //SetText(currentText);
