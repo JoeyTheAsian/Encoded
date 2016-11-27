@@ -65,6 +65,7 @@ public class BackgroundManager : MonoBehaviour {
         switch (t) {
             case transitions.Fade:
                 ActiveBackground.GetComponent<Background>().MakeTransparent();
+                InactiveBackground.GetComponent<Background>().MakeOpaque();
                 ActiveBackground.GetComponent<Background>().FadeInInit(1f);
                 InactiveBackground.GetComponent<Background>().FadeOutInit(1f);
                 break;

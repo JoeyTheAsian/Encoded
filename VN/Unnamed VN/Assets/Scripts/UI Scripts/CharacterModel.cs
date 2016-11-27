@@ -17,7 +17,7 @@ public class CharacterModel : MonoBehaviour {
     {
         animationObj = gameObject.GetComponent<Animation>();
         animationState = animations.Idle;
-        offsetPercentage = new Vector3(-.15f,0f,.1f);
+        //offsetPercentage = new Vector3(-.15f,0f,.1f);
         AutoSize();
     }
     public void Update()
@@ -50,8 +50,8 @@ public class CharacterModel : MonoBehaviour {
                 finalHeight = Camera.main.orthographicSize * 4f/3f;
                 finalWidth = finalHeight * imageRatio;
 
-                gameObject.transform.localScale = new Vector3(finalWidth/width,1f, finalHeight/height);
-                gameObject.transform.position = Camera.main.transform.position + (Camera.main.orthographicSize * 2f * Camera.main.aspect * offsetPercentage);
+                //gameObject.transform.localScale = new Vector3(finalWidth/width,1f, finalHeight/height);
+                //gameObject.transform.position = Camera.main.transform.position + Camera.main.orthographicSize * 2f * Camera.main.aspect * offsetPercentage;
             }
         }
         catch (NullReferenceException) { }

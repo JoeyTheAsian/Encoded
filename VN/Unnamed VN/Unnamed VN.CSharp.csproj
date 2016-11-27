@@ -70,6 +70,7 @@
     <Compile Include="Assets\Scripts\Engine Scripts\CharacterManager.cs" />
     <Compile Include="Assets\Scripts\Engine Scripts\DialogueManager.cs" />
     <Compile Include="Assets\Scripts\ExitBtn.cs" />
+    <Compile Include="Assets\Scripts\HeroineAnim.cs" />
     <Compile Include="Assets\Scripts\PlaneResControl.cs" />
     <Compile Include="Assets\Scripts\Scripting.cs" />
     <Compile Include="Assets\Scripts\TacheAutoResize.cs" />
