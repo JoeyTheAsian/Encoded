@@ -13,12 +13,12 @@ public class AudioManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
         TextScroll = Resources.Load<AudioClip>("SoundEffects/TextScroll");
-        ChangeMusic("Computer Lab Music");
-        bgm.GetComponent<AudioSource>().Play(0);
+        //ChangeMusic("Computer Lab Music");
 	}
 
-    void ChangeMusic(string path) {
+    public void ChangeMusic(string path) {
         bgm.GetComponent<AudioSource>().clip = Resources.Load<AudioClip>("Music/" + path);
+		bgm.GetComponent<AudioSource>().Play(0);
     }
 	
 	// Update is called once per frame

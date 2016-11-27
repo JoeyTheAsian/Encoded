@@ -85,10 +85,22 @@
 <li>Added Character rendering and animation framework</li>
 <li>Cleaned up asset directories</li>
 </ul>
-<b>Joey Tong - 2016/11/24 23:56 - UI Integration</b>
+<b>Joey Tong - 2016/11/24 17:38 - UI Integration</b>
 <ul>
 <li>Fixed dialogue engine integration</li>
 <li>Added UI textures, fixed resizing issues</li>
 <li>Added new cursor texture</li>
 <li>Other minor changes to  UI, and character rendering</li>
+</ul>
+<b>Sean Yip - 2016/11/24 17:38 - Maintenance</b>
+<ul>
+	<li>Delete Character's inheritance of MonoBehavior</li>
+	<li>Fix multiple calls to Scripting.Start</li>
+	<li>Use the actual script</li>
+	<li>Scripting: Add comments</li>
+	<li>Scripting: Fix Scripting.Next multiple increment of programCounter</li>
+</ul>
+<b>Sean Yip - 2016/11/25 17:47 - Scripting: add play</b>
+<ul>
+	<li>Play audio</li>
 </ul>

@@ -29,6 +29,7 @@ public class DialogueManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
 		scripting = GameObject.Find("Scripting").GetComponent<Scripting>();
+		scripting.New();
 		scripting.Next();
         //SetText(currentText);
         letterTimer = letterPause;
@@ -41,7 +42,6 @@ public class DialogueManager : MonoBehaviour {
         //rectTransform.sizeDelta = new Vector2(width * .96f, height * .30f);
         rectTransform.offsetMax = new Vector2(width * -PercentageMargin, width * -PercentageMargin);
         rectTransform.offsetMin = new Vector2(width * PercentageMargin, width * PercentageMargin);
-        
     }
 
 	// Update is called once per frame
@@ -52,7 +52,7 @@ public class DialogueManager : MonoBehaviour {
         if (bufferText.Count <= 0 && Input.GetKeyDown(KeyCode.Mouse0) && dialogueBox.transform.parent.GetComponent<DialogueBox>().isClicked())
         {
             ClearText();
-            scripting.Next();
+			while (scripting.Next() == true) {}
             letterTimer = letterPause;
         }
         //Display all text on left click
