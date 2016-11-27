@@ -104,10 +104,25 @@
 <ul>
 	<li>Play audio</li>
 </ul>
+<b>Hong Lam To - 2016/11/27 02:21 - add scene- UI_Main Menu, UI_In Game</b>
+<ul>
+	<li>added UI_Main Menu, UI_Main Menu</li>
+	<li>UI_In Game: clone the buttons from scene "Scripting branched", fixed .cs, animator</li>
+	<li>UI_Main Menu: </li>
+	<li>Added Slanted Bar (animation)</li>
+	<li>Added Audio Spectrum Visualization (script)</li>
+	<li>Added Dots (script)</li>
+	<li>Added Button Panel (animation)</li>
+	<li>Added Center (canvas)</li>
+	<li>Added Spectrum Bars (script)</li>
+	<li>UI_Main Menu: button- no function</li>
+	<li>UI_In Game: button (Save, Load, Exit)- no function</li>
+	<li>UI_In Game: Option panel- (blank)no function, no clue</li>
+	<li>UI_In Game: Missing Save, Load panels</li>
+</ul>
 <b>Sean Yip - 2016/11/27 14:57 - Scripting: maintenance</b>
 <ul>
 	<li>Scripting.Next can loop on its own, not through DialogueManager</li>
 	<li>Fix DialogueManager.bufferText NullReference if first command is not dialogue and narration</li>
 	<li>Add looping on "play music" and not "play sound"</li>
-</ul>
 </ul>
