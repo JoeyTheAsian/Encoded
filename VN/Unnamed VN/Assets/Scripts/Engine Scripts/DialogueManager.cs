@@ -13,7 +13,7 @@ public class DialogueManager : MonoBehaviour {
 	Scripting scripting;
 
     //A buffered queue that stores the chars to be displayed
-    Queue<char> bufferText;
+	Queue<char> bufferText = new Queue<char>();
     public float PercentageMargin = .02f;
 
     //The current active text that *should* be displayed on the screen
@@ -30,6 +30,7 @@ public class DialogueManager : MonoBehaviour {
     void Start () {
 		scripting = GameObject.Find("Scripting").GetComponent<Scripting>();
 		scripting.New();
+		Debug.Log("----------Execute----------");
 		scripting.Next();
         //SetText(currentText);
         letterTimer = letterPause;
@@ -52,7 +53,7 @@ public class DialogueManager : MonoBehaviour {
         if (bufferText.Count <= 0 && Input.GetKeyDown(KeyCode.Mouse0) && dialogueBox.transform.parent.GetComponent<DialogueBox>().isClicked())
         {
             ClearText();
-			while (scripting.Next() == true) {}
+			scripting.Next();
             letterTimer = letterPause;
         }
         //Display all text on left click

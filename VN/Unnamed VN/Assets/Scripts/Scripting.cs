@@ -244,50 +244,51 @@ public class Scripting : MonoBehaviour {
     }
 
 	//Next command
-	//true: call Next again: don't have the user click for a command to jump and play sound 
-	//false: do not call Next again
-	public bool Next() {
-		if (programCounter >= commands.Count) {
-			return false;
-		}
-		Debug.Log(programCounter);
-		if (commands[programCounter].GetType() == typeof(DialogueAndNarration)) {
-			DialogueAndNarration dialogueAndNarrationCommand = (DialogueAndNarration)commands[programCounter];
-			Debug.Log(dialogueAndNarrationCommand);
-			dialogueManager.SetText(((dialogueAndNarrationCommand.Character != null) ? dialogueAndNarrationCommand.Character.Name + "\n\n" : "") + dialogueAndNarrationCommand.Text);
-			programCounter++;
-			return false;
-		}
-		else if (commands[programCounter].GetType() == typeof(string[])) {
-			string[] arrayCommand = (string[])commands[programCounter];
-			Debug.Log(string.Join(",", arrayCommand));
-			switch (arrayCommand[0]) {
-				case "jump":
-					if (labels.ContainsKey(arrayCommand[1])) {
-						programCounter = labels[arrayCommand[1]];
-						return true;
-					} else {
-						Debug.LogWarning(string.Format("Unknown label `{0}`", arrayCommand[1]));
+	public void Next() {
+		for (;;) {
+			if (programCounter >= commands.Count) {
+				Debug.LogWarning("programCounter >= commands.Count");
+				return;
+			}
+			Debug.Log(programCounter);
+			if (commands[programCounter].GetType() == typeof(DialogueAndNarration)) {
+				DialogueAndNarration dialogueAndNarrationCommand = (DialogueAndNarration)commands[programCounter];
+				Debug.Log(dialogueAndNarrationCommand);
+				dialogueManager.SetText(((dialogueAndNarrationCommand.Character != null) ? dialogueAndNarrationCommand.Character.Name + "\n\n" : "") + dialogueAndNarrationCommand.Text);
+				programCounter++;
+				return;
+			}
+			else if (commands[programCounter].GetType() == typeof(string[])) {
+				string[] arrayCommand = (string[])commands[programCounter];
+				Debug.Log(string.Join(",", arrayCommand));
+				switch (arrayCommand[0]) {
+					case "jump":
+						if (labels.ContainsKey(arrayCommand[1])) {
+							programCounter = labels[arrayCommand[1]];
+							continue;
+						}
+						else {
+							Debug.LogWarning(string.Format("Unknown label `{0}`", arrayCommand[1]));
+							programCounter++;
+							return;
+						}
+						break;
+					case "play":
+						audioManager.ChangeMusic(arrayCommand[2], arrayCommand[1].Equals("music"));
 						programCounter++;
-						return false;
-					}
-					break;
-				case "play":
-					audioManager.ChangeMusic(arrayCommand[2]);
-					programCounter++;
-					return true;
-				case "return":
-					return false;
-				default:
-					Debug.LogWarning(string.Format("Unknown command `{0}`", arrayCommand[0]));
-					return false;
+						continue;
+					case "return":
+						return;
+					default:
+						Debug.LogWarning(string.Format("Unknown command `{0}`", arrayCommand[0]));
+						return;
+				}
+			}
+			else {
+				Debug.LogWarning(string.Format("Unknown command `{0}`", commands[programCounter]));
+				return;
 			}
 		}
-		else {
-			Debug.LogWarning(string.Format("Unknown command `{0}`", commands[programCounter]));
-			return false;
-		}
-		return false;
 	}
 
     static int IndexOfNonWhiteSpace(string s) {

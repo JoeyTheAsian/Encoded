@@ -104,3 +104,10 @@
 <ul>
 	<li>Play audio</li>
 </ul>
+<b>Sean Yip - 2016/11/27 14:57 - Scripting: maintenance</b>
+<ul>
+	<li>Scripting.Next can loop on its own, not through DialogueManager</li>
+	<li>Fix DialogueManager.bufferText NullReference if first command is not dialogue and narration</li>
+	<li>Add looping on "play music" and not "play sound"</li>
+</ul>
+</ul>
