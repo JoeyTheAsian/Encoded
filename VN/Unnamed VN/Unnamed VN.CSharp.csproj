@@ -85,6 +85,12 @@
     <Compile Include="Assets\Scripts\UI Scripts\MenuManager.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\NameBox.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UIManager.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\UI_Main Menu\BK\Spectrum_Bar.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\UI_Main Menu\Bar_Script.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\UI_Main Menu\SoundManager.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\UI_Main Menu\audioSpectrumScript.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\UI_Main Menu\barScript.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\UI_Main Menu\rotateScript.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\Script.txt" />
