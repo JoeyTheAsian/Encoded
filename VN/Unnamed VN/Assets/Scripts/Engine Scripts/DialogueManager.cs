@@ -42,6 +42,7 @@ public class DialogueManager : MonoBehaviour {
         //rectTransform.sizeDelta = new Vector2(width * .96f, height * .30f);
         rectTransform.offsetMax = new Vector2(width * -PercentageMargin, width * -PercentageMargin);
         rectTransform.offsetMin = new Vector2(width * PercentageMargin, width * PercentageMargin);
+        bufferText = new Queue<char>();
     }
 
 	// Update is called once per frame
@@ -52,7 +53,7 @@ public class DialogueManager : MonoBehaviour {
         if (bufferText.Count <= 0 && Input.GetKeyDown(KeyCode.Mouse0) && dialogueBox.transform.parent.GetComponent<DialogueBox>().isClicked())
         {
             ClearText();
-			while (scripting.Next() == true) {}
+            while (scripting.Next() == true) { }
             letterTimer = letterPause;
         }
         //Display all text on left click

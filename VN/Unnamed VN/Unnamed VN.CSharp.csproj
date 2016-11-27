@@ -93,6 +93,7 @@
     <Compile Include="Assets\Scripts\UI Scripts\UI_Main Menu\rotateScript.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Scripts\Script The Question.txt" />
     <None Include="Assets\Scripts\Script.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
