@@ -5,20 +5,9 @@ using UnityEngine.UI;
 public class barScript : MonoBehaviour {
     [SerializeField]
     private float fillAmount;
+
     [SerializeField]
-    private Image Bar1;
-    [SerializeField]
-    private Image Bar2;
-    [SerializeField]
-    private Image Bar3;
-    [SerializeField]
-    private Image Bar4;
-    [SerializeField]
-    private Image Bar5;
-    [SerializeField]
-    private Image Bar6;
-    [SerializeField]
-    private Image Bar7, Bar8, Bar9, Bar10, Bar11, Bar12;
+    private Image Bar1, Bar2, Bar3, Bar4, Bar5, Bar6, Bar7, Bar8, Bar9, Bar10, Bar11, Bar12;
 
     private Image[] Bar = new Image[12];
     private float[] size = new float[12];
@@ -50,13 +39,11 @@ public class barScript : MonoBehaviour {
         float[] samples = new float[4096]; AudioListener.GetSpectrumData(samples, 0, FFTWindow.Hamming);
         for (int i = 0; i < 12; i++)
         {
-            //int x = 0; if (i > 6) x = 20;
             float previousSize = size[i];
             size[i] = (float)Mathf.Lerp(previousSize, samples[(i+ sampleBandNumBegin) *16] * 40, Time.deltaTime * 30);
             barFillAmount(size[i]*500, Bar[i]);
-            //Debug.Log("size=" + size);
-            if (i==1)
-                Debug.Log("size=" + size[i] * 100);
+            //if (i==1)
+            //    Debug.Log("size=" + size[i] * 100);
         }
     }
 
