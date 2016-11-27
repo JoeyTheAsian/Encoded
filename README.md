@@ -126,3 +126,7 @@
 	<li>Fix DialogueManager.bufferText NullReference if first command is not dialogue and narration</li>
 	<li>Add looping on "play music" and not "play sound"</li>
 </ul>
+<b>Sean Yip - 2016/11/27 18:53 - Scripting: add background</b>
+<ul>
+	<li>Add backgrounds through "image" and "scene"</li>
+</ul>

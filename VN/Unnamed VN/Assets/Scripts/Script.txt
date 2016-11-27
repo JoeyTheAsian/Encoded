@@ -1,8 +1,13 @@
 #https://docs.google.com/document/d/1JhSeP5VaqqOKeNzZTpCCGNtTVUC6oB276UbYGN5rdso/edit
 define P = Character("Player")
 
+label 1:
+image Lab_Evening = "Lab_Evening.jpg"
+image No_texture = "No_texture.jpg"
+scene Lab_Evening
 play music "Computer Lab Music"
 P "-deep sigh- Geez, that took forever. Classes like that should come with a warning when you register: “Class Time: 1 hour. Real-Feel: 2 weeks.”"
+scene No_texture
 P "Well, can’t say it’s not at least partly my fault. Enrolling in Computer Science without even owning a computer... Who does that?"
 P "I guess I should get to doing my homework. It was so dark when I left yesterday that I nearly missed the last bus so I better get started. Let’s see what we got here..."
 "Text on monitor" "Assignment #3 We now know how to create an array of strings, traverse through the array, and print the strings to the console. Using the two techniques we discussed in class, iterative and recursive, write a method PrintStrings that will iterate through an array of at least five strings and print them to the console."
