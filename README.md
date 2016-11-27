@@ -104,3 +104,10 @@
 <ul>
 	<li>Play audio</li>
 </ul>
+<b>Raymond To - 2016/11/27 02:00 - add scene- UI_Main Menu, UI_In Game</b>
+<ul>
+	<li>UI_Main Menu: button- no function</li>
+	<li>UI_In Game: button (Save, Load, Exit)- no function</li>
+	<li>UI_In Game: Option panel- (blank)no function, no clue</li>
+	<li>UI_In Game: Missing Save, Load panels</li>
+</ul>
