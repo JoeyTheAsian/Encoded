@@ -104,10 +104,7 @@ public class Background : MonoBehaviour {
         try {
             float curAlpha = gameObject.GetComponent<SpriteRenderer>().color.a;
             gameObject.GetComponent<SpriteRenderer>().color = new Color(255f, 255f, 255f, curAlpha - Time.deltaTime * (1f / duration));
-<<<<<<< HEAD
-=======
             //Debug.Log(curAlpha);
->>>>>>> 659c6d3293dccc787805119d256bea5871f56c06
         } catch (System.NullReferenceException) { }
     }
     public void FadeToWhite(float duration) {
