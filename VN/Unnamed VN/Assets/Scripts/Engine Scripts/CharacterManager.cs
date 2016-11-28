@@ -9,6 +9,7 @@ public class CharacterManager : MonoBehaviour {
         AddCharacter("Heroine");
         AddCharacter("Heroine");
         AddCharacter("Heroine");
+        RemoveCharacter("Heroine");
 	}
 	
 	// Update is called once per frame
@@ -27,5 +28,10 @@ public class CharacterManager : MonoBehaviour {
     public void AddCharacter(string name)
     {
         characters.Add(Instantiate<GameObject>(Resources.Load("Prefabs/" + name) as GameObject));
+    }
+    public void RemoveCharacter(string name)
+    {
+        characters.Remove(GameObject.Find(name + "(Clone)"));
+        Destroy(GameObject.Find(name + "(Clone)"));
     }
 }
