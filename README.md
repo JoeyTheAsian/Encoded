@@ -146,3 +146,7 @@
 <li>Heroine blinks randomly every 4-10 seconds</li>
 <li>Implemented "add character" and "remove character" functions in CharacterManager</li>
 </ul>
+<b>Sean Yip - 2016/11/28 10:36 - Scripting: add scene with transition</b>
+<ul>
+	<li>The only supported transition is "fade"</li>
+</ul>

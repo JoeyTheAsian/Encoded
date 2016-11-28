@@ -5,16 +5,16 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Scripting : MonoBehaviour {
-	List<object> commands = new List<object>();
-	int programCounter = 0;
-	Dictionary<string, Character> identifiers = new Dictionary<string, Character>();
-	Dictionary<string, string> images = new Dictionary<string, string>();
-	Dictionary<string, int> labels = new Dictionary<string, int>();
-
 	AudioManager audioManager;
 	BackgroundManager backgroundManager;
 	CharacterManager characterManager;
 	DialogueManager dialogueManager;
+	List<object> commands = new List<object>();
+	int programCounter = 0;
+	Dictionary<string, Character> identifiers = new Dictionary<string, Character>();
+	//Dictionary<string, string> images = new Dictionary<string, string>();
+	Dictionary<string, int> labels = new Dictionary<string, int>();
+	Dictionary<string, BackgroundManager.transitions> transitions = new Dictionary<string, BackgroundManager.transitions>();
 
 	//Start is called multiple times: one during initializing the scripts, and one in DialogueManager. Move initialization to a different method.
 	//Call New before using this script.
@@ -23,6 +23,7 @@ public class Scripting : MonoBehaviour {
 		backgroundManager = GameObject.Find("BackgroundManager").GetComponent<BackgroundManager>();
 		characterManager = GameObject.Find("CharacterManager").GetComponent<CharacterManager>();
 		dialogueManager = GameObject.Find("DialogueManager").GetComponent<DialogueManager>();
+		transitions.Add("fade", BackgroundManager.transitions.Fade);
 		Debug.Log("----------Read----------");
 		Debug.Log(System.IO.Directory.GetCurrentDirectory());
 		try {
@@ -165,6 +166,7 @@ public class Scripting : MonoBehaviour {
 							labels.Add(line.Substring(startIndex, index - startIndex), commands.Count);
 							break;
 						case "play":
+							//Unlike Ren'Py, no file extension required
 							if (index >= line.Length) {
 								goto InsufficientTokens;
 							}
@@ -191,10 +193,11 @@ public class Scripting : MonoBehaviour {
 							}
 							commands.Add(arrayCommand);
 							break;
-						case "return": //1
+						case "return":
 							commands.Add(new string[] { first });
 							break;
 						case "scene":
+							//Unlike Ren'Py, no image definition required
 							if (index >= line.Length) {
 								goto InsufficientTokens;
 							}
@@ -203,21 +206,37 @@ public class Scripting : MonoBehaviour {
 							index = IndexOfWhiteSpace(line, index + 1);
 							string sceneName = line.Substring(startIndex, index - startIndex);
 							startIndex = index = IndexOfNonWhiteSpace(line, index);
+							string transition = null;
 							if (index < line.Length) { //Optional "with"
-
+								index = IndexOfWhiteSpace(line, index);
+								string with = line.Substring(startIndex, index - startIndex);
+								if (!with.Equals("with")) {
+									Debug.LogError(string.Format("Line `{0}` does not contain \"with\"", line));
+									return false;
+								}
+								startIndex = index = IndexOfNonWhiteSpace(line, index);
+								if (index >= line.Length) {
+									goto InsufficientTokens;
+								}
+								transition = line.Substring(startIndex, line.Length - startIndex).Trim();
+								if (!transitions.ContainsKey(transition)) {
+									Debug.LogError(string.Format("Line `{0}` contains unknown transition `{1}`", line, transition));
+									return false;
+								}
 							}
+							commands.Add(new string[] {first, sceneName, transition});
 							break;
 						case "show":
+							//Unlike Ren'Py, no image definition required
 							if (index >= line.Length) {
 								goto InsufficientTokens;
 							}
 							commands.Add(new string[] { first, line.Substring(startIndex, line.Length - startIndex) });
 							break;
-						case "stop": //1
+						case "stop":
 							Debug.LogWarning(first + " not supported");
 							break;
 						default:
-							//Dialogue and narration: https://www.renpy.org/doc/html/dialogue.html
 							if (!identifiers.ContainsKey(first) && (line[0] != '"')) {
 								Debug.LogError(string.Format("Line `{0}` contains unknown identifier `{1}`", line, first));
 								return false;
@@ -290,10 +309,10 @@ public class Scripting : MonoBehaviour {
 				Debug.Log(commandString + commands[i]);
 			}
 		}
-		Debug.Log("----------Images----------");
+		/*Debug.Log("----------Images----------");
 		foreach (string key in images.Keys) {
 			Debug.Log(key + " = " + images[key]);
-		}
+		}*/
 		Debug.Log("----------Labels----------");
 		foreach (string key in labels.Keys) {
 			Debug.Log(key + " = " + labels[key] + ": " + commands[labels[key]]);
@@ -341,7 +360,12 @@ public class Scripting : MonoBehaviour {
 						programCounter++;
 						continue;
 					case "scene":
-						backgroundManager.ChangeBackground(arrayCommand[1], BackgroundManager.transitions.Fade);
+						if (arrayCommand[2] == null) {
+							backgroundManager.ChangeBackground(arrayCommand[1]);
+						}
+						else {
+							backgroundManager.ChangeBackground(arrayCommand[1], transitions[arrayCommand[2]]);
+						}
 						programCounter++;
 						continue;
 					case "show":

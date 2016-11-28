@@ -2,7 +2,7 @@
 define P = Character("Player")
 
 label 1:
-scene Lab_Evening
+scene Lab_Evening with fade
 show Heroine
 play music "Computer Lab Music"
 P "-deep sigh- Geez, that took forever. Classes like that should come with a warning when you register: “Class Time: 1 hour. Real-Feel: 2 weeks.”"
