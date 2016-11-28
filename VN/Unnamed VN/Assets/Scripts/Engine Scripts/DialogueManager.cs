@@ -42,7 +42,7 @@ public class DialogueManager : MonoBehaviour {
         RectTransform rectTransform = dialogueBox.GetComponent<RectTransform>();
 
         float width = GameObject.Find("DialogueBox").GetComponent<RectTransform>().rect.width;
-        float height = GameObject.Find("DialogueBox").GetComponent<RectTransform>().rect.height;
+       // float height = GameObject.Find("DialogueBox").GetComponent<RectTransform>().rect.height;
         //rectTransform.sizeDelta = new Vector2(width * .96f, height * .30f);
         rectTransform.offsetMax = new Vector2(width * -PercentageMargin, width * -PercentageMargin);
         rectTransform.offsetMin = new Vector2(width * PercentageMargin, width * PercentageMargin);

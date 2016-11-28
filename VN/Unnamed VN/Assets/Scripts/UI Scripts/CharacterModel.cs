@@ -4,6 +4,7 @@ using System.Collections;
 
 public class CharacterModel : MonoBehaviour {
 	public Animation animationObj;
+    public SkinnedMeshRenderer meshRenderer;
     //the percentage offset of each degree of freedom in a vector3
     //maximum value of +/-.5f since all objects are centered
     public Vector3 offsetPercentage;
@@ -17,7 +18,6 @@ public class CharacterModel : MonoBehaviour {
     {
         animationObj = gameObject.GetComponent<Animation>();
         animationState = animations.Idle;
-        //offsetPercentage = new Vector3(-.15f,0f,.1f);
         AutoSize();
     }
     public void Update()
@@ -29,30 +29,27 @@ public class CharacterModel : MonoBehaviour {
             case animations.None:
                 break;
         }*/
+        AutoSize();
     }
 	public void AutoSize()
     {
         try
         {
-            if (gameObject.GetComponent<MeshRenderer>() != null)
-            {
-                gameObject.transform.localScale = new Vector3(1, 1, 1);
-                float posX = gameObject.transform.position.x;
-                float posY = gameObject.transform.position.y;
-                float width = gameObject.GetComponent<MeshRenderer>().bounds.size.x;
-                float height = gameObject.GetComponent<MeshRenderer>().bounds.size.y;
+            gameObject.transform.localScale = new Vector3((offsetPercentage.x >= 0) ? 40 : -40, 40, 0);
 
-                float imageRatio = width / height;
+            float width = meshRenderer.bounds.size.x;
+            float height = meshRenderer.bounds.size.y;
 
-                float finalHeight;
-                float finalWidth;
+            float imageRatio = width / height;
 
-                finalHeight = Camera.main.orthographicSize * 4f/3f;
-                finalWidth = finalHeight * imageRatio;
+            float finalHeight;
+            float finalWidth;
 
-                //gameObject.transform.localScale = new Vector3(finalWidth/width,1f, finalHeight/height);
-                //gameObject.transform.position = Camera.main.transform.position + Camera.main.orthographicSize * 2f * Camera.main.aspect * offsetPercentage;
-            }
+            finalHeight = Camera.main.orthographicSize * 4f/3f;
+            finalWidth = finalHeight;
+
+            gameObject.transform.position = Camera.main.transform.position + Camera.main.orthographicSize * 2f * Camera.main.aspect * offsetPercentage;
+            gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, -99.5f);
         }
         catch (NullReferenceException) { }
     }
