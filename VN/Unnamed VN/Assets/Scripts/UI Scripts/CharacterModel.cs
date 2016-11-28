@@ -5,6 +5,8 @@ using System.Collections;
 public class CharacterModel : MonoBehaviour {
 	public Animation animationObj;
     public SkinnedMeshRenderer meshRenderer;
+    public Animation eyes;
+    float blinkTimer;
     //the percentage offset of each degree of freedom in a vector3
     //maximum value of +/-.5f since all objects are centered
     public Vector3 offsetPercentage;
@@ -30,6 +32,15 @@ public class CharacterModel : MonoBehaviour {
                 break;
         }*/
         AutoSize();
+        if(blinkTimer <= 0f)
+        {
+            blinkTimer = UnityEngine.Random.Range(4f,10f);
+            eyes.Play();
+        }
+        else
+        {
+            blinkTimer -= Time.deltaTime;
+        }
     }
 	public void AutoSize()
     {
