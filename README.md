@@ -130,3 +130,12 @@
 <ul>
 	<li>Add backgrounds through "image" and "scene"</li>
 </ul>
+<b>Sean Yip - 2016/11/27 21:34 - Scripting: add character and show</b>
+<ul>
+	<li>"Show" displays a character</li>
+</ul>
+<b>Sean Yip - 2016/11/27 22:42 - Scripting: add hide and return, and maintenance</b>
+<ul>
+	<li>"Hide" removes character from display</li>
+	<li>"Return" will stop game in editor</li>
+</ul>
