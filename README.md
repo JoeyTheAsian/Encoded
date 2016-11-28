@@ -139,3 +139,10 @@
 	<li>"Hide" removes character from display</li>
 	<li>"Return" will stop game in editor</li>
 </ul>
+<b>Joey Tong - 2016/11/27 23:50 - Character Animations</b>
+<ul>
+<li>Added character animation assets</li>
+<li>Implemented character animations blinking and breathing</li>
+<li>Heroine blinks randomly every 4-10 seconds</li>
+<li>Implemented "add character" and "remove character" functions in CharacterManager</li>
+</ul>
