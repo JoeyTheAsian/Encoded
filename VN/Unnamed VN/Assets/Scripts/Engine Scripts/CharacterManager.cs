@@ -26,4 +26,10 @@ public class CharacterManager : MonoBehaviour {
     {
         characters.Add(Instantiate<GameObject>(Resources.Load("Prefabs/" + name) as GameObject));
     }
+    public void RemoveCharacter(string name)
+    {
+		GameObject character = GameObject.Find(name + "(Clone");
+		characters.Remove(character);
+		Destroy(character);
+    }
 }
