@@ -13,6 +13,7 @@ public class Scripting : MonoBehaviour {
 
 	AudioManager audioManager;
 	BackgroundManager backgroundManager;
+	CharacterManager characterManager;
 	DialogueManager dialogueManager;
 
 	//Start is called multiple times: one during initializing the scripts, and one in DialogueManager. Move initialization to a different method.
@@ -20,6 +21,7 @@ public class Scripting : MonoBehaviour {
 	public bool New() {
 		audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
 		backgroundManager = GameObject.Find("BackgroundManager").GetComponent<BackgroundManager>();
+		characterManager = GameObject.Find("CharacterManager").GetComponent<CharacterManager>();
 		dialogueManager = GameObject.Find("DialogueManager").GetComponent<DialogueManager>();
 		Debug.Log("----------Read----------");
 		Debug.Log(System.IO.Directory.GetCurrentDirectory());
@@ -112,7 +114,13 @@ public class Scripting : MonoBehaviour {
 						case "if":
 							Debug.LogWarning(first + " not supported");
 							break;
-						case "image":
+						case "hide":
+							if (index >= line.Length) {
+								goto InsufficientTokens;
+							}
+							commands.Add(new string[] { first, line.Substring(startIndex, line.Length - startIndex) });
+							break;
+						/*case "image":
 							if (index >= line.Length) {
 								goto InsufficientTokens;
 							}
@@ -137,7 +145,7 @@ public class Scripting : MonoBehaviour {
 								return false;
 							}
 							images.Add(image, imageName);
-							break;
+							break;*/
 						case "jump":
 							if (index >= line.Length) {
 								goto InsufficientTokens;
@@ -190,10 +198,20 @@ public class Scripting : MonoBehaviour {
 							if (index >= line.Length) {
 								goto InsufficientTokens;
 							}
-							commands.Add(new string[] {"scene", line.Substring(startIndex, line.Length - startIndex).Trim()});
+							//commands.Add(new string[] {"scene", line.Substring(startIndex, line.Length - startIndex).Trim()});
+							//string sceneName = line.Substring(startIndex, line.Length - startIndex).Trim();
+							index = IndexOfWhiteSpace(line, index + 1);
+							string sceneName = line.Substring(startIndex, index - startIndex);
+							startIndex = index = IndexOfNonWhiteSpace(line, index);
+							if (index < line.Length) { //Optional "with"
+
+							}
 							break;
 						case "show":
-							Debug.LogWarning(first + " not supported");
+							if (index >= line.Length) {
+								goto InsufficientTokens;
+							}
+							commands.Add(new string[] { first, line.Substring(startIndex, line.Length - startIndex) });
 							break;
 						case "stop": //1
 							Debug.LogWarning(first + " not supported");
@@ -205,9 +223,28 @@ public class Scripting : MonoBehaviour {
 								return false;
 							}
 							Stack<string> dialogueAndNarration = new Stack<string>(2);
-							startIndex = index = ((line[0] == '"') ? 0 : index) + 1;
-							//Regular expressions can be used instead.
-							for (bool escape = false; index < line.Length; index++) {
+							startIndex = index = (line[0] == '"') ? 0 : index;
+							string quotedString = QuotedSubstring(line, index);
+							if (quotedString == null) {
+								Debug.LogError(string.Format("Line `{0}` does not contain quoted string", line));
+								return false;
+							}
+							dialogueAndNarration.Push(quotedString);
+							index += quotedString.Length + 2;
+							index = IndexOfNonWhiteSpace(line, index);
+							if (index < line.Length) {
+								if (line[index] != '"') {
+									Debug.LogError(string.Format("Line `{0}` contains illegal characters between quoted strings", line));
+									return false;
+								}
+								quotedString = QuotedSubstring(line, index);
+								if (quotedString == null) {
+									Debug.LogError(string.Format("Line `{0}` does not contain quoted string", line));
+									return false;
+								}
+								dialogueAndNarration.Push(quotedString);
+							}
+							/*for (bool escape = false; index < line.Length; index++) {
 								if ((line[index] == '\\') && (line[index + 1] == '"')) { //Escaped quote
 									escape = true;
 									index += 2;
@@ -220,7 +257,7 @@ public class Scripting : MonoBehaviour {
 									}
 									startIndex = index = index + 1;
 								}
-							}
+							}*/
 							if (dialogueAndNarration.Count < 1) {
 								goto InsufficientTokens;
 							}
@@ -284,6 +321,10 @@ public class Scripting : MonoBehaviour {
 				string[] arrayCommand = (string[])commands[programCounter];
 				Debug.Log(string.Join(", ", arrayCommand));
 				switch (arrayCommand[0]) {
+					case "hide":
+						characterManager.RemoveCharacter(arrayCommand[1]);
+						programCounter++;
+						continue;
 					case "jump":
 						if (labels.ContainsKey(arrayCommand[1])) {
 							programCounter = labels[arrayCommand[1]];
@@ -303,7 +344,12 @@ public class Scripting : MonoBehaviour {
 						backgroundManager.ChangeBackground(arrayCommand[1], BackgroundManager.transitions.Fade);
 						programCounter++;
 						continue;
+					case "show":
+						characterManager.AddCharacter(arrayCommand[1]);
+						programCounter++;
+						continue;
 					case "return":
+						UnityEditor.EditorApplication.isPlaying = false;
 						return;
 					default:
 						Debug.LogWarning(string.Format("Unknown command `{0}`", arrayCommand[0]));

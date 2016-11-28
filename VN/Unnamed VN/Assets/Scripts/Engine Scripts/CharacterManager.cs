@@ -6,10 +6,7 @@ public class CharacterManager : MonoBehaviour {
     public List<GameObject> characters = new List<GameObject>();
 	// Use this for initialization
 	void Start () {
-        AddCharacter("Heroine");
-        AddCharacter("Heroine");
-        AddCharacter("Heroine");
-        RemoveCharacter("Heroine");
+		
 	}
 	
 	// Update is called once per frame
@@ -31,7 +28,8 @@ public class CharacterManager : MonoBehaviour {
     }
     public void RemoveCharacter(string name)
     {
-        characters.Remove(GameObject.Find(name + "(Clone)"));
-        Destroy(GameObject.Find(name + "(Clone)"));
+		GameObject character = GameObject.Find(name + "(Clone)");
+		characters.Remove(character);
+		Destroy(character);
     }
 }

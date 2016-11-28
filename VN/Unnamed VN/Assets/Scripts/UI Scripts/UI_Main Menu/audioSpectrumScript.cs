@@ -3,7 +3,7 @@ using System.Collections;
 
 public class audioSpectrumScript : MonoBehaviour {
     public GameObject prefab; //object bar
-    public GameObject barPanel; //as parent
+    public GameObject setParentPanel; //as parent
 
     public int numberOfObjects = 20;
     public int numberOfSample = 1024;
@@ -21,7 +21,7 @@ public class audioSpectrumScript : MonoBehaviour {
 
             GameObject setBar = Instantiate(prefab, pos, Quaternion.identity) as GameObject;
 
-            setBar.transform.SetParent(barPanel.transform);// Instantiate a prefab as a child of a Canvas
+            setBar.transform.SetParent(setParentPanel.transform);// Instantiate a prefab as a child of a Canvas
             setBar.transform.localScale = new Vector3(0.1F, 0, 0);
         }
         bars = GameObject.FindGameObjectsWithTag("bars"); //set tag for the object that drop into asset

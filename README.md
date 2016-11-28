@@ -130,3 +130,19 @@
 <ul>
 	<li>Add backgrounds through "image" and "scene"</li>
 </ul>
+<b>Sean Yip - 2016/11/27 21:34 - Scripting: add character and show</b>
+<ul>
+	<li>"Show" displays a character</li>
+</ul>
+<b>Sean Yip - 2016/11/27 22:42 - Scripting: add hide and return, and maintenance</b>
+<ul>
+	<li>"Hide" removes character from display</li>
+	<li>"Return" will stop game in editor</li>
+</ul>
+<b>Joey Tong - 2016/11/27 23:50 - Character Animations</b>
+<ul>
+<li>Added character animation assets</li>
+<li>Implemented character animations blinking and breathing</li>
+<li>Heroine blinks randomly every 4-10 seconds</li>
+<li>Implemented "add character" and "remove character" functions in CharacterManager</li>
+</ul>

@@ -52,12 +52,14 @@
      <Compile Include="Assets\Scripts\Engine Scripts\CharacterManager.cs" />
      <Compile Include="Assets\Scripts\Engine Scripts\DialogueManager.cs" />
      <Compile Include="Assets\Scripts\ExitBtn.cs" />
+     <Compile Include="Assets\Scripts\HeroineAnim.cs" />
      <Compile Include="Assets\Scripts\PlaneResControl.cs" />
      <Compile Include="Assets\Scripts\Scripting.cs" />
      <Compile Include="Assets\Scripts\TacheAutoResize.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\Background.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\CharacterModel.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\CursorTexture.cs" />
+     <Compile Include="Assets\Scripts\UI Scripts\DateTime.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\DialogueBox.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\InfoBar.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\NameBox.cs" />
