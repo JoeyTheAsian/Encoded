@@ -2,9 +2,11 @@
 define P = Character("Player")
 
 label 1:
+image Heroine = "Heroine"
 image Lab_Evening = "Lab_Evening.jpg"
 image No_texture = "No_texture.jpg"
 scene Lab_Evening
+show Heroine
 play music "Computer Lab Music"
 P "-deep sigh- Geez, that took forever. Classes like that should come with a warning when you register: “Class Time: 1 hour. Real-Feel: 2 weeks.”"
 scene No_texture

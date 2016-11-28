@@ -13,6 +13,7 @@ public class Scripting : MonoBehaviour {
 
 	AudioManager audioManager;
 	BackgroundManager backgroundManager;
+	CharacterManager characterManager;
 	DialogueManager dialogueManager;
 
 	//Start is called multiple times: one during initializing the scripts, and one in DialogueManager. Move initialization to a different method.
@@ -20,6 +21,7 @@ public class Scripting : MonoBehaviour {
 	public bool New() {
 		audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
 		backgroundManager = GameObject.Find("BackgroundManager").GetComponent<BackgroundManager>();
+		characterManager = GameObject.Find("CharacterManager").GetComponent<CharacterManager>();
 		dialogueManager = GameObject.Find("DialogueManager").GetComponent<DialogueManager>();
 		Debug.Log("----------Read----------");
 		Debug.Log(System.IO.Directory.GetCurrentDirectory());
@@ -193,7 +195,10 @@ public class Scripting : MonoBehaviour {
 							commands.Add(new string[] {"scene", line.Substring(startIndex, line.Length - startIndex).Trim()});
 							break;
 						case "show":
-							Debug.LogWarning(first + " not supported");
+							if (index >= line.Length) {
+								goto InsufficientTokens;
+							}
+							commands.Add(new string[] { first, line.Substring(startIndex, line.Length - startIndex) });
 							break;
 						case "stop": //1
 							Debug.LogWarning(first + " not supported");
@@ -301,6 +306,10 @@ public class Scripting : MonoBehaviour {
 						continue;
 					case "scene":
 						backgroundManager.ChangeBackground(arrayCommand[1], BackgroundManager.transitions.Fade);
+						programCounter++;
+						continue;
+					case "show":
+						characterManager.AddCharacter(arrayCommand[1]);
 						programCounter++;
 						continue;
 					case "return":

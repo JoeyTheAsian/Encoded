@@ -6,9 +6,7 @@ public class CharacterManager : MonoBehaviour {
     public List<GameObject> characters = new List<GameObject>();
 	// Use this for initialization
 	void Start () {
-        AddCharacter("Heroine");
-        AddCharacter("Heroine");
-        AddCharacter("Heroine");
+		
 	}
 	
 	// Update is called once per frame
