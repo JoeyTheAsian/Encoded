@@ -69,7 +69,6 @@
     <Compile Include="Assets\Scripts\Engine Scripts\BackgroundManager.cs" />
     <Compile Include="Assets\Scripts\Engine Scripts\CharacterManager.cs" />
     <Compile Include="Assets\Scripts\Engine Scripts\DialogueManager.cs" />
-    <Compile Include="Assets\Scripts\ExitBtn.cs" />
     <Compile Include="Assets\Scripts\HeroineAnim.cs" />
     <Compile Include="Assets\Scripts\PlaneResControl.cs" />
     <Compile Include="Assets\Scripts\Scripting.cs" />
@@ -91,6 +90,8 @@
     <Compile Include="Assets\Scripts\UI Scripts\UI_In Game\UIManager.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_Main Menu\BK\Bar_Script.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_Main Menu\BK\Spectrum_Bar.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\UI_Main Menu\ExitBtn.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\UI_Main Menu\SceneLoader.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_Main Menu\SoundManager.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_Main Menu\audioSpectrumScript.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_Main Menu\barScript.cs" />
