@@ -150,8 +150,18 @@
 <ul>
 	<li>The only supported transition is "fade"</li>
 </ul>
+<<<<<<< HEAD
 <b>Sean Yip - 2016/11/28 23:47 - Scripting: new lines</b>
 <ul>
 	<li>"\n" for new line</li>
 	<li>Dialogue and narration always start on same line, regardless of character name</li>
+</ul>
+<b>Joey Tong - 2016/11/28 23:51 - Menu, animations, effects, bug fixes</b>
+<ul>
+<li>Added scene 2 to script</li>
+<li>Added menu UI textures and new animations</li>
+<li>Added menu button sounds</li>
+<li>Replaced computer lab music with live performed recording</li>
+<li>Fixed positioning bug with character autopositioning</li>
+<li>Minor bug fixes to scripting.cs</li>
 </ul>
