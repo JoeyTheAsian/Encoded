@@ -1,0 +1,66 @@
+#https://docs.google.com/document/d/1JhSeP5VaqqOKeNzZTpCCGNtTVUC6oB276UbYGN5rdso/edit
+define P = Character("Player:")
+define Empty = Character("");
+define Computer = Character("Computer:");
+define ??? = Character("???:");
+define Console = Character("Console:");
+label 1:
+scene Lab_Evening with fade
+play music "Computer Lab Music"
+P "<br>-deep sigh- Geez, that took forever. Classes like that should come with a warning when you register: “Class Time: 1 hour. Real-Feel: 2 weeks.”"
+P "Well, can’t say it’s not at least partly my fault. Enrolling in Computer Science without even owning a computer... Who does that?"
+P "I guess I should get to doing my homework. It was so dark when I left yesterday that I nearly missed the last bus so I better get started. Let’s see what we got here..."
+Computer "Assignment #3 We now know how to create an array of strings, traverse through the array, and print the strings to the console. Using the two techniques we discussed in class, iterative and recursive, write a method PrintStrings that will iterate through an array of at least five strings and print them to the console."
+P "... iter-what?..."
+P "Okay... so according to my HelloWorld assignment, Console.Println() should write something to the console..."
+Empty "You type in ‘Console.println(something)’ and nothing appears in the console"
+P "Error? What went wrong this time?"
+Empty "You struggle throughout the evening to complete your assignment"
+P "Agh! Why isn’t it compiling?! Shoot, it’s already starting to get dark. I guess I’ll finish up the rest tomorrow."
+Empty "Beautiful orange and red hues seem to stain every corner of your surroundings as the sun sinks into the horizon."
+Empty "But you’re too exhausted to care. For you, the sun setting means the end of another long day of work."
+P "-deep sigh- This isn’t working out for me. Maybe I should get a job and save up for a computer."
+
+label 2:
+scene Lab_Night with fade
+show Heroine
+Empty "The Sun Sets..."
+??? "..."
+??? "Tch… he sure took his time."
+??? "Who the heck even stays in the lab after school hours? Not that I should be talking…"
+??? "Let’s see… Hmm, I wonder if that backdoor account is still up..."
+Console "~$ login [-p] [-h students.gnu.edu] –f tr0llm4st3r"
+Console "Password:*********"
+Console "Tr0llm4st3r@gnu.edu~$ "
+??? "Perfect… okay, now we just…"
+Console "Tr0llm4st3r@gnu.edu~$ last"
+Console "(*MC name*)  :0.0   Fri Sept 2 16:36 – 18:54  (2:18)"
+??? "(*MC name*)? A terrible name." 
+Console "cd ~/users/(Mc’s name)/documents/"
+??? "Alright, let’s see what I can ruin for him… maybe a homework, an essay, or his life in general."
+Console "ls"
+Console "helloworld.cs <br> helloworld.txt <br> loopprint.cs <br> recursiveprint.cs <br> repeathellos.cs"
+??? "..."
+??? "...Pfft."
+??? "This has to be some sort of joke."
+??? "..."
+??? "Are you kidding me? Is this guy serious?"
+Empty "-She clicks something-"
+??? "BWAHAHAHAHAHA! HE IS. OH MY GOD. HAHAHAHAHAHA.... "
+??? "He must be a freshman. Though this is weak even for 101. He doesn’t even camelcase his filenames!!"
+??? "AHAHAHAHA HE SAVED ONE OF HIS FILES AS A PLAINTEXT AND LEFT IT THERE"
+??? "AHAHAHA WHAT IF HE DOESN’T EVEN KNOW HOW TO DELETE HIS FILES??"
+??? "-cough cough- What a... -snicker- complete idiot. This guy doesn’t even need my intervention to fail his class. -giggles-"
+??? "-giggles- Ahahahaha, okay, that’s enough. I’m starting to feel really bad for him."
+??? ".               .               ."
+??? "GAHAHAHAHAHAHA."
+??? "This is too funny… there’s absolutely nothing I can do to his code to make it worse than it is already."
+??? "So, being the kind, generous, and charitable soul I am, I guess I'll give him a hand."
+Empty "-she changes his file names-"
+Console "1_YoUrE_aN_iDiOt.cs <br> 2_If_yoURe_ReAdInG_th1S.txt <br> 3_KnOw_Th4T_ThIs_MaY_bE_y0Ur.cs <br> 4_oNlY_cHaNcE_t0_PaSs.cs <br> 5_hErEs_a_9Ift.cs <br> 6_oPeN_tHIs_fil3D.cs"
+??? "And now we wait… He’ll be back tomorrow, I’m sure. He has to since he hasn’t finished his assignment."
+??? "Oh, I know! I’ll put a keylogger on here and set this webcam to record his reaction at the same time tomorrow."
+??? "Ahahahaha I’m a genius. By tomorrow, I’ll have full access to his account and get to see the look on his face when he sees all his files renamed."
+??? "Someone that stupid… I’m not sure if even my comments will be of any help." 
+??? "-snickers- Just thinking about it makes me want to laugh until I puke."
+return
