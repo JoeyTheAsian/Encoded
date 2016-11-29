@@ -150,3 +150,8 @@
 <ul>
 	<li>The only supported transition is "fade"</li>
 </ul>
+<b>Sean Yip - 2016/11/28 23:47 - Scripting: new lines</b>
+<ul>
+	<li>"\n" for new line</li>
+	<li>Dialogue and narration always start on same line, regardless of character name</li>
+</ul>

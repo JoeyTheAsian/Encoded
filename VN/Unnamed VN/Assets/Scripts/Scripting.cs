@@ -173,7 +173,7 @@ public class Scripting : MonoBehaviour {
 							index = IndexOfWhiteSpace(line, index);
 							string play = line.Substring(startIndex, index - startIndex);
 							if ((!play.Equals("music")) && (!play.Equals("sound"))) {
-								Debug.LogError(string.Format("Line `{0}` does not contain play \"music\" or \"sound\"", line));
+								Debug.LogError(string.Format("Line `{0}` does not contain play `music` or `sound`", line));
 								return false;
 							}
 							arrayCommand = new string[] {"play", play, ""};
@@ -211,7 +211,7 @@ public class Scripting : MonoBehaviour {
 								index = IndexOfWhiteSpace(line, index);
 								string with = line.Substring(startIndex, index - startIndex);
 								if (!with.Equals("with")) {
-									Debug.LogError(string.Format("Line `{0}` does not contain \"with\"", line));
+									Debug.LogError(string.Format("Line `{0}` does not contain `with`", line));
 									return false;
 								}
 								startIndex = index = IndexOfNonWhiteSpace(line, index);
@@ -248,7 +248,7 @@ public class Scripting : MonoBehaviour {
 								Debug.LogError(string.Format("Line `{0}` does not contain quoted string", line));
 								return false;
 							}
-							dialogueAndNarration.Push(quotedString);
+							dialogueAndNarration.Push(quotedString.Replace("\\n", "\n"));
 							index += quotedString.Length + 2;
 							index = IndexOfNonWhiteSpace(line, index);
 							if (index < line.Length) {
@@ -261,7 +261,7 @@ public class Scripting : MonoBehaviour {
 									Debug.LogError(string.Format("Line `{0}` does not contain quoted string", line));
 									return false;
 								}
-								dialogueAndNarration.Push(quotedString);
+								dialogueAndNarration.Push(quotedString.Replace("\\n", "\n"));
 							}
 							/*for (bool escape = false; index < line.Length; index++) {
 								if ((line[index] == '\\') && (line[index + 1] == '"')) { //Escaped quote
@@ -332,7 +332,7 @@ public class Scripting : MonoBehaviour {
 			if (commands[programCounter].GetType() == typeof(DialogueAndNarration)) {
 				DialogueAndNarration dialogueAndNarrationCommand = (DialogueAndNarration)commands[programCounter];
 				Debug.Log(dialogueAndNarrationCommand);
-				dialogueManager.SetText(((dialogueAndNarrationCommand.Character != null) ? dialogueAndNarrationCommand.Character.Name + "\n\n" : "") + dialogueAndNarrationCommand.Text);
+				dialogueManager.SetText(((dialogueAndNarrationCommand.Character != null) ? dialogueAndNarrationCommand.Character.Name : "") + "\n\n" + dialogueAndNarrationCommand.Text);
 				programCounter++;
 				return;
 			}
@@ -373,7 +373,8 @@ public class Scripting : MonoBehaviour {
 						programCounter++;
 						continue;
 					case "return":
-						UnityEditor.EditorApplication.isPlaying = false;
+						//UnityEditor.EditorApplication.isPlaying = false;
+						programCounter++;
 						return;
 					default:
 						Debug.LogWarning(string.Format("Unknown command `{0}`", arrayCommand[0]));
