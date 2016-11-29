@@ -373,7 +373,7 @@ public class Scripting : MonoBehaviour {
 						programCounter++;
 						continue;
 					case "return":
-						UnityEditor.EditorApplication.isPlaying = false;
+						//UnityEditor.EditorApplication.isPlaying = false;
 						return;
 					default:
 						Debug.LogWarning(string.Format("Unknown command `{0}`", arrayCommand[0]));
