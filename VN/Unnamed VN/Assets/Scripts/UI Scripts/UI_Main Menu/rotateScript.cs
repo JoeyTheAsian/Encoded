@@ -19,6 +19,6 @@ public class rotateScript : MonoBehaviour {
 
     private void centerBox()
     {
-        content.transform.Rotate(0, 0,- Time.fixedDeltaTime *20);
+        content.transform.Rotate(0, 0,- Time.fixedDeltaTime *10);
     }
 }

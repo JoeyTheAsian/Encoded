@@ -17,7 +17,7 @@ public class audioSpectrumScript : MonoBehaviour {
         {
             float angle = i * Mathf.PI * 2 / numberOfObjects;
 
-            Vector3 pos = new Vector3(i * 5+barGap, 540, 0);
+            Vector3 pos = new Vector3(i * 5+barGap,250, 0);
 
             GameObject setBar = Instantiate(prefab, pos, Quaternion.identity) as GameObject;
 
