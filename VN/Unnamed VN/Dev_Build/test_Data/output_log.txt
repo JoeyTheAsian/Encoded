@@ -14,17 +14,17 @@ Platform assembly: C:\Users\Joey\Documents\vnproject\VN\Unnamed VN\Dev_Build\tes
 Loading C:\Users\Joey\Documents\vnproject\VN\Unnamed VN\Dev_Build\test_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
 Platform assembly: C:\Users\Joey\Documents\vnproject\VN\Unnamed VN\Dev_Build\test_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
 Loading C:\Users\Joey\Documents\vnproject\VN\Unnamed VN\Dev_Build\test_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
-- Completed reload, in  0.030 seconds
+- Completed reload, in  0.037 seconds
 Platform assembly: C:\Users\Joey\Documents\vnproject\VN\Unnamed VN\Dev_Build\test_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\Joey\Documents\vnproject\VN\Unnamed VN\Dev_Build\test_Data\Managed\System.dll (this message is harmless)
 desktop: 1920x1080 59Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 0.462690 ms
+UnloadTime: 0.479808 ms
 Setting up 2 worker threads for Enlighten.
-  Thread -> id: 1534 -> priority: 1 
-  Thread -> id: ea0 -> priority: 1 
+  Thread -> id: f0 -> priority: 1 
+  Thread -> id: 25a0 -> priority: 1 
 The referenced script on this Behaviour (Game Object 'GameObject') is missing!
  
 (Filename:  Line: 1656)
@@ -34,10 +34,10 @@ The referenced script on this Behaviour (Game Object 'Canvas') is missing!
 (Filename:  Line: 1656)
 
 Unloading 7 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 3.788134 ms
+UnloadTime: 3.792477 ms
 
-Unloading 30 unused Assets to reduce memory usage. Loaded Objects now: 482.
-Total: 2.055408 ms (FindLiveObjects: 0.011752 ms CreateObjectMapping: 0.009197 ms MarkObjects: 0.161213 ms  DeleteObjects: 1.872989 ms)
+Unloading 31 unused Assets to reduce memory usage. Loaded Objects now: 483.
+Total: 1.917955 ms (FindLiveObjects: 0.014051 ms CreateObjectMapping: 0.009453 ms MarkObjects: 0.177053 ms  DeleteObjects: 1.717141 ms)
 
 ----------Read----------
  
@@ -852,6 +852,174 @@ DialogueAndNarration {Character = Character {Name = ???:}, Text = ...Pfft.}
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
 
 DialogueAndNarration {Character = Character {Name = ???:}, Text = This has to be some sort of joke.}
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+36
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+DialogueAndNarration {Character = Character {Name = ???:}, Text = ...}
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+37
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+DialogueAndNarration {Character = Character {Name = ???:}, Text = Are you kidding me? Is this guy serious?}
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+38
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+DialogueAndNarration {Character = Character {Name = }, Text = -She clicks something-}
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+39
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+DialogueAndNarration {Character = Character {Name = ???:}, Text = BWAHAHAHAHAHA! HE IS. OH MY GOD. HAHAHAHAHAHA.... }
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+40
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+DialogueAndNarration {Character = Character {Name = ???:}, Text = He must be a freshman. Though this is weak even for 101. He doesn’t even camelcase his filenames!!}
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+41
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+DialogueAndNarration {Character = Character {Name = ???:}, Text = AHAHAHAHA HE SAVED ONE OF HIS FILES AS A PLAINTEXT AND LEFT IT THERE}
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+42
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+DialogueAndNarration {Character = Character {Name = ???:}, Text = AHAHAHA WHAT IF HE DOESN’T EVEN KNOW HOW TO DELETE HIS FILES??}
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+43
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+DialogueAndNarration {Character = Character {Name = ???:}, Text = -cough cough- What a... -snicker- complete idiot. This guy doesn’t even need my intervention to fail his class. -giggles-}
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+44
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+DialogueAndNarration {Character = Character {Name = ???:}, Text = -giggles- Ahahahaha, okay, that’s enough. I’m starting to feel really bad for him.}
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+45
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+DialogueAndNarration {Character = Character {Name = ???:}, Text = .               .               .}
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+46
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+DialogueAndNarration {Character = Character {Name = ???:}, Text = GAHAHAHAHAHAHA.}
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+47
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+DialogueAndNarration {Character = Character {Name = ???:}, Text = This is too funny… there’s absolutely nothing I can do to his code to make it worse than it is already.}
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+48
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+DialogueAndNarration {Character = Character {Name = ???:}, Text = So, being the kind, generous, and charitable soul I am, I guess I'll give him a hand.}
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+49
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+DialogueAndNarration {Character = Character {Name = }, Text = -she changes his file names-}
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+50
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+DialogueAndNarration {Character = Character {Name = Console:}, Text = 1_YoUrE_aN_iDiOt.cs <br> 2_If_yoURe_ReAdInG_th1S.txt <br> 3_KnOw_Th4T_ThIs_MaY_bE_y0Ur.cs <br> 4_oNlY_cHaNcE_t0_PaSs.cs <br> 5_hErEs_a_9Ift.cs <br> 6_oPeN_tHIs_fil3D.cs}
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+51
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+DialogueAndNarration {Character = Character {Name = ???:}, Text = And now we wait… He’ll be back tomorrow, I’m sure. He has to since he hasn’t finished his assignment.}
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+52
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+DialogueAndNarration {Character = Character {Name = ???:}, Text = Oh, I know! I’ll put a keylogger on here and set this webcam to record his reaction at the same time tomorrow.}
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+53
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+DialogueAndNarration {Character = Character {Name = ???:}, Text = Ahahahaha I’m a genius. By tomorrow, I’ll have full access to his account and get to see the look on his face when he sees all his files renamed.}
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+54
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+DialogueAndNarration {Character = Character {Name = ???:}, Text = Someone that stupid… I’m not sure if even my comments will be of any help.}
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+55
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+DialogueAndNarration {Character = Character {Name = ???:}, Text = -snickers- Just thinking about it makes me want to laugh until I puke.}
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+56
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+return
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
 
