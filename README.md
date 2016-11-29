@@ -158,7 +158,7 @@
 </ul>
 <b>Joey Tong - 2016/11/28 23:51 - Menu, animations, effects, bug fixes</b>
 <ul>
-<li>Added scene 2 to script</li>
+<li>Added scene 2 to script.txt</li>
 <li>Added menu UI textures and new animations</li>
 <li>Added menu button sounds</li>
 <li>Replaced computer lab music with live performed recording</li>
