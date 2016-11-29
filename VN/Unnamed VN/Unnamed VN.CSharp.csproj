@@ -81,6 +81,7 @@
     <Compile Include="Assets\Scripts\UI Scripts\DialogueBox.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\InfoBar.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\NameBox.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\SlideBar.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_In Game\BK\InGame Menu.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_In Game\BK\InGameMenuManger.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_In Game\BK\MenuManager.cs" />

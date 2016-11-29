@@ -10,7 +10,7 @@ public class DialogueManager : MonoBehaviour {
     //reference to the dialogue box UI element
     public Text dialogueBox;
     public GameObject AudioManager;
-
+    bool tagging = false;
 	Scripting scripting;
 
     //A buffered queue that stores the chars to be displayed
@@ -88,6 +88,7 @@ public class DialogueManager : MonoBehaviour {
             AudioManager.GetComponent<AudioManager>().PlayTextScroll();
             textScrollTimer = textScrollPause;
         }
+        dialogueBox.text.Replace("<br>", "\n");
     }
 
 	void ClearText() {

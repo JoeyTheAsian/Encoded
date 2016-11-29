@@ -24,7 +24,9 @@ public class CharacterManager : MonoBehaviour {
     }
     public void AddCharacter(string name)
     {
-        characters.Add(Instantiate<GameObject>(Resources.Load("Prefabs/" + name) as GameObject));
+        GameObject newCharacter = Instantiate<GameObject>(Resources.Load("Prefabs/" + name) as GameObject);
+        newCharacter.transform.parent = GameObject.Find("Characters").transform;
+        characters.Add(newCharacter);
     }
     public void RemoveCharacter(string name)
     {

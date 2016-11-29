@@ -46,7 +46,7 @@ public class CharacterModel : MonoBehaviour {
     {
         try
         {
-            gameObject.transform.localScale = new Vector3((offsetPercentage.x >= 0) ? 40 : -40, 40, 0);
+            gameObject.transform.localScale = new Vector3((offsetPercentage.x >= 0) ? 40 : -40, 40, 1);
 
             float width = meshRenderer.bounds.size.x;
             float height = meshRenderer.bounds.size.y;
@@ -60,7 +60,7 @@ public class CharacterModel : MonoBehaviour {
             finalWidth = finalHeight;
 
             gameObject.transform.position = Camera.main.transform.position + Camera.main.orthographicSize * 2f * Camera.main.aspect * offsetPercentage;
-            gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, -99.5f);
+            gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 0);
         }
         catch (NullReferenceException) { }
     }

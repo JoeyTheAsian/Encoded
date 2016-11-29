@@ -57,7 +57,7 @@ public class Background : MonoBehaviour {
                 }
                 gameObject.transform.localScale = new Vector3(worldScreenWidth / width, worldScreenHeight / height);
                 gameObject.transform.position = Camera.main.transform.position;
-                gameObject.transform.Translate(new Vector3(0, 0, 1f));
+                gameObject.transform.Translate(new Vector3(0, 0, 200f));
             }
         } catch (NullReferenceException) { }
     }
