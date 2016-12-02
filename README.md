@@ -150,7 +150,6 @@
 <ul>
 	<li>The only supported transition is "fade"</li>
 </ul>
-<<<<<<< HEAD
 <b>Sean Yip - 2016/11/28 23:47 - Scripting: new lines</b>
 <ul>
 	<li>"\n" for new line</li>
