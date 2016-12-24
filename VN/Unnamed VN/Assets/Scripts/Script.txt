@@ -4,6 +4,7 @@ define Console = Character("Console:")
 define P = Character("Player:")
 define ? = Character("???:")
 
+
 label 1:
 scene Lab_Evening with fade
 play music "Computer Lab Music"

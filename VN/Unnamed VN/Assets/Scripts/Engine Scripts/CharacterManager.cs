@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class CharacterManager : MonoBehaviour {
     public List<GameObject> characters = new List<GameObject>();
@@ -16,12 +17,28 @@ public class CharacterManager : MonoBehaviour {
     public void AutoPosition() {
 
     }
-    public void JumpAnimation() {
-
+    //attempts to apply the animation passed in
+    public void StartAnimation(string animation, string character) {
+        GameObject c = GetCharacter(character);
+        c.GetComponent<CharacterModel>().StartAnimation(animation);
     }
+    public void StopAnimation(string animation, string character)
+    {
+        GameObject c = GetCharacter(character);
+        c.GetComponent<CharacterModel>().StopAnimation(animation);
+    }
+    public GameObject GetCharacter(string name)
+    {
+        return gameObject.transform.FindChild(name).gameObject;
+    }
+    //autosizes all displayed characters
     public void AutoSize() {
-
+        foreach(GameObject g in characters)
+        {
+            g.GetComponent<CharacterModel>().AutoSize();
+        }
     }
+    //attempts to add in the character passed in
     public void AddCharacter(string name)
     {
         GameObject newCharacter = Instantiate<GameObject>(Resources.Load("Prefabs/" + name) as GameObject);
