@@ -164,3 +164,7 @@
 <li>Fixed positioning bug with character autopositioning</li>
 <li>Minor bug fixes to scripting.cs</li>
 </ul>
+<b>Hong Lam To - 2016/12/25 20:00 - Multi scene</b>
+<ul>
+<li>Code updated SceneLoader.cs</li>
+</ul>
