@@ -2,7 +2,8 @@
 using System.Collections;
 
 public class SoundManager : MonoBehaviour {
-
+	AsyncOperation async;
+	
 	// Use this for initialization
 	void Start () {
 	
