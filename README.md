@@ -168,3 +168,12 @@
 <ul>
 <li>Code updated SceneLoader.cs</li>
 </ul>
+<b>Hong Lam To - 2016/12/28 01:00 - Config Menu</b>
+<ul>
+<li>Added "SceneLoader_InGame.cs" in scene "UI_In Game" "SceneManager"</li>
+<li>Added Canvas "Config Menu" with Animation in scene "UI_Main Menu"</li>
+<li>Added GameObject (Config Menu): Screen Resolution, Master Volume, Music Volume, SFX Volume, Message Speed,</li>
+<li>	Auto Mode Message Speed, (2) On/Off switch (*no function)</li>
+<li>Updated "Option Menu" in scene "UI_In Game"</li>
+<li>Added function "Quit" button in scene "UI_In Game"</li>
+</ul>
