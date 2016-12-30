@@ -52,6 +52,9 @@
     <Reference Include="UnityEngine">
       <HintPath>Library\UnityAssemblies\UnityEngine.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.Advertisements">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Advertisements.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
@@ -66,6 +69,9 @@
     </Reference>
     <Reference Include="UnityEngine.HoloLens">
       <HintPath>Library\UnityAssemblies\UnityEngine.HoloLens.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Purchasing">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Purchasing.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.VR">
       <HintPath>Library\UnityAssemblies\UnityEngine.VR.dll</HintPath>
@@ -100,15 +106,18 @@
     <Compile Include="Assets\Scripts\UI Scripts\UI_In Game\BK\SideMenuManager.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_In Game\BK\UIManager_BK.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_In Game\Menu.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\UI_In Game\SceneLoader_InGame.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_In Game\UIManager.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_Main Menu\BK\Bar_Script.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_Main Menu\BK\Spectrum_Bar.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\UI_Main Menu\ConfigManager.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_Main Menu\ExitBtn.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_Main Menu\SceneLoader.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_Main Menu\SoundManager.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_Main Menu\audioSpectrumScript.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_Main Menu\barScript.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_Main Menu\centerScript.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\UI_Main Menu\configScript.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_Main Menu\isOverScript.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_Main Menu\rotateScript.cs" />
   </ItemGroup>
