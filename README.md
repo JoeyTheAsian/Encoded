@@ -177,3 +177,9 @@
 <li>Updated "Option Menu" in scene "UI_In Game"</li>
 <li>Added function "Quit" button in scene "UI_In Game"</li>
 </ul>
+<b>Joey Tong - 2016/12/30 22:55 - Tidying up</b>
+<ul>
+<li>Fixed corrupt background file</li>
+<li>Added some animation framework for character</li>
+<li>Remastered music track</li>
+</ul>
