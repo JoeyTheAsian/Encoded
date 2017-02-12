@@ -50,16 +50,19 @@ public class CharacterModel : MonoBehaviour {
         }
     }
     //start & stop animations, bad parameter cases currently not handled
-    public void StartAnimation(string animation)
+    public bool StartAnimation(string animation)
     {
         if(animation.ToUpper() == "IDLE" && !animationState.Contains(animations.Idle))
         {
             animationState.Add(animations.Idle);
+            return true;
         }
         else if (animation.ToUpper() == "BLINK" && !animationState.Contains(animations.Blink))
         {
             animationState.Add(animations.Blink);
+            return true;
         }
+        return false;
     }
     public void StopAnimation(string animation)
     {
@@ -86,19 +89,8 @@ public class CharacterModel : MonoBehaviour {
         {
             gameObject.transform.localScale = new Vector3((offsetPercentage.x >= 0) ? 40 : -40, 40, 1);
 
-            float width = meshRenderer.bounds.size.x;
-            float height = meshRenderer.bounds.size.y;
-
-            float imageRatio = width / height;
-
-            float finalHeight;
-            float finalWidth;
-
-            finalHeight = Camera.main.orthographicSize * 4f/3f;
-            finalWidth = finalHeight;
-
-            gameObject.transform.position = Camera.main.transform.position + Camera.main.orthographicSize * 2f * Camera.main.aspect * offsetPercentage;
-            gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 0);
+            gameObject.transform.position = new Vector3(Camera.main.transform.position.x - Camera.main.orthographicSize * Camera.main.aspect + Camera.main.orthographicSize * 2f * Camera.main.aspect * (offsetPercentage.x / 100),
+                                                        Camera.main.transform.position.y + Camera.main.orthographicSize + Camera.main.orthographicSize * 2f * (offsetPercentage.y / 100), 0f);
         }
         catch (NullReferenceException) { }
     }

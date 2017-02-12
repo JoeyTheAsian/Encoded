@@ -4,7 +4,7 @@ define Console = Character("Console:")
 define P = Character("Player:")
 define ? = Character("???:")
 
-
+jump 2
 label 1:
 scene Lab_Evening with fade
 play music "Computer Lab Music"
@@ -24,7 +24,7 @@ P "-deep sigh- This isn’t working out for me. Maybe I should get a job and sav
 
 label 2:
 scene Lab_Night with fade
-show Heroine
+show Heroine Idle Blink
 "The Sun Sets..."
 ? "..."
 ? "Tch... he sure took his time."
@@ -38,31 +38,30 @@ Console "Tr0llm4st3r@gnu.edu~$ last"
 Console "(*MC name*)  :0.0   Fri Sept 2 16:36 – 18:54  (2:18)"
 ? "(*MC name*)? A terrible name." 
 Console "cd ~/users/(Mc’s name)/documents/"
-? "Alright, let’s see what I can ruin for him... maybe a homework, an essay, or his life in general."
+? "Alright, let’s see what I can ruin for him... maybe a homework, an essay... Perhaps just his life in general?"
 Console "ls"
 Console "helloworld.cs\nhelloworld.txt\nloopprint.cs\nrecursiveprint.cs\nrepeathellos.cs"
 ? "..."
 ? "...Pfft."
 ? "This has to be some sort of joke."
-? "..."
 ? "Are you kidding me? Is this guy serious?"
 "-She clicks something-"
-? "BWAHAHAHAHAHA! HE IS. OH MY GOD. HAHAHAHAHAHA.... "
+? "BWAHAHAHAHAHA! HE IS. OH MY GOD!!"
 ? "He must be a freshman. Though this is weak even for 101. He doesn’t even camelcase his filenames!!"
-? "AHAHAHAHA HE SAVED ONE OF HIS FILES AS A PLAINTEXT AND LEFT IT THERE"
+? "HE SAVED ONE OF HIS FILES AS A PLAINTEXT AND LEFT IT THERE?!"
 ? "AHAHAHA WHAT IF HE DOESN’T EVEN KNOW HOW TO DELETE HIS FILES??"
-? "-cough cough- What a... -snicker- complete idiot. This guy doesn’t even need my intervention to fail his class. -giggles-"
-? "-giggles- Ahahahaha, okay, that’s enough. I’m starting to feel really bad for him."
+? "-cough cough- What a complete idiot. This guy doesn’t even need my intervention to fail his class. -giggles-"
+? "Ahahahaha, okay, that’s enough. I’m starting to feel really bad for him."
 ? ".               .               ."
 ? "GAHAHAHAHAHAHA."
-? "This is too funny... there’s absolutely nothing I can do to his code to make it worse than it is already."
+? "There’s absolutely nothing I can do to his code to make it worse than it is already."
 ? "So, being the kind, generous, and charitable soul I am, I guess I'll give him a hand."
 "-she changes his file names-"
 Console "1_YoUrE_aN_iDiOt.cs\n2_If_yoURe_ReAdInG_th1S.txt\n3_KnOw_Th4T_ThIs_MaY_bE_y0Ur.cs\n4_oNlY_cHaNcE_t0_PaSs.cs\n5_hErEs_a_9Ift.cs\n6_oPeN_tHIs_fil3D.cs"
 ? "And now we wait... He’ll be back tomorrow, I’m sure. He has to since he hasn’t finished his assignment."
 ? "Oh, I know! I’ll put a keylogger on here and set this webcam to record his reaction at the same time tomorrow."
-? "Ahahahaha I’m a genius. By tomorrow, I’ll have full access to his account and get to see the look on his face when he sees all his files renamed."
+? "I’m a genius. By tomorrow, I’ll have full access to his account and get to see the look on his face when he sees all his files renamed."
 ? "Someone that stupid... I’m not sure if even my comments will be of any help." 
-? "-snickers- Just thinking about it makes me want to laugh until I puke."
+? "Just thinking about it makes me want to laugh until I puke."
 
 return

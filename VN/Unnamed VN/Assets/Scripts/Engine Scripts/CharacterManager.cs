@@ -20,7 +20,10 @@ public class CharacterManager : MonoBehaviour {
     //attempts to apply the animation passed in
     public void StartAnimation(string animation, string character) {
         GameObject c = GetCharacter(character);
-        c.GetComponent<CharacterModel>().StartAnimation(animation);
+        if (!c.GetComponent<CharacterModel>().StartAnimation(animation))
+        {
+            Debug.Log("Unable to play animation '" + animation + "' in character '" + character + "'");
+        }
     }
     public void StopAnimation(string animation, string character)
     {
@@ -29,7 +32,7 @@ public class CharacterManager : MonoBehaviour {
     }
     public GameObject GetCharacter(string name)
     {
-        return gameObject.transform.FindChild(name).gameObject;
+        return GameObject.Find(name + "(Clone)");
     }
     //autosizes all displayed characters
     public void AutoSize() {

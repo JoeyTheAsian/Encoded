@@ -231,7 +231,8 @@ public class Scripting : MonoBehaviour {
 							if (index >= line.Length) {
 								goto InsufficientTokens;
 							}
-							commands.Add(new string[] { first, line.Substring(startIndex, line.Length - startIndex) });
+							commands.Add(new string[] { first, line.Substring(startIndex, line.Length - startIndex)});
+                            Debug.Log(first + line.Substring(startIndex, line.Length - startIndex));
 							break;
 						case "stop":
 							Debug.LogWarning(first + " not supported");
@@ -331,7 +332,7 @@ public class Scripting : MonoBehaviour {
 			Debug.Log(programCounter);
 			if (commands[programCounter].GetType() == typeof(DialogueAndNarration)) {
 				DialogueAndNarration dialogueAndNarrationCommand = (DialogueAndNarration)commands[programCounter];
-				Debug.Log(dialogueAndNarrationCommand);
+				//Debug.Log(dialogueAndNarrationCommand);
 				dialogueManager.SetText(((dialogueAndNarrationCommand.Character != null) ? dialogueAndNarrationCommand.Character.Name : "") + "\n\n" + dialogueAndNarrationCommand.Text);
 				programCounter++;
 				return;
@@ -368,8 +369,17 @@ public class Scripting : MonoBehaviour {
 						}
 						programCounter++;
 						continue;
-					case "show":
-						characterManager.AddCharacter(arrayCommand[1]);
+                    case "show":
+                        string[] temp = arrayCommand[1].Split(' ');
+                        characterManager.AddCharacter(temp[0]);
+                        if(temp.Length > 1)
+                        {
+                            for(int i = 1; i < temp.Length; i++)
+                            {
+                                characterManager.StartAnimation(temp[i], temp[0]);
+                            }
+                        }
+
 						programCounter++;
 						continue;
 					case "return":
