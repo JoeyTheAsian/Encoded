@@ -183,3 +183,8 @@
 <li>Added some animation framework for character</li>
 <li>Remastered music track</li>
 </ul>
+<b>Joey Tong - 2017/2/12 21:55 - Character animations and update to 5.5.0f3</b>
+<li>Game has been updated to unity 5.5.0f3</li>
+<li>Compiler now accepts commands for character animations</li>
+<li>New backgrounds, 3 new scenes of script, and new daytime music track</li>
+</ul>
