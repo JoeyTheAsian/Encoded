@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class AudioManager : MonoBehaviour {
     //background music
     public GameObject bgm;
-    public GameObject SoundEffects;
-
+    public GameObject Sounds;
+    public Dictionary<string, AudioClip> SoundEffects;
     public float EffectVolume = .1f;
 
     AudioClip TextScroll;
@@ -28,10 +29,18 @@ public class AudioManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+
 	}
     //plays the sound when text animation in the dialogue box is active
     public void PlayTextScroll() {
-        SoundEffects.GetComponent<AudioSource>().PlayOneShot(TextScroll, EffectVolume);
+        Sounds.GetComponent<AudioSource>().PlayOneShot(TextScroll, EffectVolume);
     }
-}
+    public void PlaySound(string path) {
+        GameObject g = Instantiate<GameObject>(Sounds);
+        AudioSource audioSource = g.AddComponent<AudioSource>();
+        audioSource.clip = Resources.Load<AudioClip>("Music/" + path);
+        audioSource.loop = false;
+        audioSource.Play();
+        g.AddComponent<TempSound>();
+    }
+}   

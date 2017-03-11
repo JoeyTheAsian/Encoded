@@ -11,17 +11,17 @@ public class BackgroundManager : MonoBehaviour {
         FadeToWhite,
         FadeToBlack
     }
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start() {
         ActiveBackground = GameObject.Find("Background1");
         InactiveBackground = GameObject.Find("Background2");
         //ChangeBackground("test2", transitions.Fade);
         ActiveBackground.GetComponent<Background>().MakeTransparent();
         InactiveBackground.GetComponent<Background>().MakeTransparent();
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update() {
         if (Input.GetKeyDown(KeyCode.A)) {
             ChangeBackground("Lab_Evening", transitions.Fade);
         }
@@ -30,11 +30,9 @@ public class BackgroundManager : MonoBehaviour {
         }
     }
     //changes the current background only a file name is required
-    public void ChangeBackground(string s)
-    {
+    public void ChangeBackground(string s) {
         Sprite newBackground = Resources.Load<Sprite>("Backgrounds/" + s);
-        if ((newBackground) == null)
-        {
+        if ((newBackground) == null && s.ToUpper() != "BLACK") {
             newBackground = Resources.Load<Sprite>("Backgrounds/NoTexture");
         }
         if (ActiveBackground.GetComponent<SpriteRenderer>().sprite != null) {
@@ -49,7 +47,7 @@ public class BackgroundManager : MonoBehaviour {
     //for changing the background with a transition, default duration is 1 second, use overloaded method for custom duration
     public void ChangeBackground(string s, transitions t) {
         Sprite newBackground = Resources.Load<Sprite>("Backgrounds/" + s);
-        if ((newBackground) == null) {
+        if ((newBackground) == null && s.ToUpper() != "BLACK") {
             newBackground = Resources.Load<Sprite>("Backgrounds/NoTexture");
         }
         if (ActiveBackground.GetComponent<SpriteRenderer>().sprite != null) {
@@ -61,7 +59,21 @@ public class BackgroundManager : MonoBehaviour {
         InactiveBackground.GetComponent<Background>().AutoSize();
         Transition(t);
     }
-    public void Transition( transitions t) {
+    public void ChangeBackground(string s, transitions t, int time) {
+        Sprite newBackground = Resources.Load<Sprite>("Backgrounds/" + s);
+        if ((newBackground) == null && s.ToUpper() != "BLACK") {
+            newBackground = Resources.Load<Sprite>("Backgrounds/NoTexture");
+        }
+        if (ActiveBackground.GetComponent<SpriteRenderer>().sprite != null) {
+            InactiveBackground.GetComponent<SpriteRenderer>().sprite = ActiveBackground.GetComponent<SpriteRenderer>().sprite;
+        }
+        InactiveBackground.GetComponent<SpriteRenderer>().sprite = ActiveBackground.GetComponent<SpriteRenderer>().sprite;
+        ActiveBackground.GetComponent<SpriteRenderer>().sprite = newBackground;
+        ActiveBackground.GetComponent<Background>().AutoSize();
+        InactiveBackground.GetComponent<Background>().AutoSize();
+        Transition(t, time);
+    }
+    public void Transition(transitions t) {
         switch (t) {
             case transitions.Fade:
                 ActiveBackground.GetComponent<Background>().MakeTransparent();
@@ -74,6 +86,23 @@ public class BackgroundManager : MonoBehaviour {
                 ActiveBackground.GetComponent<SpriteRenderer>().sprite = null;
                 InactiveBackground.GetComponent<Background>().MakeOpaque();
                 InactiveBackground.GetComponent<Background>().FadeOutInit(1f);
+                //ActiveBackground.GetComponent<SpriteRenderer>().sprite = null;
+                break;
+        }
+    }
+    public void Transition(transitions t, int time) {
+        switch (t) {
+            case transitions.Fade:
+                ActiveBackground.GetComponent<Background>().MakeTransparent();
+                InactiveBackground.GetComponent<Background>().MakeOpaque();
+                ActiveBackground.GetComponent<Background>().FadeInInit(time);
+                InactiveBackground.GetComponent<Background>().FadeOutInit(time);
+                break;
+            case transitions.FadeToBlack:
+                InactiveBackground.GetComponent<SpriteRenderer>().sprite = ActiveBackground.GetComponent<SpriteRenderer>().sprite;
+                ActiveBackground.GetComponent<SpriteRenderer>().sprite = null;
+                InactiveBackground.GetComponent<Background>().MakeOpaque();
+                InactiveBackground.GetComponent<Background>().FadeOutInit(time);
                 //ActiveBackground.GetComponent<SpriteRenderer>().sprite = null;
                 break;
         }

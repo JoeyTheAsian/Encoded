@@ -81,6 +81,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\OnClick.cs" />
     <Compile Include="Assets\Scripts\Character.cs" />
     <Compile Include="Assets\Scripts\DialogueAndNarration.cs" />
     <Compile Include="Assets\Scripts\Engine Scripts\AudioManager.cs" />
@@ -88,38 +89,39 @@
     <Compile Include="Assets\Scripts\Engine Scripts\CharacterManager.cs" />
     <Compile Include="Assets\Scripts\Engine Scripts\DialogueManager.cs" />
     <Compile Include="Assets\Scripts\HeroineAnim.cs" />
+    <Compile Include="Assets\Scripts\Object Scripts\Background.cs" />
+    <Compile Include="Assets\Scripts\Object Scripts\CharacterModel.cs" />
+    <Compile Include="Assets\Scripts\Object Scripts\CursorTexture.cs" />
+    <Compile Include="Assets\Scripts\Object Scripts\DateTime.cs" />
+    <Compile Include="Assets\Scripts\Object Scripts\DialogueBox.cs" />
+    <Compile Include="Assets\Scripts\Object Scripts\InfoBar.cs" />
+    <Compile Include="Assets\Scripts\Object Scripts\MainMenuButtonSounds.cs" />
+    <Compile Include="Assets\Scripts\Object Scripts\NameBox.cs" />
+    <Compile Include="Assets\Scripts\Object Scripts\SlideBar.cs" />
+    <Compile Include="Assets\Scripts\Object Scripts\TempSound.cs" />
+    <Compile Include="Assets\Scripts\Object Scripts\UI_In Game\BK\InGame Menu.cs" />
+    <Compile Include="Assets\Scripts\Object Scripts\UI_In Game\BK\InGameMenuManger.cs" />
+    <Compile Include="Assets\Scripts\Object Scripts\UI_In Game\BK\MenuManager.cs" />
+    <Compile Include="Assets\Scripts\Object Scripts\UI_In Game\BK\SideMenuManager.cs" />
+    <Compile Include="Assets\Scripts\Object Scripts\UI_In Game\BK\UIManager_BK.cs" />
+    <Compile Include="Assets\Scripts\Object Scripts\UI_In Game\Menu.cs" />
+    <Compile Include="Assets\Scripts\Object Scripts\UI_In Game\SceneLoader_InGame.cs" />
+    <Compile Include="Assets\Scripts\Object Scripts\UI_In Game\UIManager.cs" />
+    <Compile Include="Assets\Scripts\Object Scripts\UI_Main Menu\BK\Bar_Script.cs" />
+    <Compile Include="Assets\Scripts\Object Scripts\UI_Main Menu\BK\Spectrum_Bar.cs" />
+    <Compile Include="Assets\Scripts\Object Scripts\UI_Main Menu\ConfigManager.cs" />
+    <Compile Include="Assets\Scripts\Object Scripts\UI_Main Menu\ExitBtn.cs" />
+    <Compile Include="Assets\Scripts\Object Scripts\UI_Main Menu\SceneLoader.cs" />
+    <Compile Include="Assets\Scripts\Object Scripts\UI_Main Menu\SoundManager.cs" />
+    <Compile Include="Assets\Scripts\Object Scripts\UI_Main Menu\audioSpectrumScript.cs" />
+    <Compile Include="Assets\Scripts\Object Scripts\UI_Main Menu\barScript.cs" />
+    <Compile Include="Assets\Scripts\Object Scripts\UI_Main Menu\centerScript.cs" />
+    <Compile Include="Assets\Scripts\Object Scripts\UI_Main Menu\configScript.cs" />
+    <Compile Include="Assets\Scripts\Object Scripts\UI_Main Menu\isOverScript.cs" />
+    <Compile Include="Assets\Scripts\Object Scripts\UI_Main Menu\rotateScript.cs" />
     <Compile Include="Assets\Scripts\PlaneResControl.cs" />
     <Compile Include="Assets\Scripts\Scripting.cs" />
     <Compile Include="Assets\Scripts\TacheAutoResize.cs" />
-    <Compile Include="Assets\Scripts\UI Scripts\Background.cs" />
-    <Compile Include="Assets\Scripts\UI Scripts\CharacterModel.cs" />
-    <Compile Include="Assets\Scripts\UI Scripts\CursorTexture.cs" />
-    <Compile Include="Assets\Scripts\UI Scripts\DateTime.cs" />
-    <Compile Include="Assets\Scripts\UI Scripts\DialogueBox.cs" />
-    <Compile Include="Assets\Scripts\UI Scripts\InfoBar.cs" />
-    <Compile Include="Assets\Scripts\UI Scripts\MainMenuButtonSounds.cs" />
-    <Compile Include="Assets\Scripts\UI Scripts\NameBox.cs" />
-    <Compile Include="Assets\Scripts\UI Scripts\SlideBar.cs" />
-    <Compile Include="Assets\Scripts\UI Scripts\UI_In Game\BK\InGame Menu.cs" />
-    <Compile Include="Assets\Scripts\UI Scripts\UI_In Game\BK\InGameMenuManger.cs" />
-    <Compile Include="Assets\Scripts\UI Scripts\UI_In Game\BK\MenuManager.cs" />
-    <Compile Include="Assets\Scripts\UI Scripts\UI_In Game\BK\SideMenuManager.cs" />
-    <Compile Include="Assets\Scripts\UI Scripts\UI_In Game\BK\UIManager_BK.cs" />
-    <Compile Include="Assets\Scripts\UI Scripts\UI_In Game\Menu.cs" />
-    <Compile Include="Assets\Scripts\UI Scripts\UI_In Game\SceneLoader_InGame.cs" />
-    <Compile Include="Assets\Scripts\UI Scripts\UI_In Game\UIManager.cs" />
-    <Compile Include="Assets\Scripts\UI Scripts\UI_Main Menu\BK\Bar_Script.cs" />
-    <Compile Include="Assets\Scripts\UI Scripts\UI_Main Menu\BK\Spectrum_Bar.cs" />
-    <Compile Include="Assets\Scripts\UI Scripts\UI_Main Menu\ConfigManager.cs" />
-    <Compile Include="Assets\Scripts\UI Scripts\UI_Main Menu\ExitBtn.cs" />
-    <Compile Include="Assets\Scripts\UI Scripts\UI_Main Menu\SceneLoader.cs" />
-    <Compile Include="Assets\Scripts\UI Scripts\UI_Main Menu\SoundManager.cs" />
-    <Compile Include="Assets\Scripts\UI Scripts\UI_Main Menu\audioSpectrumScript.cs" />
-    <Compile Include="Assets\Scripts\UI Scripts\UI_Main Menu\barScript.cs" />
-    <Compile Include="Assets\Scripts\UI Scripts\UI_Main Menu\centerScript.cs" />
-    <Compile Include="Assets\Scripts\UI Scripts\UI_Main Menu\configScript.cs" />
-    <Compile Include="Assets\Scripts\UI Scripts\UI_Main Menu\isOverScript.cs" />
-    <Compile Include="Assets\Scripts\UI Scripts\UI_Main Menu\rotateScript.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\Script The Question.txt" />
