@@ -15,20 +15,10 @@ public class BackgroundManager : MonoBehaviour {
     void Start() {
         ActiveBackground = GameObject.Find("Background1");
         InactiveBackground = GameObject.Find("Background2");
-        //ChangeBackground("test2", transitions.Fade);
         ActiveBackground.GetComponent<Background>().MakeTransparent();
         InactiveBackground.GetComponent<Background>().MakeTransparent();
     }
 
-    // Update is called once per frame
-    void Update() {
-        if (Input.GetKeyDown(KeyCode.A)) {
-            ChangeBackground("Lab_Evening", transitions.Fade);
-        }
-        if (Input.GetKeyDown(KeyCode.B)) {
-            ChangeBackground("Lab_Evening", transitions.FadeToBlack);
-        }
-    }
     //changes the current background only a file name is required
     public void ChangeBackground(string s) {
         Sprite newBackground = Resources.Load<Sprite>("Backgrounds/" + s);
