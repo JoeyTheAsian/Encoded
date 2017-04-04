@@ -190,7 +190,8 @@
 <li>New backgrounds, 3 new scenes of script, and new daytime music track</li>
 </ul>
 <b>Joey Tong - 2017/3/20 21:00 - Choice implementation</b>
-<li>3 more bacgrounds</li>
+<ul>
+<li>3 more backgrounds</li>
 <li>choice UI</li>
 <li>choice implementation into scripting language</li>
 <li>bug fixes in scripting</li>
