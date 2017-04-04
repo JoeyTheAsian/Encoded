@@ -16,10 +16,6 @@ public class DialogueBox : MonoBehaviour {
         gameObject.GetComponent<Image>().color = boxColor;
     }
 
-	// Update is called once per frame
-	void Update () {
-       AutoSize();
-	}
 
     //automatically scales the UI texture
     void AutoSize()

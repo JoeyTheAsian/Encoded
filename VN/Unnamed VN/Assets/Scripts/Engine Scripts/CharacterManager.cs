@@ -47,6 +47,12 @@ public class CharacterManager : MonoBehaviour {
         GameObject newCharacter = Instantiate<GameObject>(Resources.Load("Prefabs/" + name) as GameObject);
         newCharacter.transform.parent = GameObject.Find("Characters").transform;
         characters.Add(newCharacter);
+        
+        int charCount = characters.Count;
+        for(int i = 0; i < charCount; i++) {
+            characters[i].GetComponent<CharacterModel>().offsetPercentage.x = 100/(charCount + 1) * (i+1);
+        }
+
     }
     public void RemoveCharacter(string name) {
         if (name.ToUpper() == "ALL") {

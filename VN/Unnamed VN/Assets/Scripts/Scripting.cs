@@ -328,13 +328,38 @@ public class Scripting : MonoBehaviour {
                                 }
                                 commands.Add(new string[] { first, sceneName, transition });
                                 break;
+                            case "choices":
+                                List<string> finalCommand = new List<string>();
+                                List<string> splitLine = new List<string>(line.Split('"'));
+                                
+                                for (int j = 0; j < splitLine.Count; j++) {
+                                    splitLine[j].Trim();
+                                    if (string.IsNullOrEmpty(splitLine[j])) {
+                                        splitLine.RemoveAt(j);
+                                        j--;
+                                    }
+                                }
+                                for(int k = 0; k < splitLine.Count; k+= 2) {
+                                    List<string> tempLine = new List<string>(splitLine[k].Split(' '));
+                                    for (int s = 0; s < tempLine.Count; s++) {
+                                        tempLine[s].Trim();
+                                        if (string.IsNullOrEmpty(tempLine[s])) {
+                                            tempLine.RemoveAt(s);
+                                            s--;
+                                        }
+                                    }
+                                    finalCommand.AddRange(tempLine);
+                                    finalCommand.Add(splitLine[k+1]);
+                                }
+                                commands.Add(finalCommand.ToArray());
+                                break;
                             case "show":
                                 //Unlike Ren'Py, no image definition required
                                 if (index >= line.Length) {
                                     goto InsufficientTokens;
                                 }
                                 commands.Add(new string[] { first, line.Substring(startIndex, line.Length - startIndex) });
-                                Debug.Log(first + line.Substring(startIndex, line.Length - startIndex));
+                                //Debug.Log(first + line.Substring(startIndex, line.Length - startIndex));
                                 break;
                             case "stop":
                                 Debug.LogWarning(first + " not supported");
@@ -509,6 +534,39 @@ public class Scripting : MonoBehaviour {
                         }
 						programCounter++;
 						continue;
+                    case "choices":
+                        if (!dialogueManager.choiceState && !dialogueManager.choiceBuffer) {
+                            int numChoices = int.Parse(arrayCommand[1]);
+                            string[] choiceTexts = new string[numChoices];
+                            Debug.LogError("Choices: " + numChoices);
+                            for(int l = 1; l <= numChoices; l++) {
+                                choiceTexts[l-1] = arrayCommand[1 + l * 4];
+                            }
+                            dialogueManager.ChoiceInit(choiceTexts);
+                            return;
+                        }
+                        else if(dialogueManager.choiceBuffer) {
+                            if(dialogueManager.GetSelectedChoice() < 1 || dialogueManager.GetSelectedChoice() > 5) {
+                                Debug.LogError("Invalid choice index returned: " + dialogueManager.GetSelectedChoice() + " Choice aborted");
+                                programCounter++;
+                                dialogueManager.ResetChoice();
+                                return;
+                            }else {
+                                int choiceIndex = dialogueManager.GetSelectedChoice() * 4;
+                                if (labels.ContainsKey(arrayCommand[choiceIndex])) {
+                                    programCounter = labels[arrayCommand[choiceIndex]];
+                                    dialogueManager.ResetChoice();
+                                    continue;
+                                } else {
+                                    Debug.LogWarning(string.Format("Unknown label assigned to choice `{0}`", arrayCommand[choiceIndex]));
+                                    programCounter++;
+                                    dialogueManager.ResetChoice();
+                                    return;
+                                }
+                            }
+                        }else {
+                            return;
+                        }
 					case "return":
 						//UnityEditor.EditorApplication.isPlaying = false;
 						programCounter++;

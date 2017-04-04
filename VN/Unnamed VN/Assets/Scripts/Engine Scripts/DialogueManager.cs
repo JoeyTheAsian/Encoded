@@ -11,6 +11,13 @@ public class DialogueManager : MonoBehaviour {
     public Text dialogueBox;
     public GameObject AudioManager;
 
+    public GameObject ChoiceContainer;
+    public bool choiceState = false;
+    public bool choiceBuffer = false;
+
+    List<string> choiceTexts;
+    int selectedChoice = -1;
+
     Scripting scripting;
 
     //A buffered queue that stores the chars to be displayed
@@ -126,5 +133,36 @@ public class DialogueManager : MonoBehaviour {
     void AppendText(string s) {
         char[] newChars = bufferText.ToArray().Concat(s.ToCharArray()).ToArray();
         bufferText = new Queue<char>(newChars);
+    }
+    public void ChoiceInit(string[] texts) {
+        ResetChoice();
+        choiceState = true;
+        for(int i = 0; i < texts.Length; i++) {
+            GameObject temp = ChoiceContainer.transform.GetChild(i).gameObject;
+            temp.SetActive(true);
+            temp.transform.FindChild("Text").GetComponent<Text>().text = texts[i];
+        }
+    }
+    public void ResetChoice() {
+        choiceState = false;
+        choiceBuffer = false;
+        selectedChoice = -1;
+        for (int i = 0; i < 4; i++) {
+            GameObject temp = ChoiceContainer.transform.GetChild(i).gameObject;
+            if(temp != null) {
+                temp.transform.FindChild("Text").GetComponent<Text>().text = "";
+                temp.SetActive(false);
+            }
+        }
+    }
+    public int GetSelectedChoice() {
+        return selectedChoice;
+    }
+    public void SetSelectedChoice(int choice) {
+        if (choiceState) {
+            selectedChoice = choice;
+            choiceState = false;
+            choiceBuffer = true;
+        }
     }
 }

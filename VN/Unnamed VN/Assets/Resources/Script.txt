@@ -3,9 +3,7 @@ define Computer = Character("Computer")
 define Console = Character("Console")
 define P = Character("Player:")
 define ? = Character("???:")
-
-jump 6
-
+jump 2
 label 1:
 scene Lab_Evening with fade
 play music "Computer Lab Music"
