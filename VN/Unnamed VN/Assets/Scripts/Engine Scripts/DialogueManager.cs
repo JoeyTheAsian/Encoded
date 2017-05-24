@@ -43,8 +43,8 @@ public class DialogueManager : MonoBehaviour {
         Debug.Log("----------Execute----------");
         scripting.Next();
         //SetText(currentText);
-        letterTimer = letterPause;
-        textScrollTimer = textScrollPause;
+        letterTimer = letterPause * GameManager.scrollSpeed;
+        textScrollTimer = textScrollPause * GameManager.scrollSpeed;
         dialogueBox.color = new Color(dialogueBox.color.r, dialogueBox.color.g, dialogueBox.color.b, 1f);
         RectTransform rectTransform = dialogueBox.GetComponent<RectTransform>();
 
@@ -67,38 +67,63 @@ public class DialogueManager : MonoBehaviour {
             c = new Color(c.r, c.b, c.g, .5f);
             dialogueBox.transform.parent.FindChild("arrow").GetComponent<Image>().color = c;
         }
-        if (bufferText.Count <= 0 && Input.GetKeyDown(KeyCode.Mouse0) && isClicked) {
-            ClearText();
-            scripting.Next();
-            letterTimer = letterPause;
-            isClicked = false;
+        if (bufferText.Count <= 0 && (Input.GetKeyDown(KeyCode.Mouse0)|| Input.touchCount > 0) && isClicked) {
+            if(Input.touchCount > 0) {
+                for (int i = 0; i < Input.touchCount; i++) {
+                    if (Input.GetTouch(i).phase == TouchPhase.Began) {
+                        ClearText();
+                        scripting.Next();
+                        letterTimer = letterPause * GameManager.scrollSpeed;
+                        isClicked = false;
+                    }
+                }
+            }else {
+                ClearText();
+                scripting.Next();
+                letterTimer = letterPause * GameManager.scrollSpeed;
+                isClicked = false;
+            }
+
         }
          //Display all text on left click
-         else if (Input.GetKeyDown(KeyCode.Mouse0) && dialogueBox.transform.parent.GetComponent<DialogueBox>().isClicked()) {
-            StringBuilder stringBuilder = new StringBuilder("", bufferText.Count);
-            while (bufferText.Count > 0) {
-                stringBuilder.Append(bufferText.Dequeue());
+         else if ((Input.GetKeyDown(KeyCode.Mouse0) || Input.touchCount > 0) && isClicked) {//&& dialogueBox.transform.parent.GetComponent<DialogueBox>().isClicked()) {
+            if (Input.touchCount > 0) {
+                for (int i = 0; i < Input.touchCount; i++) {
+                    if (Input.GetTouch(i).phase == TouchPhase.Began) {
+                        StringBuilder stringBuilder = new StringBuilder("", bufferText.Count);
+                        while (bufferText.Count > 0) {
+                            stringBuilder.Append(bufferText.Dequeue());
+                        }
+                        DisplayText(stringBuilder.ToString());
+                        isClicked = false;
+                    }
+                }
+            }else {
+                StringBuilder stringBuilder = new StringBuilder("", bufferText.Count);
+                while (bufferText.Count > 0) {
+                    stringBuilder.Append(bufferText.Dequeue());
+                }
+                DisplayText(stringBuilder.ToString());
+                isClicked = false;
             }
-            DisplayText(stringBuilder.ToString());
-            isClicked = false;
         }
         //Check if enqueued text is null, if it has any characters, 
         //and if the timer on the character delay is up
         if (bufferText != null && bufferText.Count > 0 && letterTimer <= 0.0f) {
-            for (int i = 0; i < (int)(letterTimer * -10000f); i += (int)(letterPause * 10000f)) {
+            for (int i = 0; i < (int)(letterTimer * -10000f); i += (int)(letterPause * GameManager.scrollSpeed * 10000f)) {
                 if (bufferText.Count > 0) {
                     DisplayText(bufferText.Dequeue() + "");
                 } else {
                     break;
                 }
             }
-            letterTimer = letterPause;
+            letterTimer = letterPause * GameManager.scrollSpeed;
         }
 
         textScrollTimer -= Time.deltaTime;
         if (bufferText.Count > 0 && textScrollTimer <= 0 && bufferText.Peek() != ' ') {
             AudioManager.GetComponent<AudioManager>().PlayTextScroll();
-            textScrollTimer = textScrollPause;
+            textScrollTimer = textScrollPause * GameManager.scrollSpeed;
         }
         dialogueBox.text.Replace("<br>", "\n");
     }

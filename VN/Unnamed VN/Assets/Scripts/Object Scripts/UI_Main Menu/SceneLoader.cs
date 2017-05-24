@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour {
     AsyncOperation async;
-
+    AsyncOperation scene;
     // Use this for initialization
     void Start () {
     }
@@ -13,16 +13,30 @@ public class SceneLoader : MonoBehaviour {
 	void Update () {
 	
 	}
-
+    IEnumerator Load(string sceneName, string UI) {
+        scene = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
+        scene.allowSceneActivation = false;
+       // async = SceneManager.LoadSceneAsync(UI, LoadSceneMode.Additive);
+        //async.allowSceneActivation = false;
+        yield return 0;
+    }
     public void LoadScene(string sceneName)
     {
         //Application.LoadLevel("Scripting branched");
-        SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
+        SceneManager.LoadSceneAsync("Loading", LoadSceneMode.Additive);
         string nextSceneName = "UI_In Game";
+        /*AsyncOperation scene = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+        scene.allowSceneActivation = false;
         async = SceneManager.LoadSceneAsync(nextSceneName, LoadSceneMode.Additive);
-        async.allowSceneActivation = true;
-        //SceneManager.LoadLevelAdditive("UI_In Game");
-        Destroy(this.transform);
+        async.allowSceneActivation = false;*/
+        //SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
+        //SceneManager.LoadSceneAsync(nextSceneName, LoadSceneMode.Additive);
+        StartCoroutine(Load(sceneName, nextSceneName));
+
+        scene.allowSceneActivation = true;
+       // async.allowSceneActivation = true;
+
+        Destroy(this);
         /*https://forum.unity3d.com/threads/scenemanager-loadscene-additive-and-set-active.380826/ */
     }
     public void LoadSceneMainMenu2(string sceneName)

@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class rotateScript : MonoBehaviour {
-
+    public float speed;
     [SerializeField]
     private Image content;
 
@@ -19,6 +19,6 @@ public class rotateScript : MonoBehaviour {
 
     private void centerBox()
     {
-        content.transform.Rotate(0, 0,- Time.fixedDeltaTime *10);
+        content.transform.Rotate(0, 0,- Time.deltaTime *speed);
     }
 }

@@ -88,6 +88,7 @@
     <Compile Include="Assets\Scripts\Engine Scripts\BackgroundManager.cs" />
     <Compile Include="Assets\Scripts\Engine Scripts\CharacterManager.cs" />
     <Compile Include="Assets\Scripts\Engine Scripts\DialogueManager.cs" />
+    <Compile Include="Assets\Scripts\Engine Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\HeroineAnim.cs" />
     <Compile Include="Assets\Scripts\Object Scripts\Background.cs" />
     <Compile Include="Assets\Scripts\Object Scripts\CharacterModel.cs" />
@@ -124,6 +125,7 @@
     <Compile Include="Assets\Scripts\TacheAutoResize.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Resources\Saves\file.txt" />
     <None Include="Assets\Resources\Script.txt" />
     <None Include="Assets\Scripts\Script The Question.txt" />
     <None Include="Assets\Scripts\Script.txt" />

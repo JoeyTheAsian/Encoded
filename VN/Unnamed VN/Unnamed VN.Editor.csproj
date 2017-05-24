@@ -144,6 +144,7 @@
     <Compile Include="Assets\Editor\CrossPlatformInput\CrossPlatformInputInitialize.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Resources\Saves\file.txt" />
     <None Include="Assets\Resources\Script.txt" />
     <None Include="Assets\Scripts\Script The Question.txt" />
     <None Include="Assets\Scripts\Script.txt" />

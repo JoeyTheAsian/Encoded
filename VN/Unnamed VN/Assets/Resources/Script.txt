@@ -3,10 +3,35 @@ define Computer = Character("Computer")
 define Console = Character("Console")
 define P = Character("Player:")
 define ? = Character("???:")
-jump 2
+
+#jump beginning
+###############################################################this is a test script################################################################
+play music "Theme"
+? "いいね日本語も可能です!~The following is a demonstration of the choice/branching story system"
+choices 3 jump c1 "Choice 1" jump c2 "Choice 2" jump c3 "Choice 3"
+label c1:
+? "You chose choice 1"
+? "That means you will take this path through the game"
+choices 2 jump c2 "but if you click here, you can still get back to the choice 2 path" jump 1 "Or you can continue on to the main story"
+label c2:
+? "You chose choice 2"
+? "Choice 2 has a different story from choice 1"
+? "but if you chose correctly, you can experience both choice 1 and choice 2"
+? "You can even return back to the beginning"
+choices 2 jump beginning "Return" jump 1 "Continue"
+jump 1
+###################################################################################################################################################
+label c3:
+? "You chose choice 3"
+? "Choice 3 is the only way to get to this part of the story"
+? "You can even return back to the beginning"
+choices 2 jump beginning "Return" jump 1 "Continue"
+jump 1
+
+label beginning:
 label 1:
-scene Lab_Evening with fade
-play music "Computer Lab Music"
+scene Lab_Evening with fade 4
+play music "Computer Lab"
 P "*deep sigh* Geez, that took forever. Classes like that should come with a warning when you register: “Class Time: 1 hour. Real-Feel: 2 weeks.”"
 P "Well, can’t say it’s not at least partly my fault. Enrolling in Computer Science without even owning a computer... Who does that?"
 P "I guess I should get to doing my homework. It was so dark when I left yesterday that I nearly missed the last bus so I better get started. Let’s see what we got here..."
@@ -24,7 +49,6 @@ P "*deep sigh* This isn’t working out for me. Maybe I should get a job and sav
 label 2:
 scene Lab_Night with fade
 show Heroine Idle Blink
-play music "Computer Lab Music"
 "The Sun Sets..."
 ? "..."
 ? "Tch... he sure took his time."
@@ -33,10 +57,14 @@ play music "Computer Lab Music"
 Console "~$ login [-p] [-h students.gnu.edu] –f tr0llm4st3r"
 Console "Password: *********"
 Console "Tr0llm4st3r@gnu.edu~$ "
+
 ? "Perfect... okay, now we just..."
 Console "Tr0llm4st3r@gnu.edu~$ last"
 Console "(*MC name*)  :0.0   Fri Sept 2 16:36 – 18:54  (2:18)"
+choices 2 jump ok "make fun of him" jump notok "pity him"
+label ok:
 ? "(*MC name*)? A terrible name." 
+label notok:
 Console "cd ~/users/(Mc’s name)/documents/"
 ? "Alright, let’s see what I can ruin for him... maybe a homework, an essay... Perhaps just his life in general?"
 Console "ls"
@@ -68,7 +96,7 @@ define Classmate1 = Character("Classmate:")
 define Classmate2 = Character("Other Classmate:")
 
 label 3:
-play music "Computer Lab Music"
+play music "Theme"
 scene black with fade 3
 hide Heroine with fadeout 2
 "The next day.        .       ."
@@ -102,7 +130,7 @@ P "..."
 P "I wish I could've gone with them..."
 P "How long is this going to last?"
 P "..."
-P "Well, no time to worry about that now. I need to finish yesterday's assign."
+P "Well, no time to worry about that now. I need to finish yesterday's assign-"
 P "!!!..."
 P "What happened to my files?!?!"
 P "'You're.    .    .an.    .    .idiot.    .    . If you're reading this, this may be your only chance to pass..."
@@ -134,7 +162,7 @@ P "I guess this person also studies computer science here. These comments really
 P "But they DID hack into my account.. What should I do?"
 
 label 5:
-scene Street_Day with fade 2
+scene Street_Evening with fade 2
 P "Wow..."
 P "I managed to finish an hour early today."
 P "I'm feeling quite good. Maybe I'll splurge and eat a real meal for once instead of bowl ramen."
@@ -147,12 +175,6 @@ scene Player_Room_Evening with fade 2
 P "I came all the way to city to study computer programming. It would be quite a waste if I flunked out in the first month."
 P "Seems like I have no choice but to work harder."
 
-label 6:
-P "some miscellaneous assets"
-scene black with fade
-scene Player_Room_Day with fade
-P "The player's bedroom during the day"
-scene black with fade 1
-scene Street_Day with fade 1
-P "A residential area."
+label 6: 
+? "That's the end of the prototype demo. We have roughly 10-15 minutes of unimplemented script in addition to this that can be found among the prototype files"
 return

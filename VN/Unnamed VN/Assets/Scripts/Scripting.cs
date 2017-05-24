@@ -5,7 +5,10 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Scripting : MonoBehaviour {
-	AudioManager audioManager;
+    //static save data of current session
+    public static List<string> choiceData = new List<string>();
+
+    AudioManager audioManager;
 	BackgroundManager backgroundManager;
 	CharacterManager characterManager;
 	DialogueManager dialogueManager;
@@ -15,7 +18,6 @@ public class Scripting : MonoBehaviour {
 	//Dictionary<string, string> images = new Dictionary<string, string>();
 	Dictionary<string, int> labels = new Dictionary<string, int>();
 	Dictionary<string, BackgroundManager.transitions> transitions = new Dictionary<string, BackgroundManager.transitions>();
-
     static int IndexOfNonWhiteSpace(string s) {
         return IndexOfNonWhiteSpace(s, 0);
     }
@@ -447,9 +449,26 @@ public class Scripting : MonoBehaviour {
 		Debug.Log("----------New completed----------");
 		return true;
 	}
+    public void Save() {
+        string fileName = "file";
+        if (Resources.Load("Saves/" + fileName as string) != null) {
+            //return fileName + " already exists.";
+            Debug.LogError("File Already exists");
+        } else {
+            Debug.LogError("lol");
+            StreamWriter sw;
+            sw = new StreamWriter(new FileStream("Assets/Resources/Saves/" + fileName + ".txt", FileMode.Create));
+            foreach (string s in choiceData) {
+                sw.WriteLine(s);
+            }
+            sw.Close();
+            //return fileName + " was successfully saved.";
+        }
 
-	//Next command
-	public void Next() {
+    }
+
+    //Next command
+    public void Next() {
 		for (;;) {
 			if (programCounter >= commands.Count) {
 				Debug.LogWarning("programCounter >= commands.Count");
@@ -540,7 +559,7 @@ public class Scripting : MonoBehaviour {
                             string[] choiceTexts = new string[numChoices];
                             Debug.LogError("Choices: " + numChoices);
                             for(int l = 1; l <= numChoices; l++) {
-                                choiceTexts[l-1] = arrayCommand[1 + l * 4];
+                                choiceTexts[l-1] = arrayCommand[1 + l * 3];
                             }
                             dialogueManager.ChoiceInit(choiceTexts);
                             return;
@@ -552,7 +571,8 @@ public class Scripting : MonoBehaviour {
                                 dialogueManager.ResetChoice();
                                 return;
                             }else {
-                                int choiceIndex = dialogueManager.GetSelectedChoice() * 4;
+                                int choiceIndex = dialogueManager.GetSelectedChoice() * 3;
+                                choiceData.Add("" + choiceIndex/3);
                                 if (labels.ContainsKey(arrayCommand[choiceIndex])) {
                                     programCounter = labels[arrayCommand[choiceIndex]];
                                     dialogueManager.ResetChoice();
