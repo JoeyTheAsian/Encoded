@@ -12,12 +12,16 @@ public class Scripting : MonoBehaviour {
 	BackgroundManager backgroundManager;
 	CharacterManager characterManager;
 	DialogueManager dialogueManager;
+
 	List<object> commands = new List<object>();
 	int programCounter = 0;
 	Dictionary<string, Character> identifiers = new Dictionary<string, Character>();
 	//Dictionary<string, string> images = new Dictionary<string, string>();
 	Dictionary<string, int> labels = new Dictionary<string, int>();
 	Dictionary<string, BackgroundManager.transitions> transitions = new Dictionary<string, BackgroundManager.transitions>();
+
+    string loadFile;
+
     static int IndexOfNonWhiteSpace(string s) {
         return IndexOfNonWhiteSpace(s, 0);
     }
@@ -269,6 +273,9 @@ public class Scripting : MonoBehaviour {
 
                                 labels.Add(line.Substring(startIndex, index - startIndex), commands.Count);
                                 break;
+                            case "lighting":
+                                commands.Add(new string[] { first, line.Substring(startIndex, line.Length - startIndex) });
+                                break;
                             case "play":
                                 //Unlike Ren'Py, no file extension required
                                 if (index >= line.Length) {
@@ -455,7 +462,6 @@ public class Scripting : MonoBehaviour {
             //return fileName + " already exists.";
             Debug.LogError("File Already exists");
         } else {
-            Debug.LogError("lol");
             StreamWriter sw;
             sw = new StreamWriter(new FileStream("Assets/Resources/Saves/" + fileName + ".txt", FileMode.Create));
             foreach (string s in choiceData) {
@@ -464,9 +470,52 @@ public class Scripting : MonoBehaviour {
             sw.Close();
             //return fileName + " was successfully saved.";
         }
-
     }
+    public void Load(string fileName) {
+        programCounter = 0;
 
+        string[] file = (Resources.Load("Saves/" + fileName) as TextAsset).text.Split('\n');
+        int fileIndex = 0;
+        while (fileIndex < file.Length - 1) {
+            if (programCounter >= commands.Count) {
+                Debug.LogWarning("programCounter >= commands.Count");
+                Debug.LogWarning(programCounter);
+                continue;
+            }
+            Debug.Log(programCounter);
+            if (commands[programCounter].GetType() == typeof(string[])) {
+                string[] arrayCommand = (string[])commands[programCounter];
+                Debug.Log(string.Join(", ", arrayCommand));
+                switch (arrayCommand[0]) {
+                    case "choices":
+                        int choice;
+                        int.TryParse(file[fileIndex], out choice);
+                        dialogueManager.SetSelectedChoice(choice);
+                        programCounter = labels[arrayCommand[choice * 3]];
+                        dialogueManager.ResetChoice();
+                        Debug.LogError(choice);
+                        Debug.LogError(arrayCommand[choice * 3]);
+                        fileIndex++;
+                        continue;
+                    case "return":
+                        //UnityEditor.EditorApplication.isPlaying = false;
+                        programCounter++;
+                        continue;
+                    default:
+                        programCounter++;
+                        continue;
+                }
+            } else {
+                Debug.LogWarning(string.Format("Unknown command `{0}`", commands[programCounter]));
+                programCounter++;
+                continue;
+            }
+        }
+        Debug.LogWarning("Final count" + programCounter);
+        dialogueManager.ResetChoice();
+        dialogueManager.ClearText();
+        Next();
+    }
     //Next command
     public void Next() {
 		for (;;) {
@@ -539,6 +588,10 @@ public class Scripting : MonoBehaviour {
                         }
 						programCounter++;
 						continue;
+                    case "lighting":
+
+                        programCounter++;
+                        continue;
                     case "show":
                         string[] anims = arrayCommand[1].Split(' ');
                         characterManager.AddCharacter(anims[0]);

@@ -35,9 +35,11 @@ public class AudioManager : MonoBehaviour {
         }
         AudioClip temp;
         SoundEffects.TryGetValue(path, out temp);
-        audioSource.clip = temp;
-		audioSource.loop = loop;
-		audioSource.Play();
+        if(audioSource.clip != temp) {
+            audioSource.clip = temp;
+            audioSource.loop = loop;
+            audioSource.Play();
+        }
     }
 	
 	// Update is called once per frame

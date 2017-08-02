@@ -130,7 +130,7 @@ public class DialogueManager : MonoBehaviour {
     public void OnClick() {
         isClicked = true;
     }
-    void ClearText() {
+    public void ClearText() {
         dialogueBox.text = "";
         bufferText.Clear();
     }

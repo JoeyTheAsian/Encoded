@@ -2,9 +2,8 @@
 define Computer = Character("Computer")
 define Console = Character("Console")
 define P = Character("Player:")
-define ? = Character("???:")
+define ? = Character("???")
 
-#jump beginning
 ###############################################################this is a test script################################################################
 play music "Theme"
 ? "いいね日本語も可能です!~The following is a demonstration of the choice/branching story system"
@@ -48,9 +47,11 @@ P "*deep sigh* This isn’t working out for me. Maybe I should get a job and sav
 
 label 2:
 scene Lab_Night with fade
+play music "Computer Lab"
 show Heroine Idle Blink
 "The Sun Sets..."
 ? "..."
+play music "Computer Lab"
 ? "Tch... he sure took his time."
 ? "Who the heck even stays in the lab after school hours? Not that I should be talking..."
 ? "Let’s see... Hmm, I wonder if that backdoor account is still up..."

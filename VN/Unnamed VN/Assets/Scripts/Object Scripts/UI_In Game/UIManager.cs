@@ -20,10 +20,15 @@ public class UIManager : MonoBehaviour {
         //Debug.Log("st.Push(CurrentMenu)! " + st.Peek());
         ShowMenu(CurrentMenu); //set InGame Menu start at begin
         Debug.Log("st.Peek()! " + st.Peek());
-
+        
 
     }
-
+    public void PrevMenu() {
+        st.Pop();
+        CurrentMenu.IsOpen = false;
+        CurrentMenu = rootMenu;
+        CurrentMenu.IsOpen = true;
+    }
     public void ShowMenu(Menu menu) //menu depend on On Click() send
     {
         //close current menu, open menu depend on On Click()
@@ -60,7 +65,6 @@ public class UIManager : MonoBehaviour {
 
         Debug.Log("CurrentMenu is " + CurrentMenu + "st.Peek()! " + st.Peek());
     }
-
     void Update()
     {
         if (Input.GetButtonDown("Cancel"))
