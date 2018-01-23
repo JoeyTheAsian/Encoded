@@ -24,10 +24,11 @@ public class UIManager : MonoBehaviour {
 
     }
     public void PrevMenu() {
-        st.Pop();
+        //st.Pop();
         CurrentMenu.IsOpen = false;
         CurrentMenu = rootMenu;
         CurrentMenu.IsOpen = true;
+        
     }
     public void ShowMenu(Menu menu) //menu depend on On Click() send
     {
@@ -46,7 +47,7 @@ public class UIManager : MonoBehaviour {
         {
             if (menu == triggerMenu)
             {
-                //st.Pop();// remove one stack if going to previous menu
+                st.Pop();// remove one stack if going to previous menu
 
 
                 //Debug.Log("st.Pop()! " + menu);

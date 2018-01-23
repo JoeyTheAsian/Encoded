@@ -74,7 +74,7 @@ public class Scripting : MonoBehaviour {
     //initialize preset lighting parameters' dictionary definitions
     void InitLighting() {
         lightingColors.Add("neutral", new float[] { 1f, 1f, 1f, 1f });
-        lightingColors.Add("night", new float[] { 4f / 255f, 18f / 255f, 152f / 255f ,3.4f });
+        lightingColors.Add("night", new float[] { 0f / 255f, 6f / 255f, 68f / 255f ,3.4f });
         lightingColors.Add("evening", new float[] { 186f / 255f, 112f / 255f, 162f / 255f,1f });
     }
     //initialize preset transition parameters' dictionary definitions

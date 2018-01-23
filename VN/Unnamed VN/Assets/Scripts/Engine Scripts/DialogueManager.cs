@@ -59,13 +59,13 @@ public class DialogueManager : MonoBehaviour {
     void Update() {
         //Subtract the passed time from the timer
         letterTimer -= Time.deltaTime;
-        Color c = dialogueBox.transform.parent.FindChild("arrow").GetComponent<Image>().color;
+        Color c = dialogueBox.transform.parent.Find("arrow").GetComponent<Image>().color;
         if(bufferText.Count <= 0) {
             c = new Color(150, 150, 255, 1.0f);
-            dialogueBox.transform.parent.FindChild("arrow").GetComponent<Image>().color = c;
+            dialogueBox.transform.parent.Find("arrow").GetComponent<Image>().color = c;
         }else {
             c = new Color(c.r, c.b, c.g, .5f);
-            dialogueBox.transform.parent.FindChild("arrow").GetComponent<Image>().color = c;
+            dialogueBox.transform.parent.Find("arrow").GetComponent<Image>().color = c;
         }
         if (bufferText.Count <= 0 && (Input.GetKeyDown(KeyCode.Mouse0)|| Input.touchCount > 0) && isClicked) {
             if(Input.touchCount > 0) {
@@ -165,7 +165,7 @@ public class DialogueManager : MonoBehaviour {
         for(int i = 0; i < texts.Length; i++) {
             GameObject temp = ChoiceContainer.transform.GetChild(i).gameObject;
             temp.SetActive(true);
-            temp.transform.FindChild("Text").GetComponent<Text>().text = texts[i];
+            temp.transform.Find("Text").GetComponent<Text>().text = texts[i];
         }
     }
     public void ResetChoice() {
@@ -175,7 +175,7 @@ public class DialogueManager : MonoBehaviour {
         for (int i = 0; i < 4; i++) {
             GameObject temp = ChoiceContainer.transform.GetChild(i).gameObject;
             if(temp != null) {
-                temp.transform.FindChild("Text").GetComponent<Text>().text = "";
+                temp.transform.Find("Text").GetComponent<Text>().text = "";
                 temp.SetActive(false);
             }
         }

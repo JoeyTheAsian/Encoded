@@ -31,12 +31,12 @@ public class CharacterModel : MonoBehaviour {
     public void Update() {
         if (FadeInActive) {
             FadeIn(ActiveTransitionDur);
-            if (gameObject.transform.FindChild("plane").GetComponent<SkinnedMeshRenderer>().material.color.a >= 1f) {
+            if (gameObject.transform.Find("plane").GetComponent<SkinnedMeshRenderer>().material.color.a >= 1f) {
                 FadeInActive = false;
             }
         } else if (FadeOutActive) {
             FadeOut(ActiveTransitionDur);
-            if (gameObject.transform.FindChild("plane").GetComponent<SkinnedMeshRenderer>().material.color.a <= 0) {
+            if (gameObject.transform.Find("plane").GetComponent<SkinnedMeshRenderer>().material.color.a <= 0) {
                 FadeOutActive = false;
                 Destroy(gameObject);
             }
@@ -114,11 +114,11 @@ public class CharacterModel : MonoBehaviour {
     //fade a character in with a default duration of 1 second
     public void FadeIn() {
         try {
-            float curAlpha = gameObject.transform.FindChild("plane").GetComponent<SkinnedMeshRenderer>().material.color.a;
-            Color temp = gameObject.transform.FindChild("plane").GetComponent<SkinnedMeshRenderer>().material.color;
+            float curAlpha = gameObject.transform.Find("plane").GetComponent<SkinnedMeshRenderer>().material.color.a;
+            Color temp = gameObject.transform.Find("plane").GetComponent<SkinnedMeshRenderer>().material.color;
             temp = new Color(temp.r, temp.g, temp.b, curAlpha - Time.deltaTime * 1f);
-            gameObject.transform.FindChild("plane").GetComponent<SkinnedMeshRenderer>().material.color = temp;
-            gameObject.transform.FindChild("Eyes").FindChild("plane").GetComponent<SkinnedMeshRenderer>().material.color = temp;
+            gameObject.transform.Find("plane").GetComponent<SkinnedMeshRenderer>().material.color = temp;
+            gameObject.transform.Find("Eyes").Find("plane").GetComponent<SkinnedMeshRenderer>().material.color = temp;
         } catch (System.NullReferenceException) { }
     }
     //takes a float that specifies how long the fade will last
@@ -126,30 +126,30 @@ public class CharacterModel : MonoBehaviour {
     public void FadeIn(float duration)
     {
         try {
-            float curAlpha = gameObject.transform.FindChild("plane").GetComponent<SkinnedMeshRenderer>().material.color.a;
-            Color temp = gameObject.transform.FindChild("plane").GetComponent<SkinnedMeshRenderer>().material.color;
+            float curAlpha = gameObject.transform.Find("plane").GetComponent<SkinnedMeshRenderer>().material.color.a;
+            Color temp = gameObject.transform.Find("plane").GetComponent<SkinnedMeshRenderer>().material.color;
             temp = new Color(temp.r, temp.g, temp.b, curAlpha - Time.deltaTime * (1f / duration));
-            gameObject.transform.FindChild("plane").GetComponent<SkinnedMeshRenderer>().material.color = temp;
-            gameObject.transform.FindChild("Eyes").FindChild("plane").GetComponent<SkinnedMeshRenderer>().material.color = temp;
+            gameObject.transform.Find("plane").GetComponent<SkinnedMeshRenderer>().material.color = temp;
+            gameObject.transform.Find("Eyes").Find("plane").GetComponent<SkinnedMeshRenderer>().material.color = temp;
         }
         catch (System.NullReferenceException) { }
     }
     public void FadeOut() {
         try {
-            float curAlpha = gameObject.transform.FindChild("plane").GetComponent<SkinnedMeshRenderer>().material.color.a;
-            Color temp = gameObject.transform.FindChild("plane").GetComponent<SkinnedMeshRenderer>().material.color;
+            float curAlpha = gameObject.transform.Find("plane").GetComponent<SkinnedMeshRenderer>().material.color.a;
+            Color temp = gameObject.transform.Find("plane").GetComponent<SkinnedMeshRenderer>().material.color;
             temp = new Color(temp.r, temp.g, temp.b, curAlpha - Time.deltaTime * 1f);
-            gameObject.transform.FindChild("plane").GetComponent<SkinnedMeshRenderer>().material.color = temp;
-            gameObject.transform.FindChild("Eyes").FindChild("plane").GetComponent<SkinnedMeshRenderer>().material.color = temp;
+            gameObject.transform.Find("plane").GetComponent<SkinnedMeshRenderer>().material.color = temp;
+            gameObject.transform.Find("Eyes").Find("plane").GetComponent<SkinnedMeshRenderer>().material.color = temp;
         } catch (System.NullReferenceException) { }
     }
     public void FadeOut(float duration) {
         try {
-            float curAlpha = gameObject.transform.FindChild("plane").GetComponent<SkinnedMeshRenderer>().material.color.a;
-            Color temp = gameObject.transform.FindChild("plane").GetComponent<SkinnedMeshRenderer>().material.color;
+            float curAlpha = gameObject.transform.Find("plane").GetComponent<SkinnedMeshRenderer>().material.color.a;
+            Color temp = gameObject.transform.Find("plane").GetComponent<SkinnedMeshRenderer>().material.color;
             temp = new Color(temp.r, temp.g, temp.b, curAlpha - Time.deltaTime * (1f / duration));
-            gameObject.transform.FindChild("plane").GetComponent<SkinnedMeshRenderer>().material.color = temp;
-            gameObject.transform.FindChild("Eyes").FindChild("plane").GetComponent<SkinnedMeshRenderer>().material.color = temp;
+            gameObject.transform.Find("plane").GetComponent<SkinnedMeshRenderer>().material.color = temp;
+            gameObject.transform.Find("Eyes").Find("plane").GetComponent<SkinnedMeshRenderer>().material.color = temp;
         } catch (System.NullReferenceException) { }
     }
 }

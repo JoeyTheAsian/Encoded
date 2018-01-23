@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2015
+# Visual Studio 2017
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unnamed VN", "Unnamed VN.csproj", "{59FBAAB9-A236-BCE7-554B-8507F4B6E562}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unnamed VN.Editor", "Unnamed VN.Editor.csproj", "{56F788ED-8D3E-45CD-7AB4-D10E2FD8DF7D}"
