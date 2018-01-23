@@ -16,7 +16,8 @@ public class Scripting : MonoBehaviour {
 	List<object> commands = new List<object>();
 	int programCounter = 0;
 	Dictionary<string, Character> identifiers = new Dictionary<string, Character>();
-	//Dictionary<string, string> images = new Dictionary<string, string>();
+    //Dictionary<string, string> images = new Dictionary<string, string>();
+    Dictionary<string, float[]> lightingColors = new Dictionary<string, float[]>();
 	Dictionary<string, int> labels = new Dictionary<string, int>();
 	Dictionary<string, BackgroundManager.transitions> transitions = new Dictionary<string, BackgroundManager.transitions>();
 
@@ -70,6 +71,17 @@ public class Scripting : MonoBehaviour {
         }
     }
 
+    //initialize preset lighting parameters' dictionary definitions
+    void InitLighting() {
+        lightingColors.Add("neutral", new float[] { 1f, 1f, 1f, 1f });
+        lightingColors.Add("night", new float[] { 4f / 255f, 18f / 255f, 152f / 255f ,3.4f });
+        lightingColors.Add("evening", new float[] { 186f / 255f, 112f / 255f, 162f / 255f,1f });
+    }
+    //initialize preset transition parameters' dictionary definitions
+    void InitTransitions() {
+        transitions.Add("fade", BackgroundManager.transitions.Fade);
+        transitions.Add("fadeout", BackgroundManager.transitions.Fade);
+    }
     //Start is called multiple times: one during initializing the scripts, and one in DialogueManager. Move initialization to a different method.
     //Call New before using this script.
     public bool New() {
@@ -77,8 +89,10 @@ public class Scripting : MonoBehaviour {
 		backgroundManager = GameObject.Find("BackgroundManager").GetComponent<BackgroundManager>();
 		characterManager = GameObject.Find("CharacterManager").GetComponent<CharacterManager>();
 		dialogueManager = GameObject.Find("DialogueManager").GetComponent<DialogueManager>();
-		transitions.Add("fade", BackgroundManager.transitions.Fade);
-        transitions.Add("fadeout", BackgroundManager.transitions.Fade);
+
+        InitTransitions();
+        InitLighting();
+
         Debug.Log("----------Read----------");
 		Debug.Log(System.IO.Directory.GetCurrentDirectory());
 		//try {
@@ -274,7 +288,11 @@ public class Scripting : MonoBehaviour {
                                 labels.Add(line.Substring(startIndex, index - startIndex), commands.Count);
                                 break;
                             case "lighting":
-                                commands.Add(new string[] { first, line.Substring(startIndex, line.Length - startIndex) });
+                                if (index >= line.Length) {
+                                    goto InsufficientTokens;
+                                }
+                                string[] newCommand = new string[] { first, line.Substring(startIndex, line.Length - startIndex) };
+                                commands.Add(newCommand);
                                 break;
                             case "play":
                                 //Unlike Ren'Py, no file extension required
@@ -589,7 +607,14 @@ public class Scripting : MonoBehaviour {
 						programCounter++;
 						continue;
                     case "lighting":
-
+                        float[] newLight;
+                        lightingColors.TryGetValue(arrayCommand[1], out newLight);
+                        if (newLight != null) {
+                            backgroundManager.AmbientLight.GetComponent<Light>().color = new Color(newLight[0], newLight[1], newLight[2]);
+                            backgroundManager.AmbientLight.GetComponent<Light>().intensity = newLight[3];
+                        } else {
+                            Debug.Log(string.Format("Unknown lighting parameter '{0}'.", arrayCommand[1]));
+                        }
                         programCounter++;
                         continue;
                     case "show":

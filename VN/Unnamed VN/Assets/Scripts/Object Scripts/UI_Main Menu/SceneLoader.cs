@@ -3,8 +3,8 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour {
-    AsyncOperation async;
-    AsyncOperation scene;
+    AsyncOperation async = new AsyncOperation();
+    AsyncOperation scene = new AsyncOperation();
     // Use this for initialization
     void Start () {
     }

@@ -4,6 +4,8 @@ define Console = Character("Console")
 define P = Character("Player:")
 define ? = Character("???")
 
+jump 2
+
 ###############################################################this is a test script################################################################
 play music "Theme"
 ? "いいね日本語も可能です!~The following is a demonstration of the choice/branching story system"
@@ -27,9 +29,9 @@ label c3:
 choices 2 jump beginning "Return" jump 1 "Continue"
 jump 1
 
-label beginning:
 label 1:
 scene Lab_Evening with fade 4
+lighting night
 play music "Computer Lab"
 P "*deep sigh* Geez, that took forever. Classes like that should come with a warning when you register: “Class Time: 1 hour. Real-Feel: 2 weeks.”"
 P "Well, can’t say it’s not at least partly my fault. Enrolling in Computer Science without even owning a computer... Who does that?"
@@ -47,6 +49,7 @@ P "*deep sigh* This isn’t working out for me. Maybe I should get a job and sav
 
 label 2:
 scene Lab_Night with fade
+lighting night
 play music "Computer Lab"
 show Heroine Idle Blink
 "The Sun Sets..."

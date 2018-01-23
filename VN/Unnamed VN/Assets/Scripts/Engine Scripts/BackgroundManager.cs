@@ -4,6 +4,7 @@ using System.Collections;
 public class BackgroundManager : MonoBehaviour {
     public GameObject ActiveBackground;
     public GameObject InactiveBackground;
+    public GameObject AmbientLight;
     //enums for the different possible transitions between backgrounds
     public enum transitions {
         //fades in active, fades out inactive simultaneously

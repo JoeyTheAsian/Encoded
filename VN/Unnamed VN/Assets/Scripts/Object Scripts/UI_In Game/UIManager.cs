@@ -34,9 +34,6 @@ public class UIManager : MonoBehaviour {
         //close current menu, open menu depend on On Click()
         if (CurrentMenu != null) // close current menu
             CurrentMenu.IsOpen = false; //(menu.cs) return value to IsOpen
-
-
-
         /**/
         if (CurrentMenu == rootMenu)
         {
