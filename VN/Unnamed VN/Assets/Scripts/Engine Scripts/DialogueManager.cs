@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System;
 using System.Collections;
+using System.IO;
 using System.Linq;
 using System.Collections.Generic;
 using System.Text;
@@ -19,6 +20,7 @@ public class DialogueManager : MonoBehaviour {
     int selectedChoice = -1;
 
     Scripting scripting;
+    StreamWriter liveSave;
 
     //A buffered queue that stores the chars to be displayed
     Queue<char> bufferText = new Queue<char>();
@@ -53,6 +55,10 @@ public class DialogueManager : MonoBehaviour {
         //rectTransform.sizeDelta = new Vector2(width * .96f, height * .30f);
         rectTransform.offsetMax = new Vector2(width * -PercentageMargin, width * -PercentageMargin);
         rectTransform.offsetMin = new Vector2(width * PercentageMargin, width * PercentageMargin);
+
+        //clear liveSave temp file on startup
+        liveSave = new StreamWriter(new FileStream("Assets/Resources/Saves/" + "liveSave.txt", FileMode.Create));
+        liveSave.Close();
     }
 
     // Update is called once per frame
@@ -186,6 +192,11 @@ public class DialogueManager : MonoBehaviour {
     public void SetSelectedChoice(int choice) {
         if (choiceState) {
             selectedChoice = choice;
+            //StreamReader readtext = new StreamReader("liveSave.txt");
+            
+            liveSave = new StreamWriter(new FileStream("Assets/Resources/Saves/" + "liveSave.txt", FileMode.Append));
+            liveSave.WriteLine("" + choice);
+            liveSave.Close();
             choiceState = false;
             choiceBuffer = true;
         }
