@@ -1,0 +1,4 @@
+choiceNum1 2
+choiceNum3 2
+choiceNum1 3
+choiceNum4 2

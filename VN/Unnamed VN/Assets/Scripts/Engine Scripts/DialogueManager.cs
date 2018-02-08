@@ -36,6 +36,7 @@ public class DialogueManager : MonoBehaviour {
     bool isClicked = false;
     public float textScrollPause = .07f;
     float textScrollTimer;
+    string curChoiceName;
     // Use this for initialization
     void Start() {
         scripting = GameObject.Find("Scripting").GetComponent<Scripting>();
@@ -165,7 +166,8 @@ public class DialogueManager : MonoBehaviour {
         char[] newChars = bufferText.ToArray().Concat(s.ToCharArray()).ToArray();
         bufferText = new Queue<char>(newChars);
     }
-    public void ChoiceInit(string[] texts) {
+    public void ChoiceInit(string[] texts, string choiceName) {
+        curChoiceName = choiceName;
         ResetChoice();
         choiceState = true;
         for(int i = 0; i < texts.Length; i++) {
@@ -195,7 +197,7 @@ public class DialogueManager : MonoBehaviour {
             //StreamReader readtext = new StreamReader("liveSave.txt");
             
             liveSave = new StreamWriter(new FileStream("liveSave.txt", FileMode.Append));
-            liveSave.WriteLine("" + choice);
+            liveSave.WriteLine(curChoiceName + " " + choice);
             liveSave.Close();
             choiceState = false;
             choiceBuffer = true;

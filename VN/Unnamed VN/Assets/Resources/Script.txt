@@ -9,24 +9,24 @@ label beginning:
 ###############################################################this is a test script################################################################
 play music "Theme"
 ? "いいね日本語も可能です!~The following is a demonstration of the choice/branching story system"
-choices 3 jump c1 "Choice 1" jump c2 "Choice 2" jump c3 "Choice 3"
+choices 3 "choiceNum1" jump c1 "Choice 1" jump c2 "Choice 2" jump c3 "Choice 3"
 label c1:
 ? "You chose choice 1"
 ? "That means you will take this path through the game"
-choices 2 jump c2 "but if you click here, you can still get back to the choice 2 path" jump 1 "Or you can continue on to the main story"
+choices 2 "choiceNum2" jump c2 "but if you click here, you can still get back to the choice 2 path" jump 1 "Or you can continue on to the main story"
 label c2:
 ? "You chose choice 2"
 ? "Choice 2 has a different story from choice 1"
 ? "but if you chose correctly, you can experience both choice 1 and choice 2"
 ? "You can even return back to the beginning"
-choices 2 jump beginning "Return" jump 1 "Continue"
+choices 2 "choiceNum3" jump beginning "Return" jump 1 "Continue"
 jump 1
 ###################################################################################################################################################
 label c3:
 ? "You chose choice 3"
 ? "Choice 3 is the only way to get to this part of the story"
 ? "You can even return back to the beginning"
-choices 2 jump beginning "Return" jump 1 "Continue"
+choices 2 "choiceNum4" jump beginning "Return" jump 1 "Continue"
 jump 1
 
 label 1:
@@ -65,9 +65,11 @@ Console "Tr0llm4st3r@gnu.edu~$ "
 ? "Perfect... okay, now we just..."
 Console "Tr0llm4st3r@gnu.edu~$ last"
 Console "(*MC name*)  :0.0   Fri Sept 2 16:36 – 18:54  (2:18)"
-choices 2 jump ok "make fun of him" jump notok "pity him"
+choices 2 "choiceNum4" jump ok "make fun of him" jump notok "pity him"
+
 label ok:
 ? "(*MC name*)? A terrible name." 
+
 label notok:
 Console "cd ~/users/(Mc’s name)/documents/"
 ? "Alright, let’s see what I can ruin for him... maybe a homework, an essay... Perhaps just his life in general?"

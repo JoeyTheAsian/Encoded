@@ -243,32 +243,7 @@ public class Scripting : MonoBehaviour {
                                     goto InsufficientTokens;
                                 }
                                 break;
-                            /*case "image":
-                                if (index >= line.Length) {
-                                    goto InsufficientTokens;
-                                }
-                                index = line.IndexOf('=');
-                                if (index == -1) {
-                                    Debug.LogError(string.Format("Line `{0}` does not contain equals sign", line));
-                                    return false;
-                                }
-                                string image = line.Substring(startIndex, index - startIndex).Trim();
-
-                                startIndex = index = IndexOfNonWhiteSpace(line, index + 1);
-                                if (index >= line.Length) {
-                                    goto InsufficientTokens;
-                                }
-                                if (line[index] != '"') {
-                                    Debug.LogError(string.Format("Line `{0}` does not contain quote", line));
-                                    return false;
-                                }
-                                string imageName = QuotedSubstring(line, index);
-                                if (imageName == null) {
-                                    Debug.LogError(string.Format("Line `{0}` does not contain quoted string", line));
-                                    return false;
-                                }
-                                images.Add(image, imageName);
-                                break;*/
+                            
                             case "jump":
                                 if (index >= line.Length) {
                                     goto InsufficientTokens;
@@ -357,8 +332,9 @@ public class Scripting : MonoBehaviour {
                                 break;
                             case "choices":
                                 List<string> finalCommand = new List<string>();
+                                //split by choice text quotes
                                 List<string> splitLine = new List<string>(line.Split('"'));
-                                
+                                //clean up and remove empty strings
                                 for (int j = 0; j < splitLine.Count; j++) {
                                     splitLine[j].Trim();
                                     if (string.IsNullOrEmpty(splitLine[j])) {
@@ -366,6 +342,9 @@ public class Scripting : MonoBehaviour {
                                         j--;
                                     }
                                 }
+                                //Debug.LogError(splitLine[1]);
+                                //finalCommand.Add(splitLine[1]);
+                                //split into groups of two elements: target label and choice text
                                 for(int k = 0; k < splitLine.Count; k+= 2) {
                                     List<string> tempLine = new List<string>(splitLine[k].Split(' '));
                                     for (int s = 0; s < tempLine.Count; s++) {
@@ -510,61 +489,30 @@ public class Scripting : MonoBehaviour {
             {
                 line = sr.ReadLine();
                 int choice = 0;
-                int.TryParse(line, out choice);
-                if (choice != 0 && choice <= 4)
-                {
-                    choiceData.Add(line);
-                    lvsv.WriteLine(line);
+
+                string[] splitLine= line.Split(' ');
+                if(splitLine.Length > 1) {
+                    int.TryParse(splitLine[1], out choice);
+                    if (choice != 0 && choice <= 4) {
+                        choiceData.Add(choice + "");
+                        lvsv.WriteLine(line);
+                    }
                 }
 
-                if (sr.Peek() == -1)
-                {
+                if (sr.Peek() == -1) {
                     programCounter = int.Parse(line) - 1;
                 }
             }
             lvsv.Close();
             sr.Close();
         }
-                /*
-                string[] file = (Resources.Load("Saves/" + fileName) as TextAsset).text.Split('\n');
-                int fileIndex = 0;
-                while (fileIndex < file.Length - 1) {
-                    if (programCounter >= commands.Count) {
-                        Debug.LogWarning("programCounter >= commands.Count");
-                        Debug.LogWarning(programCounter);
-                        continue;
-                    }
-                    Debug.Log(programCounter);
-                    if (commands[programCounter].GetType() == typeof(string[])) {
-                        string[] arrayCommand = (string[])commands[programCounter];
-                        Debug.Log(string.Join(", ", arrayCommand));
-                        switch (arrayCommand[0]) {
-                            case "choices":
-                                int choice;
-                                int.TryParse(file[fileIndex], out choice);
-                                dialogueManager.SetSelectedChoice(choice);
-                                programCounter = labels[arrayCommand[choice * 3]];
-                                dialogueManager.ResetChoice();
-                                Debug.LogError(choice);
-                                Debug.LogError(arrayCommand[choice * 3]);
-                                fileIndex++;
-                                continue;
-                            case "return":
-                                //UnityEditor.EditorApplication.isPlaying = false;
-                                programCounter++;
-                                continue;
-                            default:
-                                programCounter++;
-                                continue;
-                        }
-                    } else {
-                        Debug.LogWarning(string.Format("Unknown command `{0}`", commands[programCounter]));
-                        programCounter++;
-                        continue;
-                    }
-                }
-                Debug.LogWarning("Final count" + programCounter);*/
-                dialogueManager.ResetChoice();
+        foreach (string key in labels.Keys) {
+            Debug.Log(key + " = " + labels[key] + ": " + commands[labels[key]]);
+        }
+        while (!labels.ContainsValue(programCounter)) {
+            programCounter--;
+        }
+        dialogueManager.ResetChoice();
         dialogueManager.ClearText();
         Next();
     }
@@ -669,11 +617,13 @@ public class Scripting : MonoBehaviour {
                         if (!dialogueManager.choiceState && !dialogueManager.choiceBuffer) {
                             int numChoices = int.Parse(arrayCommand[1]);
                             string[] choiceTexts = new string[numChoices];
-
+                            string choiceName = arrayCommand[2];
+                            //Debug.LogError(choiceName);
                             for(int l = 1; l <= numChoices; l++) {
-                                choiceTexts[l-1] = arrayCommand[1 + l * 3];
+                                //Debug.LogError(2 + l * 3);
+                                choiceTexts[l-1] = arrayCommand[2 + l * 3];
                             }
-                            dialogueManager.ChoiceInit(choiceTexts);
+                            dialogueManager.ChoiceInit(choiceTexts, choiceName);
                             return;
                         }
                         else if(dialogueManager.choiceBuffer) {
@@ -685,8 +635,8 @@ public class Scripting : MonoBehaviour {
                             }else {
                                 int choiceIndex = dialogueManager.GetSelectedChoice() * 3;
                                 //choiceData.Add("" + choiceIndex/3);
-                                if (labels.ContainsKey(arrayCommand[choiceIndex])) {
-                                    programCounter = labels[arrayCommand[choiceIndex]];
+                                if (labels.ContainsKey(arrayCommand[choiceIndex + 1])) {
+                                    programCounter = labels[arrayCommand[choiceIndex + 1]];
                                     dialogueManager.ResetChoice();
                                     continue;
                                 } else {
