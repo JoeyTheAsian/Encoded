@@ -1,6 +1,4 @@
-choiceNum1 2
-choiceNum3 2
 choiceNum1 3
 choiceNum4 2
-2/6/2018 10:18:47 PM
-21
+2/8/2018 11:13:03 AM
+31

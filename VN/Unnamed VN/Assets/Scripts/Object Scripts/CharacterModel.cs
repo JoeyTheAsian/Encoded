@@ -8,7 +8,8 @@ public class CharacterModel : MonoBehaviour {
     public SkinnedMeshRenderer meshRenderer;
     public Animation eyes;
     float blinkTimer;
-
+    public Material Plane;
+    public Material eyesMaterial;
     bool FadeInActive = false;
     bool FadeOutActive = false;
     float ActiveTransitionDur = 0.0f;
@@ -61,6 +62,7 @@ public class CharacterModel : MonoBehaviour {
     //start & stop animations, bad parameter cases currently not handled
     public bool StartAnimation(string animation)
     {
+        //animations
         if(animation.ToUpper() == "IDLE" && !animationState.Contains(animations.Idle))
         {
             animationState.Add(animations.Idle);
@@ -70,6 +72,15 @@ public class CharacterModel : MonoBehaviour {
         {
             animationState.Add(animations.Blink);
             return true;
+        }
+        //eye textures
+        if(animation.ToUpper() == "NEUTRALEYES")
+        {
+            eyesMaterial.mainTexture = (Texture)Resources.Load("Characters/Textures/eyes");
+        }
+        else if(animation.ToUpper() == "BLUEEYES")
+        {
+            eyesMaterial.mainTexture = (Texture)Resources.Load("Characters/Textures/eyes 2");
         }
         return false;
     }

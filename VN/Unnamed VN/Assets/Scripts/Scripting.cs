@@ -601,7 +601,10 @@ public class Scripting : MonoBehaviour {
                         continue;
                     case "show":
                         string[] anims = arrayCommand[1].Split(' ');
-                        characterManager.AddCharacter(anims[0]);
+                        if (!characterManager.GetCharacter(anims[0]))
+                        {
+                            characterManager.AddCharacter(anims[0]);
+                        }
                         if(anims.Length > 1)
                         {
                             for(int i = 1; i < anims.Length; i++)

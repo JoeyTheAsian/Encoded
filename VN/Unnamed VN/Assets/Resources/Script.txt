@@ -4,6 +4,8 @@ define Console = Character("Console")
 define P = Character("Player:")
 define ? = Character("???")
 
+jump 2
+
 label beginning:
 
 ###############################################################this is a test script################################################################
@@ -51,9 +53,10 @@ label 2:
 scene Lab_Night with fade
 lighting night
 play music "Computer Lab"
-show Heroine Idle Blink
+show Heroine Idle Blink BlueEyes
 "The Sun Sets..."
 ? "..."
+show Heroine NeutralEyes
 play music "Computer Lab"
 ? "Tch... he sure took his time."
 ? "Who the heck even stays in the lab after school hours? Not that I should be talking..."
