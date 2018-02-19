@@ -211,8 +211,9 @@ public class Scripting : MonoBehaviour {
                                     goto InsufficientTokens;
                                 }
                                 string[] temp = line.Substring(startIndex, line.Length - startIndex).Split(' ');
+
                                 if (temp.Length == 1) {
-                                    commands.Add(new string[] { first });
+                                    commands.Add(new string[] { first, temp[0] });
                                 } else if (temp.Length == 3) {
                                     if (temp[1] == "with") {
                                         if (!transitions.ContainsKey(temp[2])) {
@@ -455,14 +456,7 @@ public class Scripting : MonoBehaviour {
 	}
     public void Save() {
         string fileName = "file";
-        if (Resources.Load("Saves/" + fileName as string) != null) {
-            //return fileName + " already exists.";
-            //Debug.LogError("File Already exists");
-        } //else {
 
-        /*foreach (string s in choiceData) {
-            sw.WriteLine(s);
-        }*/
         using (var reader = new StreamReader("liveSave.txt"))
         using(var writer = new StreamWriter(new FileStream(fileName + ".txt", FileMode.Create)))
         {
@@ -481,17 +475,16 @@ public class Scripting : MonoBehaviour {
     public void Load(string fileName) {
         programCounter = 0;
         choiceData.Clear();
+
         using (StreamReader sr = new StreamReader(fileName + ".txt"))
-        using (StreamWriter lvsv = new StreamWriter(new FileStream("liveSave.txt", FileMode.Create)))
-        {
+        using (StreamWriter lvsv = new StreamWriter(new FileStream("liveSave.txt", FileMode.Create))) {
             string line;
-            while (!sr.EndOfStream)
-            {
+            while (!sr.EndOfStream) {
                 line = sr.ReadLine();
                 int choice = 0;
 
-                string[] splitLine= line.Split(' ');
-                if(splitLine.Length > 1) {
+                string[] splitLine = line.Split(' ');
+                if (splitLine.Length > 1) {
                     int.TryParse(splitLine[1], out choice);
                     if (choice != 0 && choice <= 4) {
                         choiceData.Add(choice + "");
@@ -506,6 +499,7 @@ public class Scripting : MonoBehaviour {
             lvsv.Close();
             sr.Close();
         }
+       
         foreach (string key in labels.Keys) {
             Debug.Log(key + " = " + labels[key] + ": " + commands[labels[key]]);
         }
@@ -537,9 +531,9 @@ public class Scripting : MonoBehaviour {
 				Debug.Log(string.Join(", ", arrayCommand));
 				switch (arrayCommand[0]) {
 					case "hide":
-                        if(arrayCommand[2] == null) {
+                        if(arrayCommand.Length == 2) {
                             characterManager.RemoveCharacter(arrayCommand[1]);
-                        }else if(arrayCommand[3] == null) {
+                        }else if(arrayCommand.Length == 3) {
                             if (arrayCommand[2].ToUpper().Equals("FADEOUT")) {
                                 characterManager.GetCharacter(arrayCommand[1]).GetComponent<CharacterModel>().FadeOutInit(1f);
                             }

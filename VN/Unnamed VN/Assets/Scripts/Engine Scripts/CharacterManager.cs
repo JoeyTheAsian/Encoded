@@ -26,7 +26,7 @@ public class CharacterManager : MonoBehaviour {
     public void StartAnimation(string animation, string character) {
         GameObject c = GetCharacter(character);
         if (!c.GetComponent<CharacterModel>().StartAnimation(animation)) {
-            Debug.Log("Unable to play animation '" + animation + "' in character '" + character + "'");
+            Debug.LogError("Unable to play animation '" + animation + "' in character '" + character + "'");
         }
     }
     public void StopAnimation(string animation, string character) {
@@ -56,9 +56,9 @@ public class CharacterManager : MonoBehaviour {
     }
     public void RemoveCharacter(string name) {
         if (name.ToUpper() == "ALL") {
-            foreach (GameObject c in characters) {
-                Destroy(c);
-                characters.Remove(c);
+            for (int i = 0; i < characters.Count; i++) {
+                Destroy(characters[i]);
+                characters.Remove(characters[i]);
             }
         } else {
             GameObject character = GameObject.Find(name + "(Clone)");
@@ -66,6 +66,7 @@ public class CharacterManager : MonoBehaviour {
             Destroy(character);
         }
     }
+
     public void Transition(transitions t) {
         switch (t) {
             case transitions.FadeIn:

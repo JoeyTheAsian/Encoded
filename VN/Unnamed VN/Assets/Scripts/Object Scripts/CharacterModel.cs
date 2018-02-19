@@ -77,10 +77,12 @@ public class CharacterModel : MonoBehaviour {
         if(animation.ToUpper() == "NEUTRALEYES")
         {
             eyesMaterial.mainTexture = (Texture)Resources.Load("Characters/Textures/eyes");
+            return true;
         }
         else if(animation.ToUpper() == "BLUEEYES")
         {
             eyesMaterial.mainTexture = (Texture)Resources.Load("Characters/Textures/eyes 2");
+            return true;
         }
         return false;
     }

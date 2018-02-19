@@ -100,6 +100,7 @@ Console "1_YoUrE_aN_iDiOt.cs\n2_If_yoURe_ReAdInG_th1S.txt\n3_KnOw_Th4T_ThIs_MaY_
 ? "I’m a genius. By tomorrow, I’ll have full access to his account and get to see the look on his face when he sees all his files renamed."
 ? "Someone that stupid... I’m not sure if even my comments will be of any help." 
 ? "Just thinking about it makes me want to laugh until I puke."
+hide Heroine with fadeout 2
 
 define Classmate1 = Character("Classmate:")
 define Classmate2 = Character("Other Classmate:")
@@ -107,7 +108,10 @@ define Classmate2 = Character("Other Classmate:")
 label 3:
 play music "Theme"
 scene black with fade 3
-hide Heroine with fadeout 2
+lighting evening
+
+hide all
+
 "The next day.        .       ."
 scene Lab_Evening with fade 3
 "As the school bell rings and the professor concludes his lecture, a collective sigh of relief goes around the room."
