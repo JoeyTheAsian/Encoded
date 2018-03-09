@@ -4,7 +4,7 @@ define Console = Character("Console")
 define P = Character("Player:")
 define ? = Character("???")
 
-
+jump 2
 
 label beginning:
 
@@ -34,7 +34,7 @@ jump 1
 label 1:
 scene Lab_Evening with fade 4
 lighting night
-play music "Computer Lab"
+play music "Computer Lab.mp3"
 P "*deep sigh* Geez, that took forever. Classes like that should come with a warning when you register: “Class Time: 1 hour. Real-Feel: 2 weeks.”"
 P "Well, can’t say it’s not at least partly my fault. Enrolling in Computer Science without even owning a computer... Who does that?"
 P "I guess I should get to doing my homework. It was so dark when I left yesterday that I nearly missed the last bus so I better get started. Let’s see what we got here..."
@@ -53,10 +53,9 @@ label 2:
 scene Lab_Night with fade
 lighting night
 play music "Computer Lab"
-show Heroine Idle Blink BlueEyes
+show Heroine Idle Blink NeutralEyes
 "The Sun Sets..."
 ? "..."
-show Heroine NeutralEyes
 play music "Computer Lab"
 ? "Tch... he sure took his time."
 ? "Who the heck even stays in the lab after school hours? Not that I should be talking..."

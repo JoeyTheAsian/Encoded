@@ -231,7 +231,9 @@ public class Scripting : MonoBehaviour {
                                             Debug.LogError(string.Format("Line `{0}` contains unknown transition `{1}`", line, temp[2]));
                                             return false;
                                         }
-                                        if (int.Parse(temp[3]) != null) {
+                                        int parsedInt;
+                                        int.TryParse(temp[3], out parsedInt);
+                                        if (parsedInt != 0) {
                                             commands.Add(new string[] { first, temp[0], temp[2], temp[3] });
                                         } else {
                                             Debug.LogError(string.Format("Line `{0}` contains invalid transition time", line));
