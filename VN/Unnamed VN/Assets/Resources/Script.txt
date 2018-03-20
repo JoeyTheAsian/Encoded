@@ -54,6 +54,9 @@ scene Lab_Night with fade
 lighting night
 play music "Computer Lab"
 show Heroine Idle Blink NeutralEyes
+show Male1 Idle Blink
+show Male2 Idle Blink
+
 "The Sun Sets..."
 ? "..."
 play music "Computer Lab"
