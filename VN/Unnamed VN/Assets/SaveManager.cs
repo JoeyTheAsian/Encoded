@@ -15,17 +15,17 @@ public class SaveManager : MonoBehaviour
     public void Refresh()
     {
         for(int i = 0; i < transform.childCount; i++){
-            Destroy(transform.GetChild(i));
+            Destroy(transform.GetChild(i).gameObject);
         }
         //due to this implementation, don't include other .txt files in the game directory
-        Debug.LogError("Refresh");
+       // Debug.LogError("Refresh");
         //loop through all files and display in panel
         foreach (string file in System.IO.Directory.GetFileSystemEntries(Directory.GetCurrentDirectory()))
         {
             string fileName = Path.GetFileName(file);
             if (fileName.Contains(".txt") && !fileName.Contains("liveSave.txt") && !fileName.Contains("Script.txt"))
             {
-                Debug.LogError("Loaded: " + fileName);
+                //Debug.LogError("Loaded: " + fileName);
                 GameObject newSaveInfo = Instantiate(saveDataUI, gameObject.transform);
                 newSaveInfo.transform.SetParent(gameObject.transform);
 
@@ -40,7 +40,7 @@ public class SaveManager : MonoBehaviour
                 //get save file name
                 string strippedName = fileName.Remove(fileName.Length - 4);
                 //set text
-                newSaveInfo.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Text>().text = strippedName + "\n" + lastButOne;
+                newSaveInfo.transform.GetChild(2).GetComponent<Text>().text = strippedName + "\n" + lastButOne;
                 Debug.Log(strippedName + "\n" + lastButOne);
             }
         }
