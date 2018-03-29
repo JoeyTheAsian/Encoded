@@ -22,7 +22,7 @@ public class Menu : MonoBehaviour {
 
     public void Update ()
     {
-        if (!_animator.GetCurrentAnimatorStateInfo(0).IsName("Open"))
+       if (!_animator.GetCurrentAnimatorStateInfo(0).IsName("Open"))
         {
             _canvasGroup.blocksRaycasts = _canvasGroup.interactable = false;
         }

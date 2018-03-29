@@ -7,6 +7,7 @@ public class SaveManager : MonoBehaviour
 {
     public Scripting scripting;
     public GameObject saveDataUI;
+    public GameObject panel;
     // Use this for initialization
     void Start()
     {
@@ -14,8 +15,8 @@ public class SaveManager : MonoBehaviour
     }
     public void Refresh()
     {
-        for(int i = 0; i < transform.childCount; i++){
-            Destroy(transform.GetChild(i).gameObject);
+        for(int i = 0; i < panel.transform.childCount; i++){
+            Destroy(panel.transform.GetChild(i).gameObject);
         }
         //due to this implementation, don't include other .txt files in the game directory
        // Debug.LogError("Refresh");
@@ -26,8 +27,8 @@ public class SaveManager : MonoBehaviour
             if (fileName.Contains(".txt") && !fileName.Contains("liveSave.txt") && !fileName.Contains("Script.txt"))
             {
                 //Debug.LogError("Loaded: " + fileName);
-                GameObject newSaveInfo = Instantiate(saveDataUI, gameObject.transform);
-                newSaveInfo.transform.SetParent(gameObject.transform);
+                GameObject newSaveInfo = Instantiate(saveDataUI, panel.transform);
+                newSaveInfo.transform.SetParent(panel.transform);
 
                 //get date & time data from save file
                 string[] data = File.ReadAllLines(fileName);
@@ -45,5 +46,13 @@ public class SaveManager : MonoBehaviour
                 Debug.Log(strippedName + "\n" + lastButOne);
             }
         }
+    }
+    public void Hide()
+    {
+        transform.parent.gameObject.SetActive(false);
+    }
+    public void Show()
+    {
+        transform.parent.gameObject.SetActive(true);
     }
 }
