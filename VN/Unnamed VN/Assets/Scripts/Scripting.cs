@@ -474,6 +474,22 @@ public class Scripting : MonoBehaviour {
             //return fileName + " was successfully saved.";
         //}
     }
+    public void Save(string fileName) {
+        using (var reader = new StreamReader("liveSave.txt"))
+        using (var writer = new StreamWriter(new FileStream(fileName + ".txt", FileMode.Create))) {
+            //write choice data first
+            writer.Write(reader.ReadToEnd());
+            //write time of save
+            writer.WriteLine(System.DateTime.Now);
+            //write current line compiler is on
+            writer.WriteLine(programCounter);
+            writer.Close();
+        }
+
+        //return fileName + " was successfully saved.";
+        //}
+    }
+    //.txt not necessary as part of input
     public void Load(string fileName) {
         programCounter = 0;
         choiceData.Clear();
@@ -502,6 +518,45 @@ public class Scripting : MonoBehaviour {
             sr.Close();
         }
        
+        foreach (string key in labels.Keys) {
+            Debug.Log(key + " = " + labels[key] + ": " + commands[labels[key]]);
+        }
+        while (!labels.ContainsValue(programCounter)) {
+            programCounter--;
+        }
+        dialogueManager.ResetChoice();
+        dialogueManager.ClearText();
+        Next();
+    }
+    public void Load(Text inputField) {
+        string fileName = inputField.text;
+        programCounter = 0;
+        choiceData.Clear();
+
+        using (StreamReader sr = new StreamReader(fileName + ".txt"))
+        using (StreamWriter lvsv = new StreamWriter(new FileStream("liveSave.txt", FileMode.Create))) {
+            string line;
+            while (!sr.EndOfStream) {
+                line = sr.ReadLine();
+                int choice = 0;
+
+                string[] splitLine = line.Split(' ');
+                if (splitLine.Length > 1) {
+                    int.TryParse(splitLine[1], out choice);
+                    if (choice != 0 && choice <= 4) {
+                        choiceData.Add(choice + "");
+                        lvsv.WriteLine(line);
+                    }
+                }
+
+                if (sr.Peek() == -1) {
+                    programCounter = int.Parse(line) - 1;
+                }
+            }
+            lvsv.Close();
+            sr.Close();
+        }
+
         foreach (string key in labels.Keys) {
             Debug.Log(key + " = " + labels[key] + ": " + commands[labels[key]]);
         }
