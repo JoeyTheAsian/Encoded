@@ -54,8 +54,7 @@ scene Lab_Night with fade
 lighting night
 play music "Computer Lab"
 show Heroine Idle Blink NeutralEyes
-show Male1 Idle Blink
-show Male2 Idle Blink
+
 
 "The Sun Sets..."
 ? "..."
@@ -116,6 +115,9 @@ hide all
 
 "The next day.        .       ."
 scene Lab_Evening with fade 3
+show male1 idle blink
+show male2 idle blink
+
 "As the school bell rings and the professor concludes his lecture, a collective sigh of relief goes around the room."
 Classmate1 "About time. Come on, let’s get out of here. We’ve wasted enough time here as is."
 Classmate2 "Eager to go somewhere?"

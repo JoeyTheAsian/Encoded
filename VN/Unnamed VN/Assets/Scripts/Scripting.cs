@@ -493,7 +493,7 @@ public class Scripting : MonoBehaviour {
     public void Load(string fileName) {
         programCounter = 0;
         choiceData.Clear();
-
+        
         using (StreamReader sr = new StreamReader(fileName + ".txt"))
         using (StreamWriter lvsv = new StreamWriter(new FileStream("liveSave.txt", FileMode.Create))) {
             string line;
@@ -518,17 +518,20 @@ public class Scripting : MonoBehaviour {
             sr.Close();
         }
        
-        foreach (string key in labels.Keys) {
+        /*foreach (string key in labels.Keys) {
             Debug.Log(key + " = " + labels[key] + ": " + commands[labels[key]]);
-        }
+        }*/
         while (!labels.ContainsValue(programCounter)) {
             programCounter--;
         }
         dialogueManager.ResetChoice();
         dialogueManager.ClearText();
+        characterManager.GetComponent<CharacterManager>().RemoveCharacter("All");
         Next();
     }
+    //load a save file
     public void Load(Text inputField) {
+        characterManager.GetComponent<CharacterManager>().RemoveCharacter("All");
         string fileName = inputField.text;
         programCounter = 0;
         choiceData.Clear();
@@ -557,19 +560,21 @@ public class Scripting : MonoBehaviour {
             sr.Close();
         }
 
-        foreach (string key in labels.Keys) {
+        /*foreach (string key in labels.Keys) {
             Debug.Log(key + " = " + labels[key] + ": " + commands[labels[key]]);
-        }
+        }*/
         while (!labels.ContainsValue(programCounter)) {
             programCounter--;
         }
         dialogueManager.ResetChoice();
         dialogueManager.ClearText();
+        
+        
         Next();
     }
     //Next command
     public void Next() {
-		for (;;) {
+        for (;;) {
 			if (programCounter >= commands.Count) {
 				Debug.LogWarning("programCounter >= commands.Count");
                 Debug.LogWarning(programCounter);

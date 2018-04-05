@@ -25,7 +25,11 @@ public class CharacterManager : MonoBehaviour {
     //attempts to apply the animation passed in
     public void StartAnimation(string animation, string character) {
         GameObject c = GetCharacter(character);
-        if (!c.GetComponent<CharacterModel>().StartAnimation(animation)) {
+        if(c == null) {
+            Debug.LogError(characters.Count);
+            Debug.LogError("Cannot play animation on null character: " + character);
+        }
+        else if (!c.GetComponent<CharacterModel>().StartAnimation(animation)) {
             Debug.LogError("Unable to play animation '" + animation + "' in character '" + character + "'");
         }
     }
@@ -34,7 +38,18 @@ public class CharacterManager : MonoBehaviour {
         c.GetComponent<CharacterModel>().StopAnimation(animation);
     }
     public GameObject GetCharacter(string name) {
-        return GameObject.Find(name + "(Clone)");
+        GameObject character = null;
+        foreach (GameObject g in characters) {
+            if(g.name.ToUpper() == (name + "(Clone)").ToUpper()) {
+                character = g;
+            }
+        }
+        
+        if (character != null && characters.Contains(character)) {
+            return character;
+        } else {
+            return null;
+        }
     }
     //autosizes all displayed characters
     public void AutoSize() {
@@ -45,20 +60,19 @@ public class CharacterManager : MonoBehaviour {
     //attempts to add in the character passed in
     public void AddCharacter(string name) {
         GameObject newCharacter = Instantiate<GameObject>(Resources.Load("Prefabs/" + name) as GameObject);
-        newCharacter.transform.parent = GameObject.Find("Characters").transform;
         characters.Add(newCharacter);
-        
+        newCharacter.transform.parent = GameObject.Find("Characters").transform;
         int charCount = characters.Count;
         for(int i = 0; i < charCount; i++) {
             characters[i].GetComponent<CharacterModel>().offsetPercentage.x = 100/(charCount + 1) * (i+1);
         }
-
     }
     public void RemoveCharacter(string name) {
         if (name.ToUpper() == "ALL") {
             for (int i = 0; i < characters.Count; i++) {
-                Destroy(characters[i]);
-                characters.Remove(characters[i]);
+                GameObject character = characters[i];
+                characters.RemoveAt(i);
+                Destroy(character);
             }
         } else {
             GameObject character = GameObject.Find(name + "(Clone)");

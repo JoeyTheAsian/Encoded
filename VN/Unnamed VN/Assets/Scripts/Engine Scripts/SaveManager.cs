@@ -15,6 +15,7 @@ public class SaveManager : MonoBehaviour
     }
     public void Refresh()
     {
+        int saveNum = 0;
         for(int i = 0; i < panel.transform.childCount; i++){
             Destroy(panel.transform.GetChild(i).gameObject);
         }
@@ -23,6 +24,7 @@ public class SaveManager : MonoBehaviour
         //loop through all files and display in panel
         foreach (string file in System.IO.Directory.GetFileSystemEntries(Directory.GetCurrentDirectory()))
         {
+            saveNum++;
             string fileName = Path.GetFileName(file);
             if (fileName.Contains(".txt") && !fileName.Contains("liveSave.txt") && !fileName.Contains("Script.txt"))
             {
@@ -32,10 +34,10 @@ public class SaveManager : MonoBehaviour
 
                 //get date & time data from save file
                 string[] data = File.ReadAllLines(fileName);
-                for(int j = 0; j < data.Length; j++)
+                /*for(int j = 0; j < data.Length; j++)
                 {
                     Debug.LogWarning(data[j]);
-                }
+                }*/
 
                 string lastButOne = data[data.Length - 2];
                 //get save file name
@@ -43,16 +45,18 @@ public class SaveManager : MonoBehaviour
                 //set text
                 newSaveInfo.transform.GetChild(2).GetComponent<Text>().text = strippedName + "\n" + lastButOne;
                 newSaveInfo.transform.GetChild(3).GetComponent<Text>().text = strippedName;
-                Debug.Log(strippedName + "\n" + lastButOne);
+                //Debug.Log(strippedName + "\n" + lastButOne);
             }
         }
+        gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(gameObject.GetComponent<RectTransform>().sizeDelta.x, saveNum * 50);
     }
+
     public void Hide()
     {
-        transform.parent.gameObject.SetActive(false);
+        transform.parent.transform.parent.gameObject.SetActive(false);
     }
     public void Show()
     {
-        transform.parent.gameObject.SetActive(true);
+        transform.parent.transform.parent.gameObject.SetActive(true);
     }
 }
