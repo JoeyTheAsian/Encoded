@@ -73,6 +73,7 @@ public class CharacterManager : MonoBehaviour {
                 GameObject character = characters[i];
                 characters.RemoveAt(i);
                 Destroy(character);
+                i--;
             }
         } else {
             GameObject character = GameObject.Find(name + "(Clone)");

@@ -142,7 +142,11 @@ P "Sure. Thanks a lot, guys. See you next week. "
 Classmate1 "Yeah, take care!"
 Classmate2 "See ya."
 
+hide all
+
 label 4:
+scene black with fade 3
+scene Lab_Evening with fade 3
 P "..."
 P "I wish I could've gone with them..."
 P "How long is this going to last?"
@@ -192,6 +196,4 @@ scene Player_Room_Evening with fade 2
 P "I came all the way to city to study computer programming. It would be quite a waste if I flunked out in the first month."
 P "Seems like I have no choice but to work harder."
 
-label 6: 
-? "That's the end of the prototype demo. We have roughly 10-15 minutes of unimplemented script in addition to this that can be found among the prototype files"
 return
